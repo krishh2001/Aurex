@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NexusTech | IT Solutions & Digital Innovation</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #030303;
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-bg: rgba(20, 20, 20, 0.4);
+            --text-main: #ffffff;
+            --text-muted: #9ca3af;
+            --accent-primary: #10b981;
+            --accent-secondary: #3b82f6;
+            --accent-gradient: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+            --font-family: 'Outfit', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg-color);
+            font-family: var(--font-family);
+            overflow-x: hidden;
+            min-height: 100vh;
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* --- Advanced Backgrounds --- */
+        .cyber-grid {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -2;
+            mask-image: radial-gradient(circle at 50% 50%, black, transparent 80%);
+            pointer-events: none;
+        }
+
+        .ambient-glow {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.08), transparent 70%);
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 50%;
+            z-index: -1;
+            filter: blur(80px);
+            animation: pulse 8s infinite ease-in-out;
+        }
+
+        .ambient-glow-2 {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.06), transparent 70%);
+            bottom: 0;
+            right: -100px;
+            border-radius: 50%;
+            z-index: -1;
+            filter: blur(80px);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.5;
+                transform: translateX(-50%) scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translateX(-50%) scale(1.1);
+            }
+        }
+
+        .bg-large-text {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 18vw;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.015);
+            letter-spacing: -5px;
+            text-transform: uppercase;
+            z-index: -3;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        /* --- Animations --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Navbar --- */
+        .navbar {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            padding: 12px 24px;
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 100px;
+            z-index: 1000;
+            transition: 0.3s ease;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        .navbar.scrolled {
+            top: 10px;
+            padding: 10px 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-logo span {
+            color: var(--accent-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 5px;
+        }
+
+        .nav-links a {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-btn {
+            padding: 8px 20px;
+            border-radius: 20px;
+            background: #fff;
+            color: #000;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        /* --- Hero Section --- */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .hero-badge {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: var(--accent-primary);
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            font-weight: 700;
+            margin-bottom: 25px;
+            letter-spacing: -2px;
+            background: linear-gradient(to bottom, #ffffff 40%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            max-width: 900px;
+        }
+
+        .hero-desc {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            padding: 14px 32px;
+            background: var(--accent-gradient);
+            color: #fff;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            padding: 14px 32px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            border: 1px solid var(--glass-border);
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #fff;
+        }
+
+        /* --- Infinite Ticker --- */
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            background: linear-gradient(90deg, var(--bg-color) 0%, transparent 10%, transparent 90%, var(--bg-color) 100%);
+            padding: 40px 0;
+            margin-bottom: 100px;
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+            position: relative;
+        }
+
+        .ticker {
+            display: flex;
+            gap: 80px;
+            animation: ticker 30s linear infinite;
+            width: max-content;
+        }
+
+        .ticker-item {
+            font-size: 1.5rem;
+            color: #555;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        @keyframes ticker {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* --- Main Container --- */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Common Section Styles */
+        .section-margin {
+            margin-bottom: 140px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .section-subtitle {
+            color: var(--accent-primary);
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: block;
+            font-size: 0.9rem;
+        }
+
+        /* --- Services Grid --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .service-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 40px 30px;
+            border-radius: 24px;
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--accent-primary);
+            margin-bottom: 20px;
+            background: rgba(16, 185, 129, 0.1);
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 18px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .service-card:nth-child(2) .service-icon {
+            color: var(--accent-secondary);
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .service-card:nth-child(3) .service-icon {
+            color: #ec4899;
+            background: rgba(236, 72, 153, 0.1);
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        /* --- About Section --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-content h2 {
+            font-size: 3rem;
+            line-height: 1.1;
+            margin-bottom: 25px;
+        }
+
+        .about-img-wrapper {
+            position: relative;
+            border-radius: 30px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+        }
+
+        .about-img {
+            width: 100%;
+            display: block;
+            transition: 0.5s;
+        }
+
+        .about-img-wrapper:hover .about-img {
+            transform: scale(1.05);
+        }
+
+        /* --- Process Section --- */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .process-card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%);
+            border: 1px solid var(--glass-border);
+            padding: 35px;
+            border-radius: 24px;
+            position: relative;
+            text-align: center;
+        }
+
+        .process-num {
+            font-size: 4rem;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.03);
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+
+        .process-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        /* --- Team Section --- */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .team-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-primary);
+        }
+
+        .team-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: 0.5s;
+        }
+
+        .team-card:hover .team-img {
+            filter: grayscale(0%);
+        }
+
+        .team-info {
+            padding: 20px;
+        }
+
+        .team-name {
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .team-role {
+            font-size: 0.85rem;
+            color: var(--accent-primary);
+        }
+
+        /* --- Stats Section --- */
+        .stats-section {
+            margin-bottom: 100px;
+        }
+
+        .stats-container {
+            background: rgba(10, 10, 10, 0.6);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 50px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #fff, var(--accent-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* --- CTA Section --- */
+        .cta-section {
+            position: relative;
+            border-radius: 40px;
+            overflow: hidden;
+            padding: 100px 40px;
+            text-align: center;
+            border: 1px solid var(--glass-border);
+            background: radial-gradient(circle at center, rgba(20, 20, 20, 0.8), #000);
+        }
+
+        .cta-bg {
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        /* --- Footer --- */
+        .site-footer {
+            border-top: 1px solid var(--glass-border);
+            background: #000;
+            padding: 80px 0 30px;
+            margin-top: 100px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            max-width: 300px;
+        }
+
+        .footer-col h4 {
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: #555;
+            font-size: 0.85rem;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+
+            .services-grid,
+            .process-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .navbar {
+                justify-content: space-between;
+                width: 90%;
+            }
+
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .services-grid,
+            .process-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-content h2 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="cyber-grid"></div>
+    <div class="ambient-glow"></div>
+    <div class="ambient-glow-2"></div>
+    <h1 class="bg-large-text">NEXUSTECH</h1>
+
+    <nav class="navbar" id="navbar">
+        <div class="nav-logo"><i class="ri-shining-2-fill"></i></div>
+        <ul class="nav-links">
+            <li><a href="/HomePage.html" class="active">Home</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="/AboutPage.html">About</a></li>
+            <li><a href="/BlogPage.html">Blogs</a></li>
+            <li><a href="/ContactPage.html">Contact</a></li>
+        </ul>
+        <a href="#" class="nav-btn">Let's Talk</a>
+    </nav>
+
+    <header class="hero-section">
+        <div class="reveal active">
+            <div class="hero-badge">Enterprise IT Solutions</div>
+            <h1 class="hero-title">Digital Transformation <br>for Modern Businesses</h1>
+            <p class="hero-desc">
+                We help businesses leverage cutting-edge technology to drive growth, optimize operations, and create exceptional digital experiences.
+            </p>
+            <div class="hero-btns">
+                <a href="#" class="btn-primary">Explore Solutions</a>
+                <a href="#" class="btn-secondary">Schedule Consultation</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <div class="ticker-item"><i class="ri-shining-fill"></i> MICROSOFT</div>
+            <div class="ticker-item"><i class="ri-global-line"></i> GOOGLE</div>
+            <div class="ticker-item"><i class="ri-command-fill"></i> AMAZON</div>
+            <div class="ticker-item"><i class="ri-shape-2-fill"></i> IBM</div>
+            <div class="ticker-item"><i class="ri-flashlight-fill"></i> TESLA</div>
+            <div class="ticker-item"><i class="ri-code-box-line"></i> NETFLIX</div>
+            <div class="ticker-item"><i class="ri-shining-fill"></i> MICROSOFT</div>
+            <div class="ticker-item"><i class="ri-global-line"></i> GOOGLE</div>
+            <div class="ticker-item"><i class="ri-command-fill"></i> AMAZON</div>
+            <div class="ticker-item"><i class="ri-shape-2-fill"></i> IBM</div>
+            <div class="ticker-item"><i class="ri-flashlight-fill"></i> TESLA</div>
+        </div>
+    </div>
+
+    <main class="container">
+
+        <section class="section-margin" id="services">
+            <div class="section-header reveal">
+                <span class="section-subtitle">Our Expertise</span>
+                <h2 class="section-title">Comprehensive IT Solutions</h2>
+                <p style="color: var(--text-muted);">End-to-end technology services to power your digital transformation journey.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-icon"><i class="ri-cloud-line"></i></div>
+                    <h3>Cloud Solutions</h3>
+                    <p>Scalable cloud infrastructure, migration services, and optimization for AWS, Azure, and Google Cloud platforms.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon"><i class="ri-shield-keyhole-line"></i></div>
+                    <h3>Cyber Security</h3>
+                    <p>Comprehensive security solutions including threat detection, vulnerability assessment, and compliance management.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon"><i class="ri-code-s-slash-line"></i></div>
+                    <h3>Custom Development</h3>
+                    <p>Bespoke software solutions, web applications, and mobile apps tailored to your specific business needs.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-margin" id="about">
+            <div class="about-grid">
+                <div class="about-content reveal">
+                    <span class="section-subtitle">About Us</span>
+                    <h2>Leading Digital Innovation <br><span style="color: var(--accent-primary);">Since 2015</span></h2>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;">
+                        NexusTech is a premier IT solutions provider dedicated to helping businesses navigate the complexities of digital transformation. Our team of certified experts delivers cutting-edge technology solutions that drive measurable results.
+                    </p>
+                    <p style="color: var(--text-muted); margin-bottom: 30px;">
+                        From startups to Fortune 500 companies, we've helped organizations across industries leverage technology to optimize operations, enhance customer experiences, and accelerate growth.
+                    </p>
+                    <a href="#"
+                        style="color: #fff; text-decoration: none; border-bottom: 1px solid var(--accent-primary);">Learn more about our story</a>
+                </div>
+                <div class="about-img-wrapper reveal">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop"
+                        alt="Modern Office" class="about-img">
+                </div>
+            </div>
+        </section>
+
+        <section class="stats-section reveal">
+            <div class="stats-container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">250+</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Client Satisfaction</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Team Experts</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-margin" id="process">
+            <div class="section-header reveal">
+                <span class="section-subtitle">Our Approach</span>
+                <h2 class="section-title">The NexusTech Methodology</h2>
+            </div>
+            <div class="process-grid">
+                <div class="process-card reveal">
+                    <span class="process-num">01</span>
+                    <h3>Discovery & Strategy</h3>
+                    <p style="color: var(--text-muted);">Comprehensive analysis of your business needs, goals, and technical requirements to create a tailored strategy.</p>
+                </div>
+                <div class="process-card reveal">
+                    <span class="process-num">02</span>
+                    <h3>Design & Development</h3>
+                    <p style="color: var(--text-muted);">Agile development with continuous feedback loops to ensure alignment with your vision and business objectives.</p>
+                </div>
+                <div class="process-card reveal">
+                    <span class="process-num">03</span>
+                    <h3>Deployment & Support</h3>
+                    <p style="color: var(--text-muted);">Seamless implementation, rigorous testing, and ongoing support to ensure optimal performance and user satisfaction.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-margin" id="team">
+            <div class="section-header reveal">
+                <span class="section-subtitle">Our Leadership</span>
+                <h2 class="section-title">Meet Our Experts</h2>
+            </div>
+            <div class="team-grid">
+                <div class="team-card reveal">
+                    <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=1000&auto=format&fit=crop"
+                        class="team-img">
+                    <div class="team-info">
+                        <div class="team-name">Alex Johnson</div>
+                        <div class="team-role">CEO & Founder</div>
+                    </div>
+                </div>
+                <div class="team-card reveal">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000&auto=format&fit=crop"
+                        class="team-img">
+                    <div class="team-info">
+                        <div class="team-name">Sarah Chen</div>
+                        <div class="team-role">CTO</div>
+                    </div>
+                </div>
+                <div class="team-card reveal">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1000&auto=format&fit=crop"
+                        class="team-img">
+                    <div class="team-info">
+                        <div class="team-name">Michael Rodriguez</div>
+                        <div class="team-role">Head of Security</div>
+                    </div>
+                </div>
+                <div class="team-card reveal">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000&auto=format&fit=crop"
+                        class="team-img">
+                    <div class="team-info">
+                        <div class="team-name">Emily Watson</div>
+                        <div class="team-role">Cloud Architect</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section reveal">
+            <div class="cta-bg"></div>
+            <div style="position: relative; z-index: 2;">
+                <h2 style="font-size: 3rem; font-weight: 700; margin-bottom: 20px; color: #fff;">Ready to Transform Your Business?</h2>
+                <p style="color: #ccc; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Let's discuss how our IT solutions can drive your digital transformation and deliver measurable business results.
+                </p>
+                <a href="#" class="btn-primary">Start Your Project</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>NEXUSTECH</h3>
+                <p>Delivering innovative IT solutions that empower businesses to thrive in the digital age.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Cloud Solutions</a></li>
+                    <li><a href="#">Cyber Security</a></li>
+                    <li><a href="#">Custom Development</a></li>
+                    <li><a href="#">IT Consulting</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Team</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <ul class="footer-links">
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">GitHub</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 NexusTech Solutions. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Parallax background text
+        const bgText = document.querySelector('.bg-large-text');
+        window.addEventListener('scroll', () => {
+            let scroll = window.scrollY;
+            bgText.style.transform = `translate(-50%, calc(-50% + ${scroll * 0.1}px))`;
+            bgText.style.opacity = 1 - (scroll * 0.0015);
+        });
+
+        // Navbar Blur Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll Reveal Animation using Intersection Observer
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+    </script>
+</body>
+
+</html>
