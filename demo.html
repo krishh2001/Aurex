@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Stats Grid</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #000000;
+            --grid-line-color: #1c1c1e;
+            /* Fallback dark grey */
+            --glow-color: #0066cc;
+            /* Deep blue glow */
+            --text-blue: #2997ff;
+            /* Apple-style bright blue */
+            --text-white: #f5f5f7;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: var(--text-white);
+        }
+
+        /* Main Container 
+           We use a radial gradient background on the parent container 
+           and gaps between black child items to create the glowing border effect.
+        */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, minmax(180px, auto));
+            gap: 1px;
+            /* The width of the grid lines */
+
+            width: 100%;
+            max-width: 1000px;
+            margin: 20px;
+
+            /* The magic: Radial gradient background acts as the borders */
+            background: radial-gradient(circle at center,
+                    var(--text-blue) 0%,
+                    var(--glow-color) 40%,
+                    rgba(0, 0, 0, 0) 80%);
+
+            /* Add a subtle outer fade if needed, or keep sharp */
+            position: relative;
+        }
+
+        /* Grid Items (The cells) */
+        .grid-item {
+            background-color: #000;
+            /* Covers the container bg, leaving only gap visible */
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            /* Content sits at the bottom */
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Typography */
+        .label {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #e0e0e0;
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+
+        .highlight-text {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--text-blue);
+            line-height: 1.1;
+            background: linear-gradient(135deg, #5eacff 0%, #0066cc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .description {
+            font-size: 0.9rem;
+            color: #a1a1a6;
+            font-weight: 400;
+            max-width: 90%;
+        }
+
+        /* Specific Layout Assignments based on visual inference */
+
+        /* Top Row */
+        .item-1 {
+            grid-column: 1 / 2;
+            grid-row: 1 / 2;
+        }
+
+        /* Empty Top Left */
+        .item-2 {
+            grid-column: 2 / 4;
+            grid-row: 1 / 2;
+        }
+
+        /* Wide Item */
+
+        /* Second Row */
+        .item-3 {
+            grid-column: 1 / 2;
+            grid-row: 2 / 3;
+        }
+
+        /* Empty */
+        .item-4 {
+            grid-column: 2 / 3;
+            grid-row: 2 / 3;
+        }
+
+        /* Center Item */
+        .item-5 {
+            grid-column: 3 / 4;
+            grid-row: 2 / 3;
+        }
+
+        /* Empty */
+
+        /* Third Row */
+        .item-6 {
+            grid-column: 1 / 2;
+            grid-row: 3 / 4;
+        }
+
+        /* Left Item */
+        .item-7 {
+            grid-column: 2 / 3;
+            grid-row: 3 / 4;
+        }
+
+        /* Empty Center */
+        .item-8 {
+            grid-column: 3 / 4;
+            grid-row: 3 / 4;
+        }
+
+        /* Right Item */
+
+        /* Fourth Row */
+        .item-9 {
+            grid-column: 1 / 2;
+            grid-row: 4 / 5;
+        }
+
+        /* Empty */
+        .item-10 {
+            grid-column: 2 / 3;
+            grid-row: 4 / 5;
+        }
+
+        /* Empty */
+        .item-11 {
+            grid-column: 3 / 4;
+            grid-row: 4 / 5;
+        }
+
+        /* Empty */
+
+
+        /* Animation for entering */
+        .grid-item {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Stagger animations */
+        .grid-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .grid-item:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .grid-item:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .grid-item:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .grid-item:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .grid-item:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        .grid-item:nth-child(7) {
+            animation-delay: 0.7s;
+        }
+
+        .grid-item:nth-child(8) {
+            animation-delay: 0.8s;
+        }
+
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+                max-width: 100%;
+            }
+
+            /* Reset grid placements for mobile to simple stack */
+            .grid-item {
+                grid-column: auto !important;
+                grid-row: auto !important;
+                min-height: 200px;
+            }
+
+            /* Hide empty cells on mobile to save space */
+            .empty-cell {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bento-grid">
+        <!-- Row 1 -->
+        <div class="grid-item item-1 empty-cell">
+             <div class="label">Total</div>
+            <div class="highlight-text">250<span style="font-size: 2rem; color:#fff;">+</span></div>
+            <div class="description">Projects Completed Successfully</div>
+        </div>
+
+        <!-- Stat 1: Projects -->
+        <div class="grid-item item-2">
+           
+        </div>
+
+        <!-- Row 2 -->
+        <div class="grid-item item-3 empty-cell"></div>
+
+        <!-- Stat 2: Satisfaction -->
+        <div class="grid-item item-4">
+            <div class="highlight-text">98<span style="font-size: 2rem; color: var(--text-blue);">%</span></div>
+            <div class="description">Client Satisfaction Rate</div>
+        </div>
+
+        <div class="grid-item item-5 empty-cell"></div>
+
+        <!-- Row 3 -->
+        <!-- Stat 3: Team -->
+        <div class="grid-item item-6">
+            <div class="label">Over</div>
+            <div class="highlight-text">50<span style="font-size: 2rem;">+</span></div>
+            <div class="description">Expert Team Members</div>
+        </div>
+
+        <div class="grid-item item-7 empty-cell"></div>
+
+        <!-- Stat 4: Experience -->
+        <div class="grid-item item-8">
+            <div class="label">Established</div>
+            <div class="highlight-text">8<span style="font-size: 1.5rem; color: #fff"> yrs</span></div>
+            <div class="description">Years of Industry Experience</div>
+        </div>
+
+    </div>
+
+    <script>
+        // Optional: Add a subtle mouse-move effect to the gradient background
+        // This makes the glow follow the mouse slightly for a premium feel
+        const grid = document.querySelector('.bento-grid');
+
+        document.addEventListener('mousemove', (e) => {
+            const rect = grid.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            // Update the gradient position dynamically
+            grid.style.background = `radial-gradient(
+                circle at ${x}px ${y}px, 
+                var(--text-blue) 0%, 
+                var(--glow-color) 30%, 
+                rgba(0,0,0,0) 60%
+            )`;
+        });
+    </script>
+</body>
+
+</html>

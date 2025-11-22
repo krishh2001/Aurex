@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Process Section</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-text: #1a1a1a;
+            --secondary-text: #888888;
+            --accent-blue: #00a8ff;
+            --accent-cyan: #00d2d3;
+            --bg-color: #f8f9fc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        .process-section {
+            width: 100%;
+            max-width: 1200px;
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-text);
+            margin-bottom: 100px;
+        }
+
+        .section-title span {
+            color: var(--accent-blue);
+        }
+
+        /* --- Timeline Container --- */
+        .timeline-container {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 100%;
+            margin: 0 auto;
+            height: 400px;
+        }
+
+        /* --- SVG Wave Line --- */
+        .wave-line-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: visible;
+        }
+
+        /* The Gradient Path */
+        .wave-path {
+            fill: none;
+            stroke: url(#lineGradient);
+            stroke-width: 4;
+            stroke-linecap: round;
+            filter: drop-shadow(0px 10px 10px rgba(0, 168, 255, 0.2));
+        }
+
+        /* --- Step Item --- */
+        .step-item {
+            position: relative;
+            z-index: 1;
+            width: 280px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            /* Align items center horizontally relative to themselves */
+            align-items: flex-start;
+        }
+
+        /* --- Step Positioning (Matching the Wave) --- */
+
+        /* Step 1: Low start */
+        .step-1 {
+            margin-top: 140px;
+            /* Push down to match curve start */
+        }
+
+        /* Step 2: High peak */
+        .step-2 {
+            margin-top: 70px;
+            /* Top of the container */
+            text-align: center;
+            align-items: center;
+        }
+
+        /* Step 3: Low end */
+        .step-3 {
+            margin-top: 100px;
+            align-items: flex-end;
+            /* Align content to right roughly */
+            text-align: right;
+        }
+
+
+        /* --- Hexagon Icon --- */
+        .icon-box {
+            width: 70px;
+            height: 70px;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            /* Hexagon Shape using Clip Path */
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            /* Shadow hack: since clip-path cuts shadow, we use a filter on parent or pseudo, 
+               but for simplicity in this specific design, a soft filter drop-shadow works on the element itself if not clipped hard,
+               or we style a wrapper. Let's use a wrapper for shadow. */
+            z-index: 2;
+            margin-bottom: 20px;
+        }
+
+        /* Wrapper to apply drop-shadow to the clipped shape */
+        .icon-wrapper {
+            filter: drop-shadow(0px 10px 20px rgba(0, 168, 255, 0.15));
+            width: 70px;
+            height: 70px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        /* Position icons relative to text based on step */
+        .step-1 .icon-wrapper {
+            margin-top: 20px;
+        }
+
+        /* Text is above, icon below */
+
+        .icon-box i {
+            font-size: 1.5rem;
+            background: -webkit-linear-gradient(45deg, #00a8ff, #00d2d3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- Text Content --- */
+        .content-box {
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-text);
+            margin-bottom: 10px;
+        }
+
+        .step-desc {
+            font-size: 0.85rem;
+            color: var(--secondary-text);
+            line-height: 1.6;
+            max-width: 250px;
+        }
+
+        /* --- Background Numbers --- */
+        .bg-number {
+            position: absolute;
+            font-size: 8rem;
+            font-weight: 700;
+            color: rgba(0, 0, 0, 0.03);
+            /* Very subtle gray */
+            z-index: 0;
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        /* Specific Positioning for Elements per Step */
+
+        /* STEP 1: Text Top, Icon Bottom */
+        .step-1 .content-box {
+            order: -1;
+            /* Text visually comes before icon in flex col */
+            margin-bottom: 10px;
+        }
+
+        .step-1 .bg-number {
+            top: -90px;
+            left: 170px;
+        }
+
+        /* STEP 2: Icon Top, Text Bottom (Center) */
+        .step-2 .bg-number {
+            top: 80px;
+            left: 90%;
+            transform: translateX(-50%);
+        }
+
+        /* STEP 3: Icon Top, Text Bottom (Right aligned) */
+        .step-3 .bg-number {
+            top: 60px;
+            right: -20px;
+        }
+
+        /* Adjusting Icon position specifically for the wave contact point */
+        .step-1 .icon-wrapper {
+            margin-left: 20px;
+            /* Align with wave start */
+        }
+
+        .step-3 .icon-wrapper {
+            margin-right: 20px;
+            /* Align with wave end */
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .timeline-container {
+                flex-direction: column;
+                height: auto;
+                align-items: center;
+            }
+
+            .wave-line-svg {
+                display: none;
+                /* Hide wave on mobile as it breaks layout */
+            }
+
+            .step-item {
+                width: 100%;
+                text-align: center;
+                align-items: center;
+                margin-top: 40px !important;
+            }
+
+            .step-1 .content-box {
+                order: 1;
+                /* Reset order for mobile */
+            }
+
+            .bg-number {
+                position: static;
+                margin-bottom: -40px;
+            }
+
+            .section-title {
+                margin-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="process-section">
+        <h2 class="section-title">Process section<span>.</span></h2>
+
+        <div class="timeline-container">
+            <!-- SVG Curve Background -->
+            <svg class="wave-line-svg" viewBox="0 0 1000 300" preserveAspectRatio="none">
+                <defs>
+                    <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#00a8ff;stop-opacity:0.3" />
+                        <stop offset="50%" style="stop-color:#00d2d3;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#00a8ff;stop-opacity:0.2" />
+                    </linearGradient>
+                </defs>
+                <!-- Cubic Bezier Curve to match the wave shape -->
+                <!-- M start-x start-y C handle1-x handle1-y, handle2-x handle2-y, end-x end-y ... -->
+                <path class="wave-path" d="M 50,220 C 250,220 300,80 500,80 S 750,200 950,160" />
+            </svg>
+
+            <!-- Step 1 -->
+            <div class="step-item step-1">
+                <div class="bg-number">1</div>
+
+                <div class="content-box">
+                    <h3 class="step-title">General concept</h3>
+                    <p class="step-desc">Far far away, behind mountains, far from the countries Vokalia.</p>
+                </div>
+
+                <div class="icon-wrapper">
+                    <div class="icon-box">
+                        <i class="fas fa-flag"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step-item step-2">
+                <div class="bg-number">2</div>
+
+                <div class="icon-wrapper">
+                    <div class="icon-box">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                </div>
+
+                <div class="content-box">
+                    <h3 class="step-title">Post product</h3>
+                    <p class="step-desc">Far far away, behind mountains, far from the countries Vokalia.</p>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step-item step-3">
+                <div class="bg-number">3</div>
+
+                <div class="icon-wrapper">
+                    <div class="icon-box">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                </div>
+
+                <div class="content-box">
+                    <h3 class="step-title">Design process</h3>
+                    <p class="step-desc">Far far away, behind mountains, far from the countries Vokalia.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</body>
+
+</html>
