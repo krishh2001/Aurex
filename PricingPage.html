@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Pricing & FAQ</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #050505;
+            --card-bg: rgba(20, 20, 20, 0.6);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-muted: #9ca3af;
+            --accent-color: #10b981;
+            /* Emerald Green */
+            --accent-glow: rgba(16, 185, 129, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* --- Background Glows --- */
+        .ambient-light {
+            position: fixed;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, transparent 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        /* --- Header --- */
+        .header h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(to bottom, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        /* --- Toggle Switch --- */
+        .toggle-wrapper {
+            display: inline-flex;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            border-radius: 50px;
+            padding: 5px;
+            margin-bottom: 60px;
+            backdrop-filter: blur(10px);
+        }
+
+        .toggle-btn {
+            padding: 12px 28px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 40px;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .toggle-btn.active {
+            color: #000;
+            background: var(--accent-color);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+        }
+
+        /* --- PRICING GRID (Perfect Alignment) --- */
+        .pricing-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* This aligns side cards vertically center relative to big card */
+            gap: 40px;
+            /* Proper Gap */
+            flex-wrap: nowrap;
+            margin-bottom: 120px;
+            /* Space before FAQ */
+        }
+
+        /* --- SHARED CARD STYLES --- */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            position: relative;
+            transition: transform 0.4s ease, border-color 0.4s ease;
+            backdrop-filter: blur(20px);
+        }
+
+        /* SIDE CARDS DIMENSIONS */
+        .card.standard {
+            width: 360px;
+            height: 600px;
+            /* Fixed height for alignment */
+        }
+
+        /* FEATURED CARD DIMENSIONS */
+        .card.featured {
+            width: 380px;
+            /* Wider */
+            height: 730px;
+            /* Taller */
+            background: rgba(25, 25, 25, 0.95);
+            border: 2px solid var(--accent-color);
+            z-index: 2;
+            box-shadow: 0 0 60px rgba(16, 185, 129, 0.15);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .card.featured:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 0 80px rgba(16, 185, 129, 0.25);
+        }
+
+        /* Badge */
+        .most-popular {
+            position: absolute;
+            top: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-color);
+            color: #000;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 6px 18px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Plan Info */
+        .plan-header {
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 25px;
+            margin-bottom: 25px;
+        }
+
+        .plan-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .text-starter {
+            color: #facc15;
+        }
+
+        .text-pro {
+            color: var(--accent-color);
+        }
+
+        .text-growth {
+            color: #3b82f6;
+        }
+
+        .price-wrapper {
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+        }
+
+        .currency {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .price {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1;
+        }
+
+        .period {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-left: 5px;
+        }
+
+        /* Features */
+        .features {
+            list-style: none;
+            margin-bottom: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .features li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+            color: #e5e5e5;
+        }
+
+        .features li.disabled {
+            color: #555;
+            opacity: 0.7;
+        }
+
+        .features li i {
+            font-size: 1.2rem;
+            min-width: 20px;
+        }
+
+        .icon-check {
+            color: var(--accent-color);
+        }
+
+        .icon-close {
+            color: #444;
+        }
+
+        /* Footer Area (Keeps button at bottom) */
+        .card-footer {
+            margin-top: auto;
+            text-align: center;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            border: none;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--card-border);
+            color: #fff;
+        }
+
+        .btn-outline:hover {
+            border-color: #fff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .btn-fill {
+            background: var(--accent-color);
+            color: #000;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-fill:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.5);
+        }
+
+        .savings-text {
+            display: block;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 12px;
+            min-height: 1rem;
+        }
+
+        /* --- FAQ SECTION STYLES --- */
+        .faq-section {
+            width: 100%;
+            max-width: 800px;
+            /* Narrower width for readability */
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .faq-header h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .faq-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .faq-item:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .faq-item.active {
+            background: rgba(25, 25, 25, 0.8);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.1);
+        }
+
+        .faq-question {
+            padding: 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #e5e5e5;
+            transition: color 0.3s;
+        }
+
+        .faq-item.active .faq-question {
+            color: #fff;
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+            color: var(--accent-color);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 25px;
+            font-size: 1rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            /* Arbitrary large height */
+            padding-bottom: 25px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .pricing-grid {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .card.standard,
+            .card.featured {
+                width: 100%;
+                max-width: 400px;
+                height: auto;
+                min-height: auto;
+            }
+
+            .card.featured {
+                order: -1;
+                border: 1px solid var(--accent-color);
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="ambient-light"></div>
+
+    <div class="container">
+
+        <div class="header">
+            <h1>Simple, Transparent Pricing</h1>
+            <p>Start building for free, then add a site plan to go live.</p>
+
+            <div class="toggle-wrapper">
+                <div class="toggle-btn active" id="yearBtn" onclick="togglePricing('yearly')">Yearly (-43%)</div>
+                <div class="toggle-btn" id="monthBtn" onclick="togglePricing('monthly')">Monthly</div>
+            </div>
+        </div>
+
+        <div class="pricing-grid">
+
+            <div class="card standard">
+                <div class="plan-header">
+                    <span class="plan-name text-starter">Start Here</span>
+                    <div class="price-wrapper">
+                        <span class="currency">$</span>
+                        <span class="price">0</span>
+                        <span class="period">/mo</span>
+                    </div>
+                </div>
+                <ul class="features">
+                    <li><i class="ri-checkbox-circle-fill icon-check"></i> Access to all modules</li>
+                    <li><i class="ri-checkbox-circle-fill icon-check"></i> Build first project free</li>
+                    <li class="disabled"><i class="ri-close-circle-fill icon-close"></i> Full database integration</li>
+                    <li class="disabled"><i class="ri-close-circle-fill icon-close"></i> 1:1 Mentorship</li>
+                    <li class="disabled"><i class="ri-close-circle-fill icon-close"></i> Remove branding</li>
+                    <li class="disabled"><i class="ri-close-circle-fill icon-close"></i> Priority Support</li>
+                </ul>
+                <div class="card-footer">
+                    <button class="btn btn-outline">Get Started</button>
+                    <span class="savings-text">Free forever</span>
+                </div>
+            </div>
+
+            <div class="card featured">
+                <span class="most-popular">Most Popular</span>
+                <div class="plan-header">
+                    <span class="plan-name text-pro">Startup</span>
+                    <div class="price-wrapper">
+                        <span class="currency">$</span>
+                        <span class="price" id="price-pro">8</span>
+                        <span class="period">/mo</span>
+                    </div>
+                </div>
+                <ul class="features">
+                    <li><i class="ri-checkbox-circle-fill icon-check"></i> Access to all modules</li>
+                    <li><i class="ri-checkbox-circle-fill icon-check"></i> Build unlimited projects</li>
+                    <li><i class="ri-checkbox-circle-fill icon-check"></i> Full database integration</li>
+                    <li><i class="ri-checkbox-circle-fill icon-check"></i> 1:1 Mentorship (1hr/mo)</li>
+                    <li><i class="ri-checkbox-circle-fill icon-check"></i> Remove branding</li>
+                    <li class="disabled"><i class="ri-close-circle-fill icon-close"></i> Priority Support</li>
+                </ul>
+                <div class="card-footer">
+                    <button class="btn btn-fill">Start Free Trial</button>
+                    <span class="savings-text" id="note-pro">Billed $96 yearly</span>
+                </div>
+            </div>
+
+            <div class="card standard">
+                <div class="plan-header">
+                    <span class="plan-name text-growth">Growth</span>
+                    <div class="price-wrapper">
+                        <span class="currency">$</span>
+                        <span class="price" id="price-growth">79</span>
+                        <span class="period">/mo</span>
+                    </div>
+                </div>
+                <ul class="features">
+                    <li><i class="ri-checkbox-circle-fill icon-check"></i> Access to all modules</li>
+                    <li><i class="ri-checkbox-circle-fill icon-check"></i> Unlimited everything</li>
+                    <li><i class="ri-checkbox-circle-fill icon-check"></i> Advanced Integrations</li>
+                    <li><i class="ri-checkbox-circle-fill icon-check"></i> Weekly 1:1 sessions</li>
+                    <li><i class="ri-checkbox-circle-fill icon-check"></i> Whitelabel Solution</li>
+                    <li><i class="ri-checkbox-circle-fill icon-check"></i> 24/7 Priority Support</li>
+                </ul>
+                <div class="card-footer">
+                    <button class="btn btn-outline">Contact Sales</button>
+                    <span class="savings-text" id="note-growth">Billed $948 yearly</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="faq-section">
+            <div class="faq-header">
+                <h2>Frequently Asked Questions</h2>
+                <p style="color: var(--text-muted);">Got questions? We've got answers.</p>
+            </div>
+
+            <div class="faq-container">
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can I cancel my subscription at any time?
+                        <i class="ri-add-line faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, you can cancel your plan whenever you'd like. You'll be switched to the free plan at the
+                        end of your billing cycle.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Is there a free trial available?
+                        <i class="ri-add-line faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Absolutely! The "Start Here" plan is completely free forever. For the Startup plan, we offer a
+                        14-day free trial with no credit card required upfront.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What payment methods do you accept?
+                        <i class="ri-add-line faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        We accept all major credit cards (Visa, Mastercard, Amex), PayPal, and wire transfers for
+                        Enterprise accounts.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can I upgrade or downgrade later?
+                        <i class="ri-add-line faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, you can change your plan at any time from your dashboard settings. Prorated charges will
+                        apply immediately.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Pricing Toggle Logic
+        function togglePricing(plan) {
+            const yearBtn = document.getElementById('yearBtn');
+            const monthBtn = document.getElementById('monthBtn');
+
+            const pricePro = document.getElementById('price-pro');
+            const notePro = document.getElementById('note-pro');
+            const priceGrowth = document.getElementById('price-growth');
+            const noteGrowth = document.getElementById('note-growth');
+
+            if (plan === 'yearly') {
+                yearBtn.classList.add('active');
+                monthBtn.classList.remove('active');
+
+                animateValue(pricePro, 14, 8, 300);
+                animateValue(priceGrowth, 99, 79, 300);
+
+                notePro.innerText = "Billed $96 yearly";
+                noteGrowth.innerText = "Billed $948 yearly";
+            } else {
+                monthBtn.classList.add('active');
+                yearBtn.classList.remove('active');
+
+                animateValue(pricePro, 8, 14, 300);
+                animateValue(priceGrowth, 79, 99, 300);
+
+                notePro.innerText = "Billed monthly";
+                noteGrowth.innerText = "Billed monthly";
+            }
+        }
+
+        function animateValue(obj, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // FAQ Accordion Logic
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            item.querySelector('.faq-question').addEventListener('click', () => {
+                // Close others (Optional: remove this loop if you want multiple open)
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) otherItem.classList.remove('active');
+                });
+
+                // Toggle current
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+
+</html>
