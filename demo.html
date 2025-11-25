@@ -1,552 +1,296 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech Stack Ecosystem</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <title>Premium Footer</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 
     <style>
         :root {
-            --bg-dark: #050510;
-            --glow-primary: #7b61ff;
-            --glow-secondary: #4d4dff;
-            --text-color: #ffffff;
-            --ring-border: rgba(123, 97, 255, 0.15);
+            --bg-color: #030303;
+            --text-main: #ffffff;
+            --text-muted: #888888;
+            --accent-color: #10b981; /* Emerald Green */
+            --border-color: rgba(255, 255, 255, 0.08);
+            --glass-bg: rgba(255, 255, 255, 0.03);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background-color: var(--bg-dark);
-            font-family: 'Rajdhani', sans-serif;
-            color: var(--text-color);
-            height: 100vh;
-            width: 100vw;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: radial-gradient(circle at 50% -20%, #1f1a40 0%, #050510 70%);
-        }
-
-        /* --- Background Stars --- */
-        .stars {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            background-image:
-                radial-gradient(white, rgba(255, 255, 255, .15) 1px, transparent 2px),
-                radial-gradient(white, rgba(255, 255, 255, .1) 1px, transparent 2px);
-            background-size: 550px 550px, 350px 350px;
-            opacity: 0.6;
-            animation: twinkle 60s linear infinite;
-            pointer-events: none;
-        }
-
-        @keyframes twinkle {
-            from {
-                background-position: 0 0, 0 0;
-            }
-
-            to {
-                background-position: 0 1000px, 0 500px;
-            }
-        }
-
-        /* --- Main Container --- */
-        .slider-container {
-            position: relative;
-            width: 100%;
-            max-width: 1400px;
-            /* Increased max-width to accommodate wider spread */
-            height: 100%;
-            max-height: 800px;
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            justify-content: flex-end;
+        }
+
+        /* --- FOOTER CONTAINER --- */
+        .site-footer {
+            position: relative;
+            background-color: #050505;
+            padding: 100px 0 40px;
+            overflow: hidden;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Background Watermark */
+        .bg-large-text {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 18vw;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.02);
+            letter-spacing: -5px;
+            text-transform: uppercase;
+            z-index: 0;
+            pointer-events: none;
+            white-space: nowrap;
+            user-select: none;
+        }
+
+        .footer-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 40px;
+            position: relative;
             z-index: 1;
         }
 
-        /* --- Background Rings --- */
-        .orbit-rings {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -60%);
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
+        /* --- TOP SECTION (Grid Layout) --- */
+        .footer-top {
+            display: grid;
+            /* 5 Columns: Logo takes 1.5 space, Links take 1 space each */
+            grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 80px;
+            align-items: start;
+        }
+
+        /* Logo Area */
+        .footer-brand {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 0;
+            flex-direction: column;
+            gap: 10px;
         }
 
-        .ring {
-            position: absolute;
-            border-radius: 50%;
-            border: 1px solid var(--ring-border);
-            box-shadow: 0 0 30px rgba(123, 97, 255, 0.05);
+        .footer-logo {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #fff;
+            text-transform: uppercase;
         }
 
-        .ring-1 {
-            width: 350px;
-            height: 350px;
-            /* Increased ring sizes */
-            border-color: rgba(123, 97, 255, 0.2);
-            animation: rotate-ring 60s linear infinite;
-        }
-
-        .ring-2 {
-            width: 650px;
-            height: 650px;
-            border-color: rgba(123, 97, 255, 0.1);
-            animation: rotate-ring 80s linear infinite reverse;
-        }
-
-        .ring-3 {
-            width: 950px;
-            height: 950px;
-            border-color: rgba(123, 97, 255, 0.05);
-            border-style: dashed;
-            animation: rotate-ring 120s linear infinite;
-        }
-
-        @keyframes rotate-ring {
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* --- Static Center Line --- */
-        .center-line {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            width: 1px;
-            background: linear-gradient(to bottom, transparent 0%, rgba(123, 97, 255, 0.4) 40%, rgba(123, 97, 255, 0.4) 60%, transparent 100%);
-            transform: translateX(-50%);
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        /* --- Carousel Wrapper --- */
-        .carousel-wrapper {
-            position: relative;
-            width: 100%;
-            height: 300px;
-            /* Increased height for larger items */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            perspective: 1000px;
-            margin-bottom: 20px;
-            transform: translateY(-20px);
-            z-index: 2;
-        }
-
-        .tech-item {
-            position: absolute;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-            cursor: pointer;
-            background: rgba(20, 20, 30, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
-            width: 20px;
-            height: 20px;
-            opacity: 0;
-        }
-
-        .tech-item img {
-            width: 55%;
-            height: 55%;
-            object-fit: contain;
-            filter: grayscale(100%) brightness(0.8);
-            transition: all 0.5s ease;
-            opacity: 0.8;
-        }
-
-        /* --- Active State (200px) --- */
-        .tech-item.active {
-            width: 200px;
-            height: 200px;
-            /* Requested Size */
-            opacity: 1;
-            z-index: 20;
-            transform: translateX(0) scale(1);
-            background: #0b0b1e;
-            border: 1px solid rgba(123, 97, 255, 0.5);
-            box-shadow:
-                0 0 0 4px rgba(11, 11, 30, 1),
-                0 0 0 6px rgba(123, 97, 255, 0.3),
-                0 0 50px rgba(123, 97, 255, 0.6),
-                inset 0 0 30px rgba(123, 97, 255, 0.2);
-        }
-
-        .tech-item.active img {
-            filter: grayscale(0%) brightness(1.1) drop-shadow(0 0 15px rgba(255, 255, 255, 0.4));
-            opacity: 1;
-            width: 50%;
-            height: 50%;
-        }
-
-        /* Pulse Ring */
-        .tech-item.active::after {
-            content: '';
-            position: absolute;
-            top: -15px;
-            left: -15px;
-            right: -15px;
-            bottom: -15px;
-            border-radius: 50%;
-            border: 1px solid rgba(123, 97, 255, 0.4);
-            opacity: 0.6;
-            animation: pulse-ring 3s infinite ease-in-out;
-        }
-
-        @keyframes pulse-ring {
-
-            0%,
-            100% {
-                transform: scale(0.95);
-                opacity: 0.3;
-            }
-
-            50% {
-                transform: scale(1.05);
-                opacity: 0.6;
-            }
-        }
-
-        /* --- Neighbors (Scaled accordingly) --- */
-        .tech-item.prev,
-        .tech-item.next {
-            width: 130px;
-            height: 130px;
-            /* Bigger neighbors */
-            z-index: 10;
+        .slogan {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
             opacity: 0.7;
-            background: rgba(255, 255, 255, 0.03);
         }
 
-        /* Shift increased to avoid overlap with 200px center */
-        .tech-item.prev {
-            transform: translateX(-230px) scale(0.9);
+        /* Link Columns */
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
-        .tech-item.next {
-            transform: translateX(230px) scale(0.9);
+        .footer-col h4 {
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            opacity: 0; /* Hidden header for alignment if needed, or use it */
+            display: none; /* Hiding headers to match your screenshot exactly */
         }
 
-        /* Far Neighbors */
-        .tech-item.prev-2,
-        .tech-item.next-2 {
-            width: 90px;
-            height: 90px;
-            z-index: 5;
-            opacity: 0.4;
-            background: rgba(255, 255, 255, 0.01);
-        }
-
-        .tech-item.prev-2 {
-            transform: translateX(-390px) scale(0.8);
-        }
-
-        .tech-item.next-2 {
-            transform: translateX(390px) scale(0.8);
-        }
-
-        /* Hidden Stack */
-        .tech-item.hidden {
-            opacity: 0;
-            transform: scale(0);
-            pointer-events: none;
-        }
-
-        /* --- Connection Nodes (Matches Active Size) --- */
-        .nodes-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 200px;
-            height: 200px;
-            /* Matches Active Item */
-            pointer-events: none;
-            z-index: 25;
-        }
-
-        .node-dot {
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            background: #ffffff;
-            border-radius: 50%;
-            box-shadow: 0 0 10px #ffffff, 0 0 25px var(--glow-primary);
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-
-        /* Adjusted for larger size */
-        .node-bottom {
-            bottom: -16px;
-        }
-
-        /* --- Info & Connector --- */
-        .info-container {
+        .footer-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
             position: relative;
-            margin-top: 25px;
-            /* More spacing */
+            width: fit-content;
+        }
+
+        /* Hover Effect: Slide & Color */
+        .footer-link:hover {
+            color: var(--accent-color);
+            transform: translateX(5px);
+            text-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+        }
+
+        .footer-link::before {
+            content: '→';
+            position: absolute;
+            left: -15px;
+            opacity: 0;
+            transition: 0.3s;
+            color: var(--accent-color);
+        }
+
+        .footer-link:hover::before {
+            opacity: 1;
+            left: -20px;
+        }
+
+        /* --- DIVIDER --- */
+        .footer-divider {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+            margin-bottom: 50px;
+            width: 100%;
+        }
+
+        /* --- BOTTOM SECTION --- */
+        .footer-bottom {
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: opacity 0.3s ease;
-            z-index: 2;
+            gap: 30px;
         }
 
-        .connector-lines-svg {
-            width: 280px;
-            height: 70px;
-            /* Wider connector */
-            margin-top: -15px;
-            pointer-events: none;
-            filter: drop-shadow(0 0 5px rgba(123, 97, 255, 0.5));
-        }
-
-        .conn-path {
-            fill: none;
-            stroke: url(#gradientLine);
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-dasharray: 400;
-            animation: flowLine 3.5s linear infinite;
-        }
-
-        @keyframes flowLine {
-            to {
-                stroke-dashoffset: -800;
-            }
-        }
-
-        .label-card {
-            margin-top: -5px;
-            background: linear-gradient(180deg, rgba(40, 35, 80, 0.9), rgba(10, 5, 20, 0.95));
-            padding: 14px 70px;
-            border-radius: 24px;
-            border: 1px solid rgba(123, 97, 255, 0.4);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(123, 97, 255, 0.15);
+        /* Social Icons */
+        .social-links {
             display: flex;
-            align-items: baseline;
-            gap: 10px;
-            position: relative;
-            z-index: 10;
-            backdrop-filter: blur(12px);
-            min-width: 240px;
+            gap: 20px;
+        }
+
+        .social-btn {
+            width: 45px;
+            height: 45px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
             justify-content: center;
-        }
-
-        .tech-name {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #fff;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
-        }
-
-        .tech-category {
+            align-items: center;
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.6);
-            font-weight: 500;
+            background: transparent;
         }
 
-        /* --- Responsive Scale --- */
+        .social-btn:hover {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            color: #000;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2);
+        }
+
+        /* Copyright */
+        .copyright {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- RESPONSIVE --- */
         @media (max-width: 1024px) {
-            .slider-container {
-                transform: scale(0.85);
+            .footer-top {
+                grid-template-columns: 1fr 1fr 1fr; /* 3 Columns */
+                gap: 50px;
+            }
+            .footer-brand {
+                grid-column: span 3;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            .footer-col {
+                align-items: center;
             }
         }
 
-        @media (max-width: 768px) {
-            .slider-container {
-                transform: scale(0.7);
+        @media (max-width: 600px) {
+            .footer-top {
+                grid-template-columns: 1fr; /* 1 Column */
+                gap: 40px;
+                text-align: center;
             }
-
-            .ring-3 {
-                border-color: transparent;
+            .footer-brand {
+                grid-column: span 1;
             }
-
-            /* Tighten layout for mobile */
-            .tech-item.prev {
-                transform: translateX(-180px) scale(0.9);
+            .bg-large-text {
+                font-size: 25vw;
             }
-
-            .tech-item.next {
-                transform: translateX(180px) scale(0.9);
+            .footer-link:hover {
+                transform: translateX(0); /* No slide on mobile */
             }
-
-            .tech-item.prev-2 {
-                transform: translateX(-300px) scale(0.7);
-                opacity: 0;
-            }
-
-            .tech-item.next-2 {
-                transform: translateX(300px) scale(0.7);
-                opacity: 0;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .slider-container {
-                transform: scale(0.55);
-            }
-
-            .tech-item.prev {
-                transform: translateX(-220px);
-            }
-
-            /* Spread out more on tiny screens if needed or hide */
         }
     </style>
 </head>
-
 <body>
-    <div class="stars"></div>
-    <section class="slider-container">
 
-        <div class="orbit-rings" id="rings">
-            <div class="ring ring-1"></div>
-            <div class="ring ring-2"></div>
-            <div class="ring ring-3"></div>
-        </div>
+    <footer class="site-footer">
+        
+        <h1 class="bg-large-text">FOOTER</h1>
 
-        <div class="center-line"></div>
+        <div class="footer-container">
+            
+            <div class="footer-top">
+                
+                <div class="footer-brand">
+                    <div class="footer-logo">LOGO</div>
+                    <span class="slogan">SLOGAN COMPANY</span>
+                </div>
 
-        <div class="carousel-wrapper" id="carousel"></div>
+                <div class="footer-col">
+                    <a href="#" class="footer-link">Weebly Themes</a>
+                    <a href="#" class="footer-link">Pre-Sale FAQs</a>
+                    <a href="#" class="footer-link">Submit a Ticket</a>
+                </div>
 
-        <div class="nodes-overlay">
-            <div class="node-dot node-bottom"></div>
-        </div>
+                <div class="footer-col">
+                    <a href="#" class="footer-link">Services</a>
+                    <a href="#" class="footer-link">Theme Tweak</a>
+                </div>
 
-        <div class="info-container" id="info-container">
-            <!-- Wider connector for larger circle -->
-            <svg class="connector-lines-svg" viewBox="0 0 280 70">
-                <defs>
-                    <linearGradient id="gradientLine" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stop-color="rgba(123, 97, 255, 0.2)" />
-                        <stop offset="50%" stop-color="rgba(255, 255, 255, 0.9)" />
-                        <stop offset="100%" stop-color="rgba(123, 97, 255, 0.2)" />
-                    </linearGradient>
-                </defs>
-                <!-- Adjusted path for wider spread -->
-                <path class="conn-path" d="M140,0 V25 Q140,50 100,50 H20 M140,25 Q140,50 180,50 H260" />
-                <circle cx="20" cy="50" r="2" fill="#fff" />
-                <circle cx="260" cy="50" r="2" fill="#fff" />
-            </svg>
-            <div class="label-card">
-                <span class="tech-name" id="tech-name">React</span>
-                <span class="tech-category" id="tech-cat">(Frontend)</span>
+                <div class="footer-col">
+                    <a href="#" class="footer-link">Showcase</a>
+                    <a href="#" class="footer-link">Widgetkit</a>
+                    <a href="#" class="footer-link">Support</a>
+                </div>
+
+                <div class="footer-col">
+                    <a href="#" class="footer-link">About Us</a>
+                    <a href="#" class="footer-link">Contact Us</a>
+                    <a href="#" class="footer-link">Affiliates</a>
+                    <a href="#" class="footer-link">Resources</a>
+                </div>
+
             </div>
+
+            <hr class="footer-divider">
+
+            <div class="footer-bottom">
+                <div class="social-links">
+                    <a href="#" class="social-btn"><i class="ri-facebook-fill"></i></a>
+                    <a href="#" class="social-btn"><i class="ri-twitter-x-line"></i></a>
+                    <a href="#" class="social-btn"><i class="ri-rss-fill"></i></a>
+                    <a href="#" class="social-btn"><i class="ri-google-fill"></i></a>
+                    <a href="#" class="social-btn"><i class="ri-more-fill"></i></a>
+                </div>
+                <p class="copyright">&copy; Copyright 2024. All rights reserved.</p>
+            </div>
+
         </div>
-    </section>
+    </footer>
 
-    <script>
-        const techData = [
-            { name: "React", category: "Frontend", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-            { name: "Node.js", category: "Backend", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-            { name: "Python", category: "Language", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
-            { name: "TypeScript", category: "Language", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
-            { name: "Docker", category: "DevOps", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
-            { name: "MongoDB", category: "Database", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
-            { name: "Angular", category: "Frontend", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" }
-        ];
-
-        let activeIndex = 2;
-        let autoSlideInterval;
-        const carouselEl = document.getElementById('carousel');
-        const nameEl = document.getElementById('tech-name');
-        const catEl = document.getElementById('tech-cat');
-        const infoContainer = document.getElementById('info-container');
-
-        function initCarousel() {
-            carouselEl.innerHTML = '';
-            techData.forEach((tech, index) => {
-                const el = document.createElement('div');
-                el.className = 'tech-item';
-
-                const img = new Image();
-                img.src = tech.img;
-                img.alt = tech.name;
-                el.appendChild(img);
-
-                el.onclick = () => {
-                    clearInterval(autoSlideInterval);
-                    activeIndex = index;
-                    updateState();
-                    startAutoSlide();
-                };
-                carouselEl.appendChild(el);
-            });
-            updateState();
-            startAutoSlide();
-        }
-
-        function updateState() {
-            const items = document.querySelectorAll('.tech-item');
-            const len = techData.length;
-
-            items.forEach((el, index) => {
-                el.className = 'tech-item';
-
-                let diff = (index - activeIndex + len) % len;
-
-                if (diff === 0) el.classList.add('active');
-                else if (diff === len - 1) el.classList.add('prev');
-                else if (diff === 1) el.classList.add('next');
-                else if (diff === len - 2) el.classList.add('prev-2');
-                else if (diff === 2) el.classList.add('next-2');
-                else el.classList.add('hidden');
-            });
-
-            const activeTech = techData[activeIndex];
-            nameEl.textContent = activeTech.name;
-            catEl.textContent = `(${activeTech.category})`;
-
-            infoContainer.animate([
-                { transform: 'translateY(5px)', opacity: 0.5 },
-                { transform: 'translateY(0)', opacity: 1 }
-            ], { duration: 400, easing: 'ease-out' });
-        }
-
-        function startAutoSlide() {
-            clearInterval(autoSlideInterval);
-            autoSlideInterval = setInterval(() => {
-                activeIndex = (activeIndex + 1) % techData.length;
-                updateState();
-            }, 3500);
-        }
-
-        document.addEventListener('DOMContentLoaded', initCarousel);
-    </script>
 </body>
-
 </html>

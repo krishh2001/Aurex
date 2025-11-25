@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact Us | Nova Digital</title>
+    <title>Contact Us | NexusTech</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 
     <style>
@@ -19,10 +20,14 @@
             --accent-glow: rgba(16, 185, 129, 0.15);
             --accent-color: #10b981;
             --accent-secondary: #3b82f6;
-            --font-family: 'Inter', sans-serif;
+            --font-family: 'Outfit', sans-serif;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             background: var(--bg-color);
@@ -33,9 +38,11 @@
             line-height: 1.6;
         }
 
-        /* --- Background Effects --- */
-        .ambient-glow, .ambient-glow-2, .ambient-glow-3 {
-            position: absolute;
+        /* --- Global Background Effects --- */
+        .ambient-glow,
+        .ambient-glow-2,
+        .ambient-glow-3 {
+            position: fixed;
             pointer-events: none;
             z-index: -1;
             border-radius: 50%;
@@ -43,15 +50,12 @@
         }
 
         .ambient-glow {
-            position: absolute;
             top: -100px;
             left: 50%;
             transform: translateX(-50%);
             width: 800px;
             height: 500px;
             background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-            z-index: 0;
-            pointer-events: none;
         }
 
         .ambient-glow-2 {
@@ -70,7 +74,7 @@
             background: radial-gradient(circle, rgba(139, 92, 246, 0.08), transparent 70%);
         }
 
-        .bg-large-text {
+         .bg-large-text {
             position: fixed;
             top: 18%;
             left: 50%;
@@ -94,19 +98,27 @@
 
         .particle {
             position: absolute;
-            background: rgba(255,255,255,0.3);
+            background: rgba(255, 255, 255, 0.3);
             border-radius: 50%;
             animation: float 20s linear infinite;
         }
 
         @keyframes float {
-            0% { transform: translateY(0) translateX(0); opacity: 0; }
-            10% { opacity: 0.5; }
-            90% { opacity: 0.5; }
-            100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: translateY(-100vh) translateX(20px);
+                opacity: 0;
+            }
         }
 
-        /* Tech Lines */
         .tech-line {
             position: absolute;
             top: 20%;
@@ -127,76 +139,109 @@
             box-shadow: 0 0 10px #fff;
         }
 
-        .left-line { left: -20px; transform: rotate(45deg); }
-        .left-line::after { right: 0; }
-        .right-line { right: -20px; transform: rotate(-45deg); }
-        .right-line::after { left: 0; }
+        .left-line {
+            left: -20px;
+            transform: rotate(45deg);
+        }
+
+        .left-line::after {
+            right: 0;
+        }
+
+        .right-line {
+            right: -20px;
+            transform: rotate(-45deg);
+        }
+
+        .right-line::after {
+            left: 0;
+        }
 
         /* --- Navbar --- */
         .navbar {
             position: fixed;
-            top: 30px;
+            top: 20px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
             align-items: center;
-            gap: 20px;
-            padding: 10px 15px;
-            background: rgba(5, 5, 5, 0.5);
-            backdrop-filter: blur(20px);
+            justify-content: space-between;
+            gap: 30px;
+            padding: 12px 24px;
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(16px);
             border: 1px solid var(--glass-border);
             border-radius: 100px;
             z-index: 1000;
-            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: 0.3s ease;
+            width: 90%;
+            max-width: 1200px;
         }
 
         .navbar.scrolled {
-            top: 15px;
-            background: rgba(5, 5, 5, 0.85);
-            padding: 8px 12px;
-            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+            top: 10px;
+            padding: 10px 20px;
+            background: rgba(0, 0, 0, 0.9);
+            border-color: rgba(16, 185, 129, 0.3);
         }
 
         .nav-logo {
-            width: 36px;
-            height: 36px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: rgba(255,255,255,0.05);
-            border-radius: 50%;
-            color: var(--accent-color);
+            font-weight: 700;
             font-size: 1.2rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
-        .nav-links { display: flex; list-style: none; gap: 4px; }
+        .nav-logo span {
+            color: var(--accent-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 5px;
+        }
+
         .nav-links a {
-            padding: 8px 18px;
+            padding: 8px 16px;
             font-size: 0.9rem;
             color: var(--text-muted);
             text-decoration: none;
             border-radius: 20px;
-            transition: 0.3s ease;
-            font-weight: 500;
+            transition: 0.3s;
         }
-        .nav-links a:hover, .nav-links a.active {
+
+        .nav-links a:hover,
+        .nav-links a.active {
             color: #fff;
-            background: rgba(255,255,255,0.08);
+            background: rgba(16, 185, 129, 0.1);
         }
 
         .nav-btn {
             padding: 8px 20px;
             border-radius: 20px;
-            background: var(--accent-color);
-            color: #000;
+            background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+            color: #fff;
             font-weight: 600;
             text-decoration: none;
             font-size: 0.9rem;
-            transition: 0.3s ease;
+            transition: 0.3s;
         }
+
         .nav-btn:hover {
-            box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
         }
 
         /* --- Layout --- */
@@ -204,8 +249,8 @@
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            margin-top: 20%;
             padding: 0 20px;
+            margin-top: 20%;
             position: relative;
             z-index: 1;
         }
@@ -241,7 +286,6 @@
             background: linear-gradient(135deg, #fff 0%, #cbd5e1 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
         .section-desc {
@@ -251,7 +295,7 @@
 
         /* --- Contact Section --- */
         .contact-section {
-            padding-top: 200px;
+            padding-top: 180px;
             margin-bottom: 150px;
         }
 
@@ -278,7 +322,6 @@
             font-size: 1.05rem;
         }
 
-        /* Contact Cards */
         .contact-cards {
             display: flex;
             flex-direction: column;
@@ -360,21 +403,15 @@
             transform: translate(3px, -3px);
         }
 
-        /* Contact Form */
         .glass-form {
             background: var(--card-bg);
             border: 1px solid var(--glass-border);
             backdrop-filter: blur(10px);
             padding: 40px;
             border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
             position: relative;
             overflow: hidden;
-        }
-
-
-        .glass-form:hover::before {
-            transform: scaleX(1);
         }
 
         .input-group {
@@ -393,7 +430,7 @@
             transition: all 0.3s ease;
         }
 
-        .input-group input, 
+        .input-group input,
         .input-group textarea {
             background: rgba(0, 0, 0, 0.3);
             border: 1px solid var(--glass-border);
@@ -411,7 +448,7 @@
             min-height: 120px;
         }
 
-        .input-group input:focus, 
+        .input-group input:focus,
         .input-group textarea:focus {
             border-color: var(--accent-color);
             background: rgba(0, 0, 0, 0.5);
@@ -438,21 +475,6 @@
             overflow: hidden;
         }
 
-        .submit-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .submit-btn:hover::before {
-            left: 100%;
-        }
-
         .submit-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
@@ -468,7 +490,7 @@
             border-radius: 20px;
             overflow: hidden;
             border: 1px solid var(--glass-border);
-            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
         }
 
         .map-iframe {
@@ -504,23 +526,8 @@
             position: relative;
         }
 
-        .brand-item::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent-color);
-            transition: width 0.3s ease;
-        }
-
         .brand-item:hover {
             color: var(--accent-color);
-        }
-
-        .brand-item:hover::after {
-            width: 100%;
         }
 
         /* CTA Section */
@@ -532,6 +539,7 @@
             text-align: center;
             border: 1px solid var(--glass-border);
             margin-bottom: 80px;
+            background: radial-gradient(circle at center, rgba(20, 20, 20, 0.8), #000);
         }
 
         .cta-bg {
@@ -543,10 +551,18 @@
             transition: 0.5s;
         }
 
-        .cta-section:hover .cta-bg { transform: scale(1.05); opacity: 0.25; }
+        .cta-section:hover .cta-bg {
+            transform: scale(1.05);
+            opacity: 0.25;
+        }
 
-        .cta-content { position: relative; z-index: 2; max-width: 600px; margin: 0 auto; }
-        
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
         .cta-btn {
             display: inline-flex;
             align-items: center;
@@ -560,7 +576,7 @@
             text-decoration: none;
             transition: 0.3s;
         }
-        
+
         .cta-btn:hover {
             background: var(--accent-color);
             transform: scale(1.05);
@@ -601,26 +617,231 @@
             color: #000;
         }
 
+        /* --- PREMIUM FOOTER STYLES --- */
+        .site-footer {
+            position: relative;
+            background-color: #050505;
+            padding: 100px 0 40px;
+            overflow: hidden;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        /* === NEW: FOOTER GLOW (Bottom Light) === */
+        .footer-glow {
+            position: absolute;
+            bottom: -120px;
+            /* Hidden slightly below fold */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.25) 0%, transparent 70%);
+            filter: blur(100px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+
+        .footer-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 80px;
+            align-items: start;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-logo {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .slogan {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+            opacity: 0.7;
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .footer-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            position: relative;
+            width: fit-content;
+        }
+
+        .footer-link:hover {
+            color: var(--accent-color);
+            transform: translateX(5px);
+            text-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+        }
+
+        .footer-link::before {
+            content: '→';
+            position: absolute;
+            left: -15px;
+            opacity: 0;
+            transition: 0.3s;
+            color: var(--accent-color);
+        }
+
+        .footer-link:hover::before {
+            opacity: 1;
+            left: -20px;
+        }
+
+        .footer-divider {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
+            margin-bottom: 50px;
+            width: 100%;
+        }
+
+        .footer-bottom {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-btn {
+            width: 45px;
+            height: 45px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 1.1rem;
+            background: transparent;
+        }
+
+        .social-btn:hover {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            color: #000;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2);
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
         /* --- Responsive --- */
         @media (max-width: 1024px) {
-            .contact-grid { gap: 40px; }
+            .contact-grid {
+                gap: 40px;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 50px;
+            }
+
+            .footer-brand {
+                grid-column: span 3;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .footer-col {
+                align-items: center;
+            }
         }
 
         @media (max-width: 768px) {
-            .bg-large-text { font-size: 20vw; top: 15%; }
-            
-            .navbar {
-                top: auto; bottom: 20px;
-                width: 90%;
-                justify-content: space-between;
+            .bg-large-text {
+                font-size: 20vw;
+                top: 15%;
             }
-            .nav-links { display: none; } 
-            
-            .contact-grid { grid-template-columns: 1fr; }
-            .contact-content h1 { font-size: 2.5rem; }
-            .contact-section { padding-top: 120px; }
-            
-            .tech-line { display: none; }
+
+            .navbar {
+                justify-content: space-between;
+                width: 90%;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .contact-section {
+                padding-top: 120px;
+            }
+
+            .tech-line {
+                display: none;
+            }
+
+            /* Footer Mobile */
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .footer-brand {
+                grid-column: span 1;
+            }
+
+            .footer-link:hover {
+                transform: translateX(0);
+            }
+
+            .footer-glow {
+                width: 100%;
+                height: 300px;
+                bottom: -80px;
+            }
         }
     </style>
 </head>
@@ -636,51 +857,52 @@
     <h1 class="bg-large-text">Contact</h1>
 
     <nav class="navbar" id="navbar">
-        <div class="nav-logo"><i class="ri-shining-2-fill"></i></div>
+        <div class="nav-logo"><i class="ri-shining-2-fill"></i> NEXUSTECH</div>
         <ul class="nav-links">
-            <li><a href="/HomePage.html">Home</a></li>
-            <li><a href="#">Services</a></li>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/ServicesPage.html">Services</a></li>
             <li><a href="/AboutPage.html">About</a></li>
             <li><a href="/BlogPage.html">Blogs</a></li>
             <li><a href="/ContactPage.html" class="active">Contact</a></li>
         </ul>
-        <a href="#" class="nav-btn">Let's Talk</a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="ri-menu-line"></i>
+        </button>
+        <a href="/ContactPage.html" class="nav-btn">Let's Talk</a>
     </nav>
 
     <main class="container">
-        
+
         <section class="contact-section">
             <div class="contact-grid">
                 <div class="contact-content">
                     <div class="section-badge"><i class="ri-question-line"></i> Contact</div>
                     <h1>Get in touch</h1>
-                    <p class="contact-text">
-                        Have questions or ready to transform your business with AI automation? Drop a message — we'll respond fast.
-                    </p>
-                    <p class="contact-text">
-                        Whether you're looking to start a new project or just want to explore possibilities, we're here to help you navigate the digital landscape.
-                    </p>
+                    <p class="contact-text">Have questions or ready to transform your business? Drop a message — we'll
+                        respond fast.</p>
+                    <p class="contact-text">Whether you're looking to start a new project or just want to explore
+                        possibilities, we're here to help you navigate the digital landscape.</p>
 
                     <div class="contact-cards">
-                        <a class="contact-card" href="mailto:johnnykyorov@gmail.com">
+                        <a class="contact-card" href="mailto:contact@nexustech.com">
                             <div class="contact-icon"><i class="ri-mail-line"></i></div>
                             <div class="contact-details">
                                 <div class="contact-label">Email us</div>
-                                <div class="contact-value">johnnykyorov@gmail.com</div>
+                                <div class="contact-value">contact@nexustech.com</div>
                             </div>
                             <div class="contact-arrow"><i class="ri-arrow-right-up-line"></i></div>
                         </a>
 
-                        <a class="contact-card" href="tel:+915011234567">
+                        <a class="contact-card" href="tel:+919876543210">
                             <div class="contact-icon"><i class="ri-phone-line"></i></div>
                             <div class="contact-details">
                                 <div class="contact-label">Call us</div>
-                                <div class="contact-value">(+91) 501 123 4567</div>
+                                <div class="contact-value">(+91) 987 654 3210</div>
                             </div>
                             <div class="contact-arrow"><i class="ri-arrow-right-up-line"></i></div>
                         </a>
 
-                        <a class="contact-card" href="https://maps.google.com/?q=Indore,India" target="_blank">
+                        <a class="contact-card" href="#">
                             <div class="contact-icon"><i class="ri-map-pin-line"></i></div>
                             <div class="contact-details">
                                 <div class="contact-label">Our location</div>
@@ -690,24 +912,21 @@
                         </a>
                     </div>
                 </div>
-                
+
                 <div class="form-wrapper">
                     <form class="glass-form" id="contactForm">
                         <div class="input-group">
                             <label for="name">Name</label>
                             <input id="name" type="text" placeholder="Your full name" required>
                         </div>
-
                         <div class="input-group">
                             <label for="email">Email</label>
                             <input id="email" type="email" placeholder="your.email@example.com" required>
                         </div>
-
                         <div class="input-group">
                             <label for="message">Message</label>
                             <textarea id="message" placeholder="Tell us about your project..." required></textarea>
                         </div>
-
                         <button type="submit" class="submit-btn">Submit Message</button>
                     </form>
                 </div>
@@ -718,8 +937,7 @@
             <div class="map-wrapper">
                 <iframe class="map-iframe"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.9000000000005!2d75.8577!3d22.7196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39631d6a3d43b4ef%3A0x1fd888fffbe67134!2sIndore%2C%20Madhya%20Pradesh%2C%20India!5e0!3m2!1sen!2sin!4v1700000000000"
-                    loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen="" aria-hidden="false"
-                    tabindex="0"></iframe>
+                    loading="lazy" allowfullscreen=""></iframe>
             </div>
         </section>
 
@@ -737,14 +955,69 @@
             <div class="cta-bg"></div>
             <div class="cta-content">
                 <h2 class="section-title" style="margin-bottom: 20px;">Ready to build the future?</h2>
-                <p class="section-desc">We are currently accepting new projects for Q4. Let's turn your vision into a digital reality.</p>
+                <p class="section-desc">We are currently accepting new projects for Q4. Let's turn your vision into a
+                    digital reality.</p>
                 <a href="#" class="cta-btn">Start Project <i class="ri-arrow-right-line"></i></a>
             </div>
         </section>
 
     </main>
 
-    <!-- Success Message -->
+    <footer class="site-footer">
+
+        <div class="footer-glow"></div>
+
+        <div class="footer-container">
+
+            <div class="footer-top">
+
+                <div class="footer-brand">
+                    <div class="footer-logo">NEXUSTECH</div>
+                    <span class="slogan">PREMIUM SOLUTIONS</span>
+                </div>
+
+                <div class="footer-col">
+                    <a href="#" class="footer-link">Weebly Themes</a>
+                    <a href="#" class="footer-link">Pre-Sale FAQs</a>
+                    <a href="#" class="footer-link">Submit a Ticket</a>
+                </div>
+
+                <div class="footer-col">
+                    <a href="#" class="footer-link">Services</a>
+                    <a href="#" class="footer-link">Theme Tweak</a>
+                </div>
+
+                <div class="footer-col">
+                    <a href="#" class="footer-link">Showcase</a>
+                    <a href="#" class="footer-link">Widgetkit</a>
+                    <a href="#" class="footer-link">Support</a>
+                </div>
+
+                <div class="footer-col">
+                    <a href="#" class="footer-link">About Us</a>
+                    <a href="#" class="footer-link">Contact Us</a>
+                    <a href="#" class="footer-link">Affiliates</a>
+                    <a href="#" class="footer-link">Resources</a>
+                </div>
+
+            </div>
+
+            <hr class="footer-divider">
+
+            <div class="footer-bottom">
+                <div class="social-links">
+                    <a href="#" class="social-btn"><i class="ri-facebook-fill"></i></a>
+                    <a href="#" class="social-btn"><i class="ri-twitter-x-line"></i></a>
+                    <a href="#" class="social-btn"><i class="ri-rss-fill"></i></a>
+                    <a href="#" class="social-btn"><i class="ri-google-fill"></i></a>
+                    <a href="#" class="social-btn"><i class="ri-more-fill"></i></a>
+                </div>
+                <p class="copyright">© Copyright 2024. All rights reserved.</p>
+            </div>
+
+        </div>
+    </footer>
+
     <div class="success-message" id="successMessage">
         <div class="success-icon"><i class="ri-check-line"></i></div>
         <h3 style="color:#fff;margin-bottom:6px">Message Sent!</h3>
@@ -793,32 +1066,22 @@
 
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
-                
-                // Loading State
                 const originalText = submitBtn.innerText;
                 submitBtn.innerText = 'Sending...';
                 submitBtn.style.opacity = '0.8';
 
-                // Simulate network delay
                 setTimeout(() => {
                     submitBtn.innerText = 'Sent!';
                     submitBtn.style.background = '#10b981';
                     submitBtn.style.color = '#fff';
-                    
-                    // Show success message
                     successMessage.classList.add('active');
-                    
-                    // Reset form
                     form.reset();
 
-                    // Reset button after 2 seconds
                     setTimeout(() => {
                         submitBtn.innerText = originalText;
                         submitBtn.style.background = '#fff';
                         submitBtn.style.color = '#000';
                         submitBtn.style.opacity = '1';
-                        
-                        // Hide success message
                         setTimeout(() => {
                             successMessage.classList.remove('active');
                         }, 2000);
@@ -829,4 +1092,5 @@
     </script>
 
 </body>
+
 </html>

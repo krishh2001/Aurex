@@ -999,70 +999,6 @@
             z-index: 0;
         }
 
-        /* Premium Footer */
-        .site-footer {
-            border-top: 1px solid var(--glass-border);
-            background: #000;
-            padding: 80px 0 30px;
-            margin-top: 100px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .footer-brand h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-        .footer-brand p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            max-width: 300px;
-        }
-
-        .footer-col h4 {
-            color: #fff;
-            margin-bottom: 20px;
-            font-size: 1rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-
-        .footer-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: 0.2s;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent-primary);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            margin-top: 60px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: #555;
-            font-size: 0.85rem;
-        }
-
-        /* New Premium Sections */
-
         /* Features Showcase */
         .features-section {
             padding: 70px 0;
@@ -1112,10 +1048,6 @@
 
 
         /* Case Studies */
-        /* .case-studies-section {
-            padding: 100px 0;
-        } */
-
         .case-studies-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -1166,6 +1098,159 @@
 
         .case-study-link:hover {
             color: var(--accent-secondary);
+        }
+
+        /* --- PREMIUM FOOTER STYLES --- */
+        .site-footer {
+            position: relative;
+            background-color: #050505;
+            padding: 100px 0 40px;
+            overflow: hidden;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 0;
+        }
+
+
+        /* Bottom Glow Light */
+        .footer-glow {
+            position: absolute;
+            bottom: -150px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, transparent 70%);
+            filter: blur(80px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .footer-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Top Grid */
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 80px;
+            align-items: start;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-logo {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .footer-slogan {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+            opacity: 0.7;
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .footer-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            position: relative;
+            width: fit-content;
+        }
+
+        .footer-link:hover {
+            color: var(--accent-primary);
+            transform: translateX(5px);
+            text-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+        }
+
+        .footer-link::before {
+            content: '→';
+            position: absolute;
+            left: -15px;
+            opacity: 0;
+            transition: 0.3s;
+            color: var(--accent-primary);
+        }
+
+        .footer-link:hover::before {
+            opacity: 1;
+            left: -20px;
+        }
+
+        .footer-divider {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
+            margin-bottom: 50px;
+            width: 100%;
+        }
+
+        .footer-bottom {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-btn {
+            width: 45px;
+            height: 45px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 1.1rem;
+            background: transparent;
+        }
+
+        .social-btn:hover {
+            background: var(--accent-primary);
+            border-color: var(--accent-primary);
+            color: #000;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2);
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
         }
 
         /* Responsive Design */
@@ -1237,6 +1322,21 @@
             .item-5 {
                 order: 6;
             }
+
+            .footer-top {
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 50px;
+            }
+
+            .footer-brand {
+                grid-column: span 3;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .footer-col {
+                align-items: center;
+            }
         }
 
         @media (max-width: 768px) {
@@ -1286,6 +1386,27 @@
             .cta-section {
                 padding: 60px 20px;
             }
+
+            /* Footer Mobile */
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .footer-brand {
+                grid-column: span 1;
+            }
+
+            .footer-link:hover {
+                transform: translateX(0);
+            }
+
+
+            .footer-glow {
+                width: 100%;
+                height: 250px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1324,7 +1445,7 @@
     <nav class="navbar" id="navbar">
         <div class="nav-logo"><i class="ri-shining-2-fill"></i> NEXUSTECH</div>
         <ul class="nav-links" id="navLinks">
-            <li><a href="/HomePage.html" class="active">Home</a></li>
+            <li><a href="/index.html" class="active">Home</a></li>
             <li><a href="/ServicesPage.html">Services</a></li>
             <li><a href="/AboutPage.html">About</a></li>
             <li><a href="/BlogPage.html">Blogs</a></li>
@@ -1369,7 +1490,6 @@
     </div>
 
     <main class="container">
-        <!-- Services Section -->
         <section class="section-margin" id="services">
             <div class="section-header reveal">
                 <span class="section-subtitle">Our Expertise</span>
@@ -1399,7 +1519,6 @@
             </div>
         </section>
 
-        <!-- About Section -->
         <section class="section-margin" id="about">
             <div class="about-grid">
                 <div class="about-content reveal">
@@ -1426,7 +1545,6 @@
             </div>
         </section>
 
-        <!-- Stats Section -->
         <section class="stats-section reveal">
             <div class="stats-container">
                 <div class="stats-grid">
@@ -1450,7 +1568,6 @@
             </div>
         </section>
 
-        <!-- Learning Section -->
         <section class="learning-section section-margin" id="learning">
             <div class="container">
                 <h2 class="section-title reveal">
@@ -1459,7 +1576,6 @@
 
 
                 <div class="content-wrapper">
-                    <!-- Center Circle -->
                     <div class="center-circle-container">
                         <div class="glowing-ring"></div>
                         <div class="inner-circle">
@@ -1471,31 +1587,26 @@
                         </div>
                     </div>
 
-                    <!-- Item 01 (Top) -->
                     <div class="learn-item item-1 reveal">
                         <div class="item-number">01</div>
                         <div class="item-text">Enterprise<br>Infrastructure<br>Design</div>
                     </div>
 
-                    <!-- Item 02 (Right) -->
                     <div class="learn-item item-2 reveal">
                         <div class="item-number">02</div>
                         <div class="item-text">Modern<br>Development<br>Frameworks</div>
                     </div>
 
-                    <!-- Item 03 (Bottom Right) -->
                     <div class="learn-item item-3 reveal">
                         <div class="item-number">03</div>
                         <div class="item-text">Security Best<br>Practices</div>
                     </div>
 
-                    <!-- Item 04 (Bottom Left) -->
                     <div class="learn-item item-4 reveal">
                         <div class="item-number">04</div>
                         <div class="item-text">Scalability &<br>Performance</div>
                     </div>
 
-                    <!-- Item 05 (Left) -->
                     <div class="learn-item item-5 reveal">
                         <div class="item-number">05</div>
                         <div class="item-text">Industry<br>Compliance<br>Standards</div>
@@ -1505,7 +1616,6 @@
             </div>
         </section>
 
-        <!-- Process Section -->
         <section class="section-margin" id="process">
             <div class="section-header reveal">
                 <span class="section-subtitle">Our Approach</span>
@@ -1550,7 +1660,6 @@
             </div>
         </section>
 
-        <!-- Features Section -->
         <section class="features-section section-margin" id="features">
             <div class="section-header reveal">
                 <span class="section-subtitle">Why Choose Us</span>
@@ -1580,7 +1689,6 @@
         </section>
 
 
-        <!-- Case Studies Section -->
         <section class="case-studies-section section-margin" id="case-studies">
             <div class="section-header reveal">
                 <span class="section-subtitle">Success Stories</span>
@@ -1612,7 +1720,6 @@
             </div>
         </section>
 
-        <!-- Testimonials Section -->
         <section class="testimonial-section section-margin" id="testimonials">
             <div class="container">
                 <div class="section-header reveal">
@@ -1620,16 +1727,13 @@
                 </div>
 
                 <div class="slider-wrapper" id="slider-container">
-                    <!-- Cards will be injected by JS -->
                 </div>
 
                 <div class="dots-container" id="dots-container">
-                    <!-- Dots injected by JS -->
                 </div>
             </div>
         </section>
 
-        <!-- CTA Section -->
         <section class="cta-section reveal">
             <div class="cta-bg"></div>
             <div style="position: relative; z-index: 2;">
@@ -1645,41 +1749,57 @@
     </main>
 
     <footer class="site-footer">
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <h3>NEXUSTECH</h3>
-                <p>Delivering innovative IT solutions that empower businesses to thrive in the digital age.</p>
+
+        <div class="footer-glow"></div>
+
+        <div class="footer-container">
+
+            <div class="footer-top">
+
+                <div class="footer-brand">
+                    <div class="footer-logo">NEXUSTECH</div>
+                    <span class="footer-slogan">PREMIUM SOLUTIONS</span>
+                </div>
+
+                <div class="footer-col">
+                    <a href="#" class="footer-link">Weebly Themes</a>
+                    <a href="#" class="footer-link">Pre-Sale FAQs</a>
+                    <a href="#" class="footer-link">Submit a Ticket</a>
+                </div>
+
+                <div class="footer-col">
+                    <a href="#" class="footer-link">Services</a>
+                    <a href="#" class="footer-link">Theme Tweak</a>
+                </div>
+
+                <div class="footer-col">
+                    <a href="#" class="footer-link">Showcase</a>
+                    <a href="#" class="footer-link">Widgetkit</a>
+                    <a href="#" class="footer-link">Support</a>
+                </div>
+
+                <div class="footer-col">
+                    <a href="#" class="footer-link">About Us</a>
+                    <a href="#" class="footer-link">Contact Us</a>
+                    <a href="#" class="footer-link">Affiliates</a>
+                    <a href="#" class="footer-link">Resources</a>
+                </div>
+
             </div>
-            <div class="footer-col">
-                <h4>Services</h4>
-                <ul class="footer-links">
-                    <li><a href="#">Cloud Solutions</a></li>
-                    <li><a href="#">Cyber Security</a></li>
-                    <li><a href="#">Custom Development</a></li>
-                    <li><a href="#">IT Consulting</a></li>
-                </ul>
+
+            <hr class="footer-divider">
+
+            <div class="footer-bottom">
+                <div class="social-links">
+                    <a href="#" class="social-btn"><i class="ri-facebook-fill"></i></a>
+                    <a href="#" class="social-btn"><i class="ri-twitter-x-line"></i></a>
+                    <a href="#" class="social-btn"><i class="ri-rss-fill"></i></a>
+                    <a href="#" class="social-btn"><i class="ri-google-fill"></i></a>
+                    <a href="#" class="social-btn"><i class="ri-more-fill"></i></a>
+                </div>
+                <p class="copyright">© Copyright 2024. All rights reserved.</p>
             </div>
-            <div class="footer-col">
-                <h4>Company</h4>
-                <ul class="footer-links">
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Our Team</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Connect</h4>
-                <ul class="footer-links">
-                    <li><a href="#">LinkedIn</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">GitHub</a></li>
-                    <li><a href="#">Blog</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            &copy; 2024 NexusTech Solutions. All rights reserved.
+
         </div>
     </footer>
 
