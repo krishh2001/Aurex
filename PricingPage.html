@@ -6,20 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pricing | NexusTech</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
         rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 
     <style>
         :root {
             --bg-color: #050505;
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --card-bg: rgba(15, 15, 15, 0.6);
+            --card-bg: rgba(20, 20, 20, 0.6);
+            --card-border: rgba(255, 255, 255, 0.08);
             --text-main: #ffffff;
-            --text-muted: #94a3b8;
-            --accent-glow: rgba(16, 185, 129, 0.15);
+            --text-muted: #9ca3af;
             --accent-color: #10b981;
-            --accent-secondary: #3b82f6;
+            /* Emerald Green */
+            --accent-glow: rgba(16, 185, 129, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.08);
             --font-family: 'Outfit', sans-serif;
         }
 
@@ -30,15 +32,17 @@
         }
 
         body {
-            background: var(--bg-color);
-            font-family: var(--font-family);
-            overflow-x: hidden;
-            min-height: 100vh;
+            background-color: var(--bg-color);
             color: var(--text-main);
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
         }
 
-        /* --- Global Background Effects (Exact Match) --- */
+        /* --- Background Glows --- */
         .ambient-glow,
         .ambient-glow-2,
         .ambient-glow-3 {
@@ -74,10 +78,12 @@
             background: radial-gradient(circle, rgba(139, 92, 246, 0.08), transparent 70%);
         }
 
+        /* --- Smooth Background Text --- */
         .bg-large-text {
             position: fixed;
             top: 18%;
             left: 50%;
+            /* Initial Transform: Centered */
             transform: translateX(-50%);
             font-size: 12rem;
             font-weight: 800;
@@ -87,8 +93,14 @@
             z-index: -1;
             pointer-events: none;
             white-space: nowrap;
+
+            /* Performance Optimizations */
+            will-change: transform, opacity;
+            /* Ensure smooth painting */
+            backface-visibility: hidden;
         }
 
+        /* Particles */
         .particles {
             position: fixed;
             inset: 0;
@@ -119,6 +131,7 @@
             }
         }
 
+        /* Tech Lines */
         .tech-line {
             position: absolute;
             top: 20%;
@@ -157,7 +170,8 @@
             left: 0;
         }
 
-        /* --- Navbar (Exact Match) --- */
+
+        /* --- Navbar --- */
         .navbar {
             position: fixed;
             top: 20px;
@@ -244,64 +258,45 @@
             cursor: pointer;
         }
 
+
         /* --- Main Layout --- */
         .container {
             width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            margin-top: 30%;
-            /* Consistent with Contact page */
-            position: relative;
-            z-index: 1;
+            max-width: 1280px;
+            padding: 180px 20px 80px;
+            margin-top: 20%;
             text-align: center;
+            position: relative;
+            z-index: 2;
         }
 
-        /* --- Pricing Specific Styles --- */
-        .pricing-header {
-            margin-bottom: 60px;
-        }
-
-        .section-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 12px;
-            border-radius: 30px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--glass-border);
-            color: var(--accent-color);
-            font-size: 0.85rem;
-            font-weight: 500;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .section-title {
-            font-size: 3.5rem;
-            line-height: 1.1;
+        /* Header */
+        .header h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
             font-weight: 700;
             margin-bottom: 15px;
-            background: linear-gradient(to right, #fff, #94a3b8);
+            background: linear-gradient(to bottom, #fff, #94a3b8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .section-desc {
-            color: var(--text-muted);
+        .header p {
             font-size: 1.1rem;
+            color: var(--text-muted);
             max-width: 600px;
             margin: 0 auto 40px;
+            line-height: 1.6;
         }
 
         /* Toggle Switch */
         .toggle-wrapper {
             display: inline-flex;
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--glass-border);
+            border: 1px solid var(--card-border);
             border-radius: 50px;
             padding: 5px;
+            margin-bottom: 60px;
             backdrop-filter: blur(10px);
         }
 
@@ -321,19 +316,19 @@
             box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
         }
 
-        /* Pricing Cards */
+        /* --- Pricing Grid --- */
         .pricing-grid {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 30px;
+            gap: 40px;
             flex-wrap: nowrap;
-            margin-bottom: 150px;
+            margin-bottom: 120px;
         }
 
         .card {
             background: var(--card-bg);
-            border: 1px solid var(--glass-border);
+            border: 1px solid var(--card-border);
             border-radius: 24px;
             padding: 40px 30px;
             display: flex;
@@ -345,27 +340,27 @@
         }
 
         .card.standard {
-            width: 350px;
+            width: 360px;
             height: 600px;
         }
 
         .card.featured {
             width: 380px;
-            height: 700px;
-            background: rgba(20, 20, 20, 0.8);
-            border: 1px solid var(--accent-color);
+            height: 730px;
+            background: rgba(25, 25, 25, 0.95);
+            border: 2px solid var(--accent-color);
             z-index: 2;
-            box-shadow: 0 0 60px rgba(16, 185, 129, 0.1);
+            box-shadow: 0 0 60px rgba(16, 185, 129, 0.15);
         }
 
         .card:hover {
             transform: translateY(-8px);
-            border-color: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
         }
 
         .card.featured:hover {
             transform: translateY(-8px);
-            box-shadow: 0 0 80px rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 80px rgba(16, 185, 129, 0.25);
         }
 
         .most-popular {
@@ -384,8 +379,9 @@
             box-shadow: 0 5px 20px rgba(16, 185, 129, 0.4);
         }
 
+        /* Plan Details */
         .plan-header {
-            border-bottom: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--card-border);
             padding-bottom: 25px;
             margin-bottom: 25px;
         }
@@ -406,7 +402,7 @@
         }
 
         .text-growth {
-            color: var(--accent-secondary);
+            color: #3b82f6;
         }
 
         .price-wrapper {
@@ -422,6 +418,7 @@
         }
 
         .price {
+            font-family: 'Outfit', sans-serif;
             font-size: 3rem;
             font-weight: 700;
             color: #fff;
@@ -483,12 +480,12 @@
             cursor: pointer;
             transition: 0.3s;
             border: none;
-            font-family: var(--font-family);
+            font-family: 'Outfit', sans-serif;
         }
 
         .btn-outline {
             background: transparent;
-            border: 1px solid var(--glass-border);
+            border: 1px solid var(--card-border);
             color: #fff;
         }
 
@@ -517,12 +514,13 @@
             min-height: 1rem;
         }
 
-        /* FAQ Section */
+        /* --- FAQ Section --- */
         .faq-section {
             width: 100%;
             max-width: 800px;
-            margin: 0 auto 100px;
+            margin: 0 auto;
             text-align: left;
+            margin-bottom: 100px;
         }
 
         .faq-header {
@@ -531,6 +529,7 @@
         }
 
         .faq-header h2 {
+            font-family: 'Outfit', sans-serif;
             font-size: 2.5rem;
             font-weight: 700;
             color: #fff;
@@ -545,7 +544,7 @@
 
         .faq-item {
             background: var(--card-bg);
-            border: 1px solid var(--glass-border);
+            border: 1px solid var(--card-border);
             border-radius: 16px;
             overflow: hidden;
             transition: all 0.3s ease;
@@ -604,24 +603,41 @@
             padding-bottom: 25px;
         }
 
-        /* --- Footer (Exact Match) --- */
+        /* --- Footer --- */
         .site-footer {
             position: relative;
             background-color: #050505;
             padding: 100px 0 40px;
             overflow: hidden;
             border-top: 1px solid var(--glass-border);
+            margin-top: 0;
+        }
+
+        .footer-bg-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 18vw;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.02);
+            letter-spacing: -5px;
+            text-transform: uppercase;
+            z-index: 0;
+            pointer-events: none;
+            white-space: nowrap;
+            user-select: none;
         }
 
         .footer-glow {
             position: absolute;
-            bottom: -120px;
+            bottom: -150px;
             left: 50%;
             transform: translateX(-50%);
-            width: 800px;
+            width: 600px;
             height: 400px;
-            background: radial-gradient(circle, rgba(16, 185, 129, 0.25) 0%, transparent 70%);
-            filter: blur(100px);
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, transparent 70%);
+            filter: blur(80px);
             z-index: 0;
             pointer-events: none;
         }
@@ -657,7 +673,7 @@
             text-transform: uppercase;
         }
 
-        .slogan {
+        .footer-slogan {
             font-size: 0.8rem;
             color: var(--text-muted);
             letter-spacing: 2px;
@@ -758,7 +774,7 @@
         @media (max-width: 1024px) {
             .pricing-grid {
                 flex-direction: column;
-                gap: 40px;
+                gap: 30px;
             }
 
             .card.standard,
@@ -766,6 +782,7 @@
                 width: 100%;
                 max-width: 400px;
                 height: auto;
+                min-height: auto;
             }
 
             .card.featured {
@@ -825,7 +842,7 @@
 
             .footer-glow {
                 width: 100%;
-                height: 300px;
+                height: 250px;
                 bottom: -80px;
             }
         }
@@ -843,26 +860,23 @@
     <h1 class="bg-large-text">PRICING</h1>
 
     <nav class="navbar" id="navbar">
-        <div class="nav-logo"><i class="ri-shining-2-fill"></i> NEXUSTECH</div>
+        <div class="nav-logo"><i class="ri-shining-2-fill"></i> AUREX</div>
         <ul class="nav-links" id="navLinks">
             <li><a href="/index.html">Home</a></li>
             <li><a href="/ServicesPage.html">Services</a></li>
             <li><a href="/AboutPage.html">About</a></li>
             <li><a href="/BlogPage.html">Blogs</a></li>
             <li><a href="/PricingPage.html" class="active">Pricing</a></li>
-            <li><a href="/ContactPage.html">Contact</a></li>
         </ul>
         <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="ri-menu-line"></i></button>
         <a href="/ContactPage.html" class="nav-btn">Let's Talk</a>
     </nav>
 
-    <main class="container">
+    <div class="container">
 
-        <div class="pricing-header">
-            <div class="section-badge"><i class="ri-price-tag-3-line"></i> Plans</div>
-            <h1 class="section-title">Transparent Pricing</h1>
-            <p class="section-desc">Start building for free, then add a site plan to go live. Simple prices, no hidden
-                fees.</p>
+        <div class="header">
+            <h1>Simple, Transparent Pricing</h1>
+            <p>Start building for free, then add a site plan to go live.</p>
 
             <div class="toggle-wrapper">
                 <div class="toggle-btn active" id="yearBtn" onclick="togglePricing('yearly')">Yearly (-43%)</div>
@@ -994,49 +1008,39 @@
             </div>
         </div>
 
-    </main>
+    </div>
 
     <footer class="site-footer">
-
+        <h1 class="footer-bg-text">FOOTER</h1>
         <div class="footer-glow"></div>
-
         <div class="footer-container">
-
             <div class="footer-top">
-
                 <div class="footer-brand">
-                    <div class="footer-logo">NEXUSTECH</div>
-                    <span class="slogan">PREMIUM SOLUTIONS</span>
+                    <div class="footer-logo">AUREX</div>
+                    <span class="footer-slogan">PREMIUM SOLUTIONS</span>
                 </div>
-
                 <div class="footer-col">
                     <a href="#" class="footer-link">Weebly Themes</a>
                     <a href="#" class="footer-link">Pre-Sale FAQs</a>
                     <a href="#" class="footer-link">Submit a Ticket</a>
                 </div>
-
                 <div class="footer-col">
                     <a href="#" class="footer-link">Services</a>
                     <a href="#" class="footer-link">Theme Tweak</a>
                 </div>
-
                 <div class="footer-col">
                     <a href="#" class="footer-link">Showcase</a>
                     <a href="#" class="footer-link">Widgetkit</a>
                     <a href="#" class="footer-link">Support</a>
                 </div>
-
                 <div class="footer-col">
                     <a href="#" class="footer-link">About Us</a>
                     <a href="#" class="footer-link">Contact Us</a>
                     <a href="#" class="footer-link">Affiliates</a>
                     <a href="#" class="footer-link">Resources</a>
                 </div>
-
             </div>
-
             <hr class="footer-divider">
-
             <div class="footer-bottom">
                 <div class="social-links">
                     <a href="#" class="social-btn"><i class="ri-facebook-fill"></i></a>
@@ -1047,76 +1051,86 @@
                 </div>
                 <p class="copyright">© Copyright 2024. All rights reserved.</p>
             </div>
-
         </div>
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
 
-            // Mobile menu toggle
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const navLinks = document.getElementById('navLinks');
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.right = '0';
+                navLinks.style.backgroundColor = 'rgba(10, 10, 10, 0.95)';
+                navLinks.style.padding = '20px';
+                navLinks.style.borderBottom = '1px solid rgba(255,255,255,0.1)';
+            }
+        });
 
-            mobileMenuBtn.addEventListener('click', () => {
-                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-                if (navLinks.style.display === 'flex') {
-                    navLinks.style.flexDirection = 'column';
-                    navLinks.style.position = 'absolute';
-                    navLinks.style.top = '100%';
-                    navLinks.style.left = '0';
-                    navLinks.style.right = '0';
-                    navLinks.style.backgroundColor = 'rgba(10, 10, 10, 0.95)';
-                    navLinks.style.padding = '20px';
-                    navLinks.style.borderBottom = '1px solid rgba(255,255,255,0.1)';
-                }
-            });
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navbar.contains(e.target) && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.className = 'ri-menu-line';
+            }
+        });
 
-            // Parallax background text
-            const bgText = document.querySelector('.bg-large-text');
-            window.addEventListener('scroll', () => {
-                let scroll = window.scrollY;
-                bgText.style.transform = `translate(-50%, calc(-50% + ${scroll * 0.15}px))`;
-                bgText.style.opacity = 1 - (scroll * 0.001);
-            });
+        // Parallax background text
+        const bgText = document.querySelector('.bg-large-text');
 
-            // Navbar Scroll Effect
-            const navbar = document.getElementById('navbar');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
-                }
-            });
+        // Smooth Scroll Logic for Background Text using RequestAnimationFrame
+        let lastScrollY = window.scrollY;
 
-            // Particles
-            const particlesContainer = document.getElementById('particles');
-            for (let i = 0; i < 30; i++) {
-                const p = document.createElement('div');
-                p.classList.add('particle');
-                let size = Math.random() * 3 + 1;
-                p.style.width = `${size}px`;
-                p.style.height = `${size}px`;
-                p.style.left = `${Math.random() * 100}vw`;
-                p.style.top = `${Math.random() * 100}vh`;
-                p.style.animationDelay = `-${Math.random() * 20}s`;
-                p.style.opacity = Math.random() * 0.5;
-                particlesContainer.appendChild(p);
+        function smoothScrollText() {
+            lastScrollY = window.scrollY;
+            // Calculate translation. Adjust the multiplier 0.15 for speed.
+            // Using transform is performant.
+            const translateY = lastScrollY * 0.15;
+            const opacity = 1 - (lastScrollY * 0.001);
+
+            if (bgText) {
+                // Combine centering (-50%) with parallax scroll
+                bgText.style.transform = `translate(-50%, ${translateY}px)`;
+                bgText.style.opacity = Math.max(opacity, 0); // Prevent negative opacity
             }
 
-            // FAQ Accordion Logic
-            const faqItems = document.querySelectorAll('.faq-item');
-            faqItems.forEach(item => {
-                item.querySelector('.faq-question').addEventListener('click', () => {
-                    faqItems.forEach(otherItem => {
-                        if (otherItem !== item) otherItem.classList.remove('active');
-                    });
-                    item.classList.toggle('active');
-                });
-            });
+            window.requestAnimationFrame(smoothScrollText);
+        }
 
+        // Start loop
+        window.requestAnimationFrame(smoothScrollText);
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
         });
+
+        // Particle Background Logic
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 30; i++) {
+            const p = document.createElement('div');
+            p.classList.add('particle');
+            let size = Math.random() * 3 + 1;
+            p.style.width = `${size}px`;
+            p.style.height = `${size}px`;
+            p.style.left = `${Math.random() * 100}vw`;
+            p.style.top = `${Math.random() * 100}vh`;
+            p.style.animationDelay = `-${Math.random() * 20}s`;
+            p.style.opacity = Math.random() * 0.5;
+            particlesContainer.appendChild(p);
+        }
 
         // Pricing Toggle Logic
         function togglePricing(plan) {
@@ -1154,8 +1168,18 @@
             };
             window.requestAnimationFrame(step);
         }
-    </script>
 
+        // FAQ Accordion Logic
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            item.querySelector('.faq-question').addEventListener('click', () => {
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) otherItem.classList.remove('active');
+                });
+                item.classList.toggle('active');
+            });
+        });
+    </script>
 </body>
 
 </html>

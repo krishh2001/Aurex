@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NexusTech | Premium IT Solutions</title>
+    <title>AUREX | Premium IT Solutions</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
@@ -20,6 +20,7 @@
             --accent-gradient: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
             --font-family: 'Outfit', sans-serif;
             --section-spacing: clamp(80px, 10vw, 140px);
+            --accent-glow: rgba(16, 185, 129, 0.4);
         }
 
         * {
@@ -43,19 +44,18 @@
         }
 
         /* Premium Background Effects */
-        .ambient-glow {
+        /* .ambient-glow {
             position: fixed;
             width: min(600px, 80vw);
             height: min(600px, 80vw);
-            background: radial-gradient(circle, rgba(16, 185, 129, 0.15), transparent 70%);
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.4), transparent 40%);
             top: -100px;
             left: 50%;
             transform: translateX(-50%);
             border-radius: 50%;
             z-index: -1;
             filter: blur(80px);
-            animation: pulse 8s infinite ease-in-out;
-        }
+        } */
 
         .ambient-glow-2 {
             position: fixed;
@@ -81,18 +81,76 @@
             filter: blur(80px);
         }
 
-        @keyframes pulse {
+        .particles {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
 
-            0%,
-            100% {
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+
+            10% {
                 opacity: 0.5;
-                transform: translateX(-50%) scale(1);
             }
 
-            50% {
-                opacity: 0.8;
-                transform: translateX(-50%) scale(1.1);
+            90% {
+                opacity: 0.5;
             }
+
+            100% {
+                transform: translateY(-100vh) translateX(20px);
+                opacity: 0;
+            }
+        }
+
+        .tech-line {
+            position: absolute;
+            top: 20%;
+            width: 150px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            z-index: 1;
+        }
+
+        .tech-line::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            top: -2px;
+            box-shadow: 0 0 10px #fff;
+        }
+
+        .left-line {
+            left: -20px;
+            transform: rotate(45deg);
+        }
+
+        .left-line::after {
+            right: 0;
+        }
+
+        .right-line {
+            right: -20px;
+            transform: rotate(-45deg);
+        }
+
+        .right-line::after {
+            left: 0;
         }
 
         .bg-large-text {
@@ -1442,10 +1500,13 @@
     <div class="ambient-glow"></div>
     <div class="ambient-glow-2"></div>
     <div class="ambient-glow-3"></div>
-    <h1 class="bg-large-text">NEXUSTECH</h1>
+    <div class="particles" id="particles"></div>
+    <div class="tech-line left-line"></div>
+    <div class="tech-line right-line"></div>
+    <h1 class="bg-large-text">AUREX</h1>
 
     <nav class="navbar" id="navbar">
-        <div class="nav-logo"><i class="ri-shining-2-fill"></i> NEXUSTECH</div>
+        <div class="nav-logo"><i class="ri-shining-2-fill"></i> AUREX</div>
         <ul class="nav-links" id="navLinks">
             <li><a href="/index.html" class="active">Home</a></li>
             <li><a href="/ServicesPage.html">Services</a></li>
@@ -1528,7 +1589,7 @@
                     <h2>Leading Digital Innovation <br><span style="color: var(--accent-primary);">Since 2015</span>
                     </h2>
                     <p style="color: var(--text-muted); margin-bottom: 20px;">
-                        NexusTech is a premier IT solutions provider dedicated to helping businesses navigate the
+                        AUREX is a premier IT solutions provider dedicated to helping businesses navigate the
                         complexities of digital transformation. Our team of certified experts delivers cutting-edge
                         technology solutions that drive measurable results.
                     </p>
@@ -1573,7 +1634,7 @@
         <section class="learning-section section-margin" id="learning">
             <div class="container">
                 <h2 class="section-title reveal">
-                    What you'll learn with <span class="highlight-text">NexusTech?</span>
+                    What you'll learn with <span class="highlight-text">AUREX?</span>
                 </h2>
 
 
@@ -1621,7 +1682,7 @@
         <section class="section-margin" id="process">
             <div class="section-header reveal">
                 <span class="section-subtitle">Our Approach</span>
-                <h2 class="section-title">The NexusTech Methodology</h2>
+                <h2 class="section-title">The AUREX Methodology</h2>
             </div>
             <div class="process-grid">
                 <div class="process-card reveal">
@@ -1759,7 +1820,7 @@
             <div class="footer-top">
 
                 <div class="footer-brand">
-                    <div class="footer-logo">NEXUSTECH</div>
+                    <div class="footer-logo">AUREX</div>
                     <span class="footer-slogan">PREMIUM SOLUTIONS</span>
                 </div>
 
@@ -1862,10 +1923,10 @@
 
         // Testimonial Slider
         const testimonials = [
-            { name: "Carol D. Story", role: "CTO, TechCorp", text: "NexusTech transformed our cloud infrastructure, reducing costs by 40% while improving performance and scalability.", image: "https://randomuser.me/api/portraits/women/32.jpg" },
+            { name: "Carol D. Story", role: "CTO, TechCorp", text: "AUREX transformed our cloud infrastructure, reducing costs by 40% while improving performance and scalability.", image: "https://randomuser.me/api/portraits/women/32.jpg" },
             { name: "Sarah J. Christopher", role: "CEO, InnovateX", text: "Their security solutions protected us from a major cyber attack. Their team's expertise is truly exceptional.", image: "https://randomuser.me/api/portraits/women/44.jpg" },
             { name: "Martin A. Wright", role: "Director, Global Solutions", text: "The custom software they developed streamlined our operations and improved efficiency by 60%. Outstanding work!", image: "https://randomuser.me/api/portraits/men/86.jpg" },
-            { name: "James L. Smith", role: "Tech Lead, FutureStack", text: "Working with NexusTech was a game-changer for our digital transformation journey. Professional, knowledgeable, and results-driven.", image: "https://randomuser.me/api/portraits/men/45.jpg" },
+            { name: "James L. Smith", role: "Tech Lead, FutureStack", text: "Working with AUREX was a game-changer for our digital transformation journey. Professional, knowledgeable, and results-driven.", image: "https://randomuser.me/api/portraits/men/45.jpg" },
             { name: "Emily R. Davis", role: "Product Manager, QuantumSoft", text: "Their team delivered beyond our expectations. The solution was scalable, secure, and perfectly aligned with our business goals.", image: "https://randomuser.me/api/portraits/women/68.jpg" }
         ];
 
@@ -1873,6 +1934,21 @@
         let autoSlideInterval;
         const container = document.getElementById('slider-container');
         const dotsContainer = document.getElementById('dots-container');
+
+        // Particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 30; i++) {
+            const p = document.createElement('div');
+            p.classList.add('particle');
+            let size = Math.random() * 3 + 1;
+            p.style.width = `${size}px`;
+            p.style.height = `${size}px`;
+            p.style.left = `${Math.random() * 100}vw`;
+            p.style.top = `${Math.random() * 100}vh`;
+            p.style.animationDelay = `-${Math.random() * 20}s`;
+            p.style.opacity = Math.random() * 0.5;
+            particlesContainer.appendChild(p);
+        }
 
         function initSlider() {
             container.innerHTML = '';

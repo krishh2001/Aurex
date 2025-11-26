@@ -21,7 +21,7 @@
             --accent-primary: #10b981;
             --accent-secondary: #3b82f6;
             --accent-gradient: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
-            --accent-glow: rgba(16, 185, 129, 0.15);
+            --accent-glow: rgba(16, 185, 129, 0.4);
             --font-family: 'Inter', sans-serif;
             --font-tech: 'Rajdhani', sans-serif;
             --section-spacing: clamp(80px, 10vw, 140px);
@@ -33,13 +33,15 @@
             box-sizing: border-box;
         }
 
-        body {
-            background: var(--bg-color);
-            font-family: var(--font-family);
-            overflow-x: hidden;
-            min-height: 100vh;
+          body {
+            background-color: var(--bg-color);
             color: var(--text-main);
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
         }
 
         /* --- Background Elements --- */
@@ -946,7 +948,7 @@
     <h1 class="bg-large-text">SERVICES</h1>
 
     <nav class="navbar" id="navbar">
-        <div class="nav-logo"><i class="ri-shining-2-fill"></i> &nbsp;NEXUSTECH</div>
+        <div class="nav-logo"><i class="ri-shining-2-fill"></i> &nbsp;AUREX</div>
         <ul class="nav-links">
             <li><a href="/index.html">Home</a></li>
             <li><a href="/ServicesPage.html" class="active">Services</a></li>
@@ -1120,7 +1122,7 @@
             <div class="footer-top">
 
                 <div class="footer-brand">
-                    <div class="footer-logo">NEXUSTECH</div>
+                    <div class="footer-logo">AUREX</div>
                     <span class="footer-slogan">PREMIUM SOLUTIONS</span>
                 </div>
 

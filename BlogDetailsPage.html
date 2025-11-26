@@ -16,7 +16,7 @@
             --card-bg: rgba(15, 15, 15, 0.6);
             --text-main: #ffffff;
             --text-muted: #94a3b8;
-            --accent-glow: rgba(16, 185, 129, 0.15);
+            --accent-glow: rgba(16, 185, 129, 0.4);
             --accent-color: #10b981;
             --accent-secondary: #3b82f6;
             --accent-tertiary: #8b5cf6;
@@ -29,13 +29,15 @@
             box-sizing: border-box;
         }
 
-        body {
-            background: var(--bg-color);
-            font-family: var(--font-family);
-            overflow-x: hidden;
-            min-height: 100vh;
+           body {
+            background-color: var(--bg-color);
             color: var(--text-main);
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
         }
 
         /* --- Background Effects --- */
@@ -1296,7 +1298,7 @@
     <h1 class="bg-large-text">Blog</h1>
 
     <nav class="navbar" id="navbar">
-        <div class="nav-logo"><i class="ri-shining-2-fill"></i> NEXUSTECH</div>
+        <div class="nav-logo"><i class="ri-shining-2-fill"></i> AUREX</div>
         <ul class="nav-links">
             <li><a href="/index.html">Home</a></li>
             <li><a href="/ServicesPage.html">Services</a></li>
@@ -1686,7 +1688,7 @@
             <div class="footer-top">
 
                 <div class="footer-brand">
-                    <div class="footer-logo">NEXUSTECH</div>
+                    <div class="footer-logo">AUREX</div>
                     <span class="footer-slogan">PREMIUM SOLUTIONS</span>
                 </div>
 

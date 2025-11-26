@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact Us | NexusTech</title>
+    <title>Contact Us | AUREX</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
@@ -17,7 +17,7 @@
             --card-bg: rgba(15, 15, 15, 0.6);
             --text-main: #ffffff;
             --text-muted: #94a3b8;
-            --accent-glow: rgba(16, 185, 129, 0.15);
+            --accent-glow: rgba(16, 185, 129, 0.4);
             --accent-color: #10b981;
             --accent-secondary: #3b82f6;
             --font-family: 'Outfit', sans-serif;
@@ -29,16 +29,18 @@
             box-sizing: border-box;
         }
 
-        body {
-            background: var(--bg-color);
-            font-family: var(--font-family);
-            overflow-x: hidden;
-            min-height: 100vh;
+           body {
+            background-color: var(--bg-color);
             color: var(--text-main);
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
         }
 
-        /* --- Global Background Effects --- */
+        /* --- Background Glows --- */
         .ambient-glow,
         .ambient-glow-2,
         .ambient-glow-3 {
@@ -74,10 +76,12 @@
             background: radial-gradient(circle, rgba(139, 92, 246, 0.08), transparent 70%);
         }
 
-         .bg-large-text {
+        /* --- Smooth Background Text --- */
+        .bg-large-text {
             position: fixed;
             top: 18%;
             left: 50%;
+            /* Initial Transform: Centered */
             transform: translateX(-50%);
             font-size: 12rem;
             font-weight: 800;
@@ -87,8 +91,14 @@
             z-index: -1;
             pointer-events: none;
             white-space: nowrap;
+
+            /* Performance Optimizations */
+            will-change: transform, opacity;
+            /* Ensure smooth painting */
+            backface-visibility: hidden;
         }
 
+        /* Particles */
         .particles {
             position: fixed;
             inset: 0;
@@ -858,7 +868,7 @@
     <h1 class="bg-large-text">Contact</h1>
 
     <nav class="navbar" id="navbar">
-        <div class="nav-logo"><i class="ri-shining-2-fill"></i> NEXUSTECH</div>
+        <div class="nav-logo"><i class="ri-shining-2-fill"></i> AUREX</div>
         <ul class="nav-links">
             <li><a href="/index.html">Home</a></li>
             <li><a href="/ServicesPage.html">Services</a></li>
@@ -885,7 +895,7 @@
                         possibilities, we're here to help you navigate the digital landscape.</p>
 
                     <div class="contact-cards">
-                        <a class="contact-card" href="mailto:contact@nexustech.com">
+                        <a class="contact-card" href="mailto:contact@AUREX.com">
                             <div class="contact-icon"><i class="ri-mail-line"></i></div>
                             <div class="contact-details">
                                 <div class="contact-label">Email us</div>
@@ -973,7 +983,7 @@
             <div class="footer-top">
 
                 <div class="footer-brand">
-                    <div class="footer-logo">NEXUSTECH</div>
+                    <div class="footer-logo">AUREX</div>
                     <span class="slogan">PREMIUM SOLUTIONS</span>
                 </div>
 
