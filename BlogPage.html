@@ -16,7 +16,7 @@
             --card-bg: rgba(15, 15, 15, 0.6);
             --text-main: #ffffff;
             --text-muted: #94a3b8;
-           --accent-glow: rgba(16, 185, 129, 0.4);
+            --accent-glow: rgba(16, 185, 129, 0.4);
             --accent-color: #10b981;
             --accent-secondary: #3b82f6;
             --accent-tertiary: #8b5cf6;
@@ -29,7 +29,7 @@
             box-sizing: border-box;
         }
 
-          body {
+        body {
             background-color: var(--bg-color);
             color: var(--text-main);
             font-family: 'Inter', sans-serif;
@@ -196,16 +196,14 @@
         }
 
         .nav-logo {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: #fff;
             display: flex;
             align-items: center;
-            gap: 5px;
         }
 
-        .nav-logo span {
-            color: var(--accent-primary);
+        .aurex-logo {
+            width: 150px;
+            height: 40px;
+            object-fit: contain;
         }
 
         .nav-links {
@@ -998,7 +996,10 @@
     <h1 class="bg-large-text">Blogs</h1>
 
     <nav class="navbar" id="navbar">
-        <div class="nav-logo"><i class="ri-shining-2-fill"></i> AUREX</div>
+         <a href="/index.html" class="nav-logo">
+            <img src="/assets/logo.png" alt="AUREX Logo" class="aurex-logo" />
+        </a>
+
         <ul class="nav-links">
             <li><a href="/index.html">Home</a></li>
             <li><a href="/ServicesPage.html">Services</a></li>

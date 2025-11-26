@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AUREX | Premium IT Solutions</title>
+    <link rel="icon" type="image/png" href="/assets/fevicon.png" />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
@@ -209,17 +210,18 @@
         }
 
         .nav-logo {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: #fff;
             display: flex;
             align-items: center;
-            gap: 5px;
         }
 
-        .nav-logo span {
-            color: var(--accent-primary);
+        .aurex-logo {
+            width: 150px;
+            height: 40px;
+            object-fit: contain;
         }
+
+
+
 
         .nav-links {
             display: flex;
@@ -1205,18 +1207,17 @@
         .footer-brand {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            align-items: flex-start;
+            gap: 8px;
         }
 
-        .footer-logo {
-            font-size: 2.2rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            color: #fff;
-            text-transform: uppercase;
+        .footer-logo img {
+            width: 150px;
+            height: 48px;
+            object-fit: contain;
         }
 
-        .footer-slogan {
+           .footer-slogan {
             font-size: 0.8rem;
             color: var(--text-muted);
             letter-spacing: 2px;
@@ -1506,7 +1507,10 @@
     <h1 class="bg-large-text">AUREX</h1>
 
     <nav class="navbar" id="navbar">
-        <div class="nav-logo"><i class="ri-shining-2-fill"></i> AUREX</div>
+        <div class="nav-logo">
+            <img src="/assets/logo.png" alt="AUREX Logo" class="aurex-logo" />
+        </div>
+
         <ul class="nav-links" id="navLinks">
             <li><a href="/index.html" class="active">Home</a></li>
             <li><a href="/ServicesPage.html">Services</a></li>
@@ -1517,7 +1521,7 @@
         <button class="mobile-menu-btn" id="mobileMenuBtn">
             <i class="ri-menu-line"></i>
         </button>
-        <a href="#" class="nav-btn">Let's Talk</a>
+        <a href="/ContactPage.html" class="nav-btn">Let's Talk</a>
     </nav>
 
     <header class="hero-section">
@@ -1820,7 +1824,9 @@
             <div class="footer-top">
 
                 <div class="footer-brand">
-                    <div class="footer-logo">AUREX</div>
+                    <div class="footer-logo">
+                        <img src="/assets/logo.png" alt="AUREX Logo" class="aurex-logo" />
+                    </div>
                     <span class="footer-slogan">PREMIUM SOLUTIONS</span>
                 </div>
 
