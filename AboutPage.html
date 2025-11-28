@@ -2,27 +2,29 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AUREX | Premium IT Solutions</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us | AUREX</title>
     <link rel="icon" type="image/png" href="/assets/fevicon.png" />
 
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/layout.css">
-
+    <link rel="stylesheet" href="style/about.css">
 </head>
 
 <body>
+
+    <div class="ambient-glow"></div>
     <div class="ambient-glow-2"></div>
     <div class="ambient-glow-3"></div>
+
+    <h1 class="bg-large-text">About</h1>
     <div class="particles" id="particles"></div>
     <div class="tech-line left-line"></div>
     <div class="tech-line right-line"></div>
 
+    <!-- NAVBAR -->
     <nav class="navbar" id="navbar">
         <div class="nav-logo">
             <img src="/assets/logo.png" alt="AUREX" class="aurex-logo"
@@ -31,346 +33,236 @@
         </div>
 
         <ul class="nav-links" id="navLinks">
-            <li><a href="/index.html" class="active">Home</a></li>
+            <li><a href="/index.html">Home</a></li>
             <li><a href="/ServicesPage.html">Services</a></li>
-            <li><a href="/AboutPage.html">About</a></li>
+            <li><a href="/AboutPage.html" class="active">About</a></li>
             <li><a href="/BlogPage.html">Blogs</a></li>
             <li><a href="/PricingPage.html">Pricing</a></li>
         </ul>
+
         <button class="mobile-menu-btn" id="mobileMenuBtn">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
         </button>
+
         <a href="/ContactPage.html" class="nav-btn">Let's Talk</a>
     </nav>
 
-    <header class="hero-section">
-        <div class="reveal active">
-            <div class="hero-badge">AUREX DIGITAL</div>
-            <h1 class="hero-title">Digital Transformation <br>for Modern Businesses</h1>
-            <p class="hero-desc">
-                AUREX creates fast, scalable and modern digital solutions that help brands grow, perform and lead with
-                confidence.
-            </p>
-            <div class="hero-btns">
-                <a href="#" class="btn-primary">Explore Our Work</a>
-                <a href="#" class="btn-secondary">Book a Call</a>
-            </div>
-        </div>
-    </header>
+    <main class="container">
 
-    <div class="ticker-wrap">
-        <div class="ticker">
-            <div class="ticker-item"><i class="ri-shining-fill"></i> MICROSOFT</div>
-            <div class="ticker-item"><i class="ri-global-line"></i> GOOGLE</div>
-            <div class="ticker-item"><i class="ri-command-fill"></i> AMAZON</div>
-            <div class="ticker-item"><i class="ri-shape-2-fill"></i> IBM</div>
-            <div class="ticker-item"><i class="ri-flashlight-fill"></i> TESLA</div>
-            <div class="ticker-item"><i class="ri-code-box-line"></i> NETFLIX</div>
-            <div class="ticker-item"><i class="ri-shining-fill"></i> MICROSOFT</div>
-            <div class="ticker-item"><i class="ri-global-line"></i> GOOGLE</div>
-            <div class="ticker-item"><i class="ri-command-fill"></i> AMAZON</div>
-            <div class="ticker-item"><i class="ri-shape-2-fill"></i> IBM</div>
-            <div class="ticker-item"><i class="ri-flashlight-fill"></i> TESLA</div>
-            <div class="ticker-item"><i class="ri-code-box-line"></i> NETFLIX</div>
-        </div>
-    </div>
+        <!-- ORIGIN / STORY SECTION -->
+        <section class="story-section reveal">
+            <div class="story-grid">
+                <div class="story-content">
+                    <div class="section-badge"><i class="ri-flashlight-fill"></i> Our Origin</div>
 
-    <main class="expertise_container">
-        <section class="section-margin" id="services">
-            <div class="section-header reveal">
-                <span class="section-subtitle">Our Expertise</span>
-                <h2 class="section-title">Digital Solutions That Deliver</h2>
-                <p style="color: var(--text-muted);">
-                    High-performance technology services designed to accelerate your business.
-                </p>
-            </div>
+                    <h1>Engineering the Future</h1>
 
-            <div class="services-grid">
-                <div class="service-card reveal">
-                    <div class="service-icon"><i class="ri-cloud-line"></i></div>
-                    <h3>Cloud Engineering</h3>
-                    <p>Powerful, secure and scalable cloud setups for fast-growing businesses.</p>
-                </div>
-
-                <div class="service-card reveal">
-                    <div class="service-icon"><i class="ri-shield-keyhole-line"></i></div>
-                    <h3>Security & Protection</h3>
-                    <p>Advanced cybersecurity, proactive monitoring and full data protection systems.</p>
-                </div>
-
-                <div class="service-card reveal">
-                    <div class="service-icon"><i class="ri-code-s-slash-line"></i></div>
-                    <h3>Custom Development</h3>
-                    <p>Web, mobile and software products built for speed, precision and long-term growth.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="section-margin" id="about">
-            <div class="about-grid">
-                <div class="about-content reveal">
-                    <span class="section-subtitle">About AUREX</span>
-                    <h2>Engineering Digital Excellence<br><span style="color: var(--accent-primary);">Since 2015</span>
-                    </h2>
-
-                    <p style="color: var(--text-muted); margin-bottom: 20px;">
-                        AUREX is a next-generation digital company focused on building systems that are fast, secure and
-                        future-ready.
-                        We blend clean engineering with modern design to create products that perform at scale.
+                    <p class="story-text">
+                        AUREX began with a simple goal: build digital systems that feel powerful, precise, and
+                        effortless.
+                        No outdated methods. No overcomplication. Only sharp engineering and minimal design brought
+                        together as one.
                     </p>
 
-                    <p style="color: var(--text-muted); margin-bottom: 30px;">
-                        From modern startups to large enterprises, we help teams unlock growth through technology that
-                        is stable,
-                        scalable and built with intention.
+                    <p class="story-text">
+                        Over the years, we’ve transformed into a performance-first digital company trusted for building
+                        fast interfaces, scalable architectures, and polished customer experiences.
+                        Everything we create is crafted to last—built with intention, built with clarity.
                     </p>
 
-                    <a href="#"
-                        style="color: #fff; text-decoration: none; border-bottom: 1px solid var(--accent-primary);">
-                        Discover our journey
-                    </a>
+                    <div
+                        style="margin-top:30px; padding-left:20px; border-left:2px solid var(--accent-primary); display:inline-block;">
+                        <p style="color:#fff; font-style:italic;">
+                            “Our work blends precision engineering with clean design.
+                            Technology should feel powerful, not overwhelming.”
+                        </p>
+                    </div>
                 </div>
 
-                <div class="about-img-wrapper reveal">
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop"
-                        alt="Modern Office" class="about-img">
-                </div>
-            </div>
-        </section>
+                <div class="story-image-wrapper reveal delay-200">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop"
+                        alt="Office" class="story-img">
 
-        <section class="stats-section reveal">
-            <div class="stats-container">
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <div class="stat-number">250+</div>
-                        <div class="stat-label">Projects Delivered</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">98%</div>
-                        <div class="stat-label">Client Retention</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">50+</div>
-                        <div class="stat-label">Tech Experts</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">8 Years</div>
-                        <div class="stat-label">Industry Experience</div>
+                    <div class="exp-badge">
+                        <div class="exp-number">5+</div>
+                        <div class="exp-text">Years of<br>Innovation</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="learning-section section-margin" id="learning">
-            <div class="learning_container">
-                <h2 class="section-title reveal">
-                    What You’ll Master with <span class="highlight-text">AUREX</span>
-                </h2>
-
-                <div class="content-wrapper">
-                    <div class="center-circle-container">
-                        <div class="glowing-ring"></div>
-                        <div class="inner-circle">
-                            <span class="inner-text">Cloud Architecture</span>
-                            <div class="divider-line"></div>
-                            <span class="inner-text">Security Systems</span>
-                            <div class="divider-line"></div>
-                            <span class="inner-text">DevOps Pipelines</span>
-                        </div>
-                    </div>
-
-                    <div class="learn-item item-1 reveal">
-                        <div class="item-number">01</div>
-                        <div class="item-text">Infrastructure<br>Engineering</div>
-                    </div>
-
-                    <div class="learn-item item-2 reveal">
-                        <div class="item-number">02</div>
-                        <div class="item-text">Modern<br>Development</div>
-                    </div>
-
-                    <div class="learn-item item-3 reveal">
-                        <div class="item-number">03</div>
-                        <div class="item-text">Security<br>Fundamentals</div>
-                    </div>
-
-                    <div class="learn-item item-4 reveal">
-                        <div class="item-number">04</div>
-                        <div class="item-text">Performance<br>Scaling</div>
-                    </div>
-
-                    <div class="learn-item item-5 reveal">
-                        <div class="item-number">05</div>
-                        <div class="item-text">Compliance &<br>Standards</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <section class="section-margin" id="process">
-            <div class="section-header reveal">
-                <span class="section-subtitle">Our Workflow</span>
+        <!-- PROCESS SECTION -->
+        <section class="process-section reveal">
+            <div class="section-header">
+                <div class="section-badge">How We Work</div>
                 <h2 class="section-title">The AUREX Method</h2>
+                <p class="section-desc">
+                    A focused workflow that removes guesswork and builds digital systems with clarity and intent.
+                </p>
             </div>
 
             <div class="process-grid">
-                <div class="process-card reveal">
-                    <span class="process-num">01</span>
-                    <h3>Discovery & Planning</h3>
-                    <p>Understanding your goals and shaping a strategy that supports long-term growth.</p>
+
+                <div class="process-card reveal delay-100">
+                    <span class="step-number">01</span>
+                    <div class="process-icon"><i class="ri-search-eye-line"></i></div>
+                    <h3 class="process-title">Discovery & Research</h3>
+                    <p class="process-desc">We study your goals, audience, and digital landscape to form a clear
+                        direction.</p>
                 </div>
 
-                <div class="process-card reveal">
-                    <span class="process-num">02</span>
-                    <h3>Design & Build</h3>
-                    <p>Creating clean interfaces and strong architecture that work seamlessly together.</p>
+                <div class="process-card reveal delay-200">
+                    <span class="step-number">02</span>
+                    <div class="process-icon"><i class="ri-lightbulb-flash-line"></i></div>
+                    <h3 class="process-title">Strategy & Structure</h3>
+                    <p class="process-desc">We design a scalable plan that aligns with performance, brand, and business
+                        needs.</p>
                 </div>
 
-                <div class="process-card reveal">
-                    <span class="process-num">03</span>
-                    <h3>Launch & Support</h3>
-                    <p>Stable deployment, detailed testing and ongoing performance monitoring.</p>
+                <div class="process-card reveal delay-300">
+                    <span class="step-number">03</span>
+                    <div class="process-icon"><i class="ri-pantone-line"></i></div>
+                    <h3 class="process-title">UI/UX Design</h3>
+                    <p class="process-desc">Interfaces crafted to be clean, modern, intuitive, and visually striking.
+                    </p>
                 </div>
 
-                <div class="process-card reveal">
-                    <span class="process-num">04</span>
-                    <h3>Optimization</h3>
-                    <p>Iterative improvements, speed upgrades and feature enhancements.</p>
+                <div class="process-card reveal delay-400">
+                    <span class="step-number">04</span>
+                    <div class="process-icon"><i class="ri-code-s-slash-line"></i></div>
+                    <h3 class="process-title">Development</h3>
+                    <p class="process-desc">Fast, secure, and optimized engineering built with modern technologies.</p>
                 </div>
 
-                <div class="process-card reveal">
-                    <span class="process-num">05</span>
-                    <h3>Future-Proofing</h3>
-                    <p>Building systems that stay relevant with evolving technology trends.</p>
+                <div class="process-card reveal delay-500">
+                    <span class="step-number">05</span>
+                    <div class="process-icon"><i class="ri-tools-line"></i></div>
+                    <h3 class="process-title">Testing & Polish</h3>
+                    <p class="process-desc">We refine every detail to ensure performance, stability, and consistency.
+                    </p>
                 </div>
 
-                <div class="process-card reveal">
-                    <span class="process-num">06</span>
-                    <h3>Training & Handover</h3>
-                    <p>Clear documentation and full knowledge transfer for your internal teams.</p>
+                <div class="process-card reveal delay-600">
+                    <span class="step-number">06</span>
+                    <div class="process-icon"><i class="ri-rocket-2-line"></i></div>
+                    <h3 class="process-title">Launch & Scale</h3>
+                    <p class="process-desc">Your product goes live—backed with ongoing support and growth optimization.
+                    </p>
                 </div>
+
             </div>
         </section>
 
-        <section class="features-section section-margin" id="features">
-            <div class="section-header reveal">
-                <span class="section-subtitle">Why AUREX</span>
-                <h2 class="section-title">Built for Performance</h2>
-                <p style="color: var(--text-muted);">Designed to deliver speed, security and reliability.</p>
+        <!-- TECH STACK SECTION -->
+        <section class="tech-stack-section reveal">
+            <div class="section-header">
+                <div class="section-badge"><i class="ri-stack-line"></i> Our Arsenal</div>
+                <h2 class="section-title">Technology That Powers AUREX</h2>
+                <p class="section-desc">
+                    We work with modern, stable, and future-focused technologies to ensure speed and scalability.
+                </p>
             </div>
 
-            <div class="features-grid">
-                <div class="feature-card reveal">
-                    <div class="feature-icon"><i class="ri-rocket-2-line"></i></div>
-                    <h3>High Performance</h3>
-                    <p>Every solution is tuned for speed, stability and low-latency results.</p>
-                </div>
-
-                <div class="feature-card reveal">
-                    <div class="feature-icon"><i class="ri-shield-check-line"></i></div>
-                    <h3>Security First</h3>
-                    <p>Enterprise-grade protection to keep your data, apps and users safe.</p>
-                </div>
-
-                <div class="feature-card reveal">
-                    <div class="feature-icon"><i class="ri-line-chart-line"></i></div>
-                    <h3>Scalable Systems</h3>
-                    <p>Architecture engineered to grow effortlessly with your business.</p>
-                </div>
+            <div class="tech-curve-stage" id="techStage">
+                <svg class="tech-curve-svg">
+                    <path id="techCurvePath" class="tech-curve-path" />
+                </svg>
             </div>
         </section>
 
-        <section class="case-studies-section section-margin" id="case-studies">
-            <div class="section-header reveal">
-                <span class="section-subtitle">Client Wins</span>
-                <h2 class="section-title">Case Studies</h2>
-                <p style="color: var(--text-muted);">Real results from real partnerships.</p>
+        <!-- TEAM SECTION -->
+        <section class="team-section reveal">
+            <div class="section-header">
+                <div class="section-badge">The Team</div>
+                <h2 class="section-title">People Behind The Vision</h2>
+                <p class="section-desc">A tight crew of creators, strategists, and engineers.</p>
             </div>
 
-            <div class="case-studies-grid">
-                <div class="case-study-card reveal">
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop"
-                        alt="Case Study" class="case-study-img">
-                    <div class="case-study-content">
-                        <h3>Enterprise Cloud Upgrade</h3>
-                        <p>A complete cloud overhaul that reduced infrastructure cost and improved system performance.
-                        </p>
-                        <a href="#" class="case-study-link">
-                            Read More <i class="ri-arrow-right-line"></i>
-                        </a>
+            <div class="orbit-wrapper">
+                <div class="orbit-system">
+                    <div class="orbit-ring ring-1"></div>
+                    <div class="orbit-ring ring-2"></div>
+                    <div class="orbit-ring ring-3"></div>
+                    <div class="sun-glow-ring"></div>
+
+                    <div class="sun-profile">
+                        <img id="member-img" src="" alt="Team Member">
                     </div>
+
+                    <div class="bubble pos-1" id="skill-1"></div>
+                    <div class="bubble pos-2" id="skill-2"></div>
+                    <div class="bubble pos-3" id="skill-3"></div>
+                    <div class="bubble pos-4" id="skill-4"></div>
+                    <div class="bubble pos-5" id="skill-5"></div>
+                    <div class="bubble pos-6" id="skill-6"></div>
+                    <div class="bubble pos-7" id="skill-7"></div>
                 </div>
 
-                <div class="case-study-card reveal">
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop"
-                        alt="Case Study" class="case-study-img">
-                    <div class="case-study-content">
-                        <h3>Security Overhaul</h3>
-                        <p>Full cybersecurity setup for a financial brand—blocking threats before they could cause
-                            damage.</p>
-                        <a href="#" class="case-study-link">
-                            Read More <i class="ri-arrow-right-line"></i>
-                        </a>
-                    </div>
+                <div class="member-info">
+                    <h2 class="member-name" id="member-name"></h2>
+                    <p class="member-role" id="member-role"></p>
+
+                    <div class="team-social-links" id="social-links"></div>
                 </div>
+
+                <div class="slider-dots" id="slider-dots"></div>
             </div>
         </section>
 
+        <!-- CTA -->
         <section class="cta-section reveal">
             <div class="cta-bg"></div>
-            <div style="position: relative; z-index: 2;">
-                <h2 style="font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; margin-bottom: 20px; color: #fff;">
-                    Ready to Build Something Powerful?
-                </h2>
-                <p style="color: #ccc; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
-                    Let's create a fast, secure and modern digital system that elevates your business.
+            <div class="cta-content">
+                <h2 class="section-title" style="margin-bottom:20px;">Let's Build Something That Lasts</h2>
+                <p class="section-desc">
+                    We’re now taking new projects. Tell us your vision—we’ll engineer the solution.
                 </p>
-                <a href="#" class="btn-primary">Launch Your Project</a>
+                <a href="/ContactPage.html" class="cta-btn">Start Project <i class="ri-arrow-right-line"></i></a>
             </div>
         </section>
 
     </main>
 
+    <!-- FOOTER -->
     <footer class="site-footer">
         <div class="footer-glow"></div>
+
         <div class="footer-container">
             <div class="footer-top">
+
                 <div class="footer-brand">
                     <div class="footer-logo">
                         <img src="/assets/logo.png" alt="AUREX Logo" class="aurex-logo"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
-                        <span
-                            style="display:none; font-weight:800; font-size:1.5rem; letter-spacing:1px; color:white;">AUREX</span>
+                        <span style="display:none; font-weight:800; font-size:1.5rem;">AUREX</span>
                     </div>
                     <span class="footer-slogan">PREMIUM SOLUTIONS</span>
                 </div>
 
                 <div class="footer-col">
-                    <a href="#" class="footer-link">Weebly Themes</a>
-                    <a href="#" class="footer-link">Pre-Sale FAQs</a>
-                    <a href="#" class="footer-link">Submit a Ticket</a>
+                    <a href="#" class="footer-link">Projects</a>
+                    <a href="#" class="footer-link">Client Stories</a>
+                    <a href="#" class="footer-link">Case Studies</a>
                 </div>
 
                 <div class="footer-col">
                     <a href="#" class="footer-link">Services</a>
-                    <a href="#" class="footer-link">Theme Tweak</a>
+                    <a href="#" class="footer-link">Branding</a>
+                    <a href="#" class="footer-link">Development</a>
                 </div>
 
                 <div class="footer-col">
-                    <a href="#" class="footer-link">Showcase</a>
-                    <a href="#" class="footer-link">Widgetkit</a>
-                    <a href="#" class="footer-link">Support</a>
+                    <a href="#" class="footer-link">Resources</a>
+                    <a href="#" class="footer-link">Documentation</a>
+                    <a href="#" class="footer-link">Guides</a>
                 </div>
 
                 <div class="footer-col">
                     <a href="#" class="footer-link">About Us</a>
-                    <a href="#" class="footer-link">Contact Us</a>
-                    <a href="#" class="footer-link">Affiliates</a>
-                    <a href="#" class="footer-link">Resources</a>
+                    <a href="#" class="footer-link">Contact</a>
+                    <a href="#" class="footer-link">Support</a>
                 </div>
+
             </div>
 
             <hr class="footer-divider">
@@ -379,144 +271,226 @@
                 <div class="social-links">
                     <a href="#" class="social-btn"><i class="ri-facebook-fill"></i></a>
                     <a href="#" class="social-btn"><i class="ri-twitter-x-line"></i></a>
-                    <a href="#" class="social-btn"><i class="ri-rss-fill"></i></a>
-                    <a href="#" class="social-btn"><i class="ri-google-fill"></i></a>
-                    <a href="#" class="social-btn"><i class="ri-more-fill"></i></a>
+                    <a href="#" class="social-btn"><i class="ri-instagram-line"></i></a>
+                    <a href="#" class="social-btn"><i class="ri-linkedin-fill"></i></a>
                 </div>
-                <p class="copyright">© Copyright 2024. All rights reserved.</p>
+
+                <p class="copyright">© AUREX 2024. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <script src="/script.js"></script>
+    <script src="script.js"></script>
+
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            initOrbitalSlider();
+            initTechStack();
+        });
 
-        // Scroll Reveal Animation using Intersection Observer
-        const revealElements = document.querySelectorAll('.reveal');
-
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
+        // --- ORBITAL TEAM SLIDER LOGIC ---
+        function initOrbitalSlider() {
+            const teamData = [
+                {
+                    name: "Vishnu Rajput",
+                    role: "Founder & CEO",
+                    image: "https://softwarehousetechnology.com/assets/images/team/vishnu.png",
+                    skills: ["Leadership", "Strategy", "Vision", "Operations"],
+                    socials: [{ icon: 'ri-linkedin-fill', link: '#' }, { icon: 'ri-twitter-x-line', link: '#' }]
+                },
+                {
+                    name: "Samsunge Sharma",
+                    role: "Head of Product",
+                    image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=1000&auto=format&fit=crop",
+                    skills: ["Product", "Research", "Agile", "Planning"],
+                    socials: [{ icon: 'ri-linkedin-fill', link: '#' }]
+                },
+                {
+                    name: "Carbon Kapoor",
+                    role: "Lead Designer",
+                    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1000&auto=format&fit=crop",
+                    skills: ["UI/UX", "Brand", "Figma", "Motion"],
+                    socials: [{ icon: 'ri-behance-line', link: '#' }]
+                },
+                {
+                    name: "Vivo Verma",
+                    role: "Senior Developer",
+                    image: "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=80&w=1000&auto=format&fit=crop",
+                    skills: ["React", "Node", "AWS", "Security"],
+                    socials: [{ icon: 'ri-github-fill', link: '#' }]
                 }
-            });
-        }, { threshold: 0.1 });
+            ];
 
-        revealElements.forEach(el => revealObserver.observe(el));
+            let currentIndex = 0;
+            let slideInterval;
+            const imgEl = document.getElementById('member-img');
+            const nameEl = document.getElementById('member-name');
+            const roleEl = document.getElementById('member-role');
+            const bubbles = document.querySelectorAll('.bubble');
+            const memberInfoContainer = document.querySelector('.member-info');
+            const dotsContainer = document.getElementById('slider-dots');
+            const socialContainer = document.getElementById('social-links');
 
-        // Testimonial Slider
-        const testimonials = [
-            { name: "Carol D. Story", role: "CTO, TechCorp", text: "AUREX transformed our cloud infrastructure, reducing costs by 40% while improving performance and scalability.", image: "https://randomuser.me/api/portraits/women/32.jpg" },
-            { name: "Sarah J. Christopher", role: "CEO, InnovateX", text: "Their security solutions protected us from a major cyber attack. Their team's expertise is truly exceptional.", image: "https://randomuser.me/api/portraits/women/44.jpg" },
-            { name: "Martin A. Wright", role: "Director, Global Solutions", text: "The custom software they developed streamlined our operations and improved efficiency by 60%. Outstanding work!", image: "https://randomuser.me/api/portraits/men/86.jpg" },
-            { name: "James L. Smith", role: "Tech Lead, FutureStack", text: "Working with AUREX was a game-changer for our digital transformation journey. Professional, knowledgeable, and results-driven.", image: "https://randomuser.me/api/portraits/men/45.jpg" },
-            { name: "Emily R. Davis", role: "Product Manager, QuantumSoft", text: "Their team delivered beyond our expectations. The solution was scalable, secure, and perfectly aligned with our business goals.", image: "https://randomuser.me/api/portraits/women/68.jpg" }
-        ];
+            if (!imgEl) return;
 
-        let currentIndex = 1;
-        let autoSlideInterval;
-        const container = document.getElementById('slider-container');
-        const dotsContainer = document.getElementById('dots-container');
-
-
-
-        function initSlider() {
-            if (!container || !dotsContainer) return;
-            container.innerHTML = '';
-            dotsContainer.innerHTML = '';
-
-            testimonials.forEach((item, index) => {
-                const card = document.createElement('div');
-                card.className = 'testimonial-card';
-                card.id = `card-${index}`;
-
-                card.onclick = () => {
-                    if (currentIndex !== index) {
-                        currentIndex = index;
-                        updateClasses();
-                        resetAutoSlide();
-                    }
-                };
-
-                card.innerHTML = `
-                    <div class="quote-box">
-                        <i class="ri-double-quotes-l quote-icon"></i>
-                        <p class="quote-text">${item.text}</p>
-                    </div>
-                    <div class="user-info">
-                        <div class="connection-dot"></div>
-                        <img src="${item.image}" alt="${item.name}" class="avatar">
-                        <h4 class="user-name">${item.name}</h4>
-                        <span class="user-role">${item.role}</span>
-                    </div>
-                `;
-                container.appendChild(card);
-
-                const dot = document.createElement('div');
-                dot.className = 'dot';
-                dot.id = `dot-${index}`;
-                dot.onclick = () => {
-                    currentIndex = index;
-                    updateClasses();
-                    resetAutoSlide();
-                };
-                dotsContainer.appendChild(dot);
-            });
-
-            updateClasses();
-        }
-
-        function updateClasses() {
-            const total = testimonials.length;
-            const prevIndex = (currentIndex - 1 + total) % total;
-            const nextIndex = (currentIndex + 1) % total;
-
-            for (let i = 0; i < total; i++) {
-                const card = document.getElementById(`card-${i}`);
-                const dot = document.getElementById(`dot-${i}`);
-
-                if (card) {
-                    card.className = 'testimonial-card';
-                    if (i === currentIndex) {
-                        card.classList.add('active');
-                    } else if (i === prevIndex) {
-                        card.classList.add('prev');
-                    } else if (i === nextIndex) {
-                        card.classList.add('next');
-                    } else {
-                        if (i > currentIndex) {
-                            card.classList.add('hidden-right');
-                        } else {
-                            card.classList.add('hidden-left');
-                        }
-                    }
-                }
-
-                if (dot) {
-                    dot.className = 'dot';
-                    if (i === currentIndex) dot.classList.add('active');
-                }
+            function createDots() {
+                dotsContainer.innerHTML = '';
+                teamData.forEach((_, idx) => {
+                    const dot = document.createElement('div');
+                    dot.classList.add('dot');
+                    if (idx === 0) dot.classList.add('active');
+                    dot.addEventListener('click', () => {
+                        currentIndex = idx;
+                        renderSlide(currentIndex);
+                        resetTimer();
+                    });
+                    dotsContainer.appendChild(dot);
+                });
             }
+
+            function updateDots(index) {
+                document.querySelectorAll('.dot').forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+            }
+
+            function renderSlide(index) {
+                const member = teamData[index];
+                updateDots(index);
+
+                imgEl.style.opacity = 0;
+                imgEl.style.transform = "scale(0.9) rotate(-5deg)";
+                memberInfoContainer.classList.remove('active');
+                bubbles.forEach(b => b.classList.remove('visible'));
+
+                setTimeout(() => {
+                    imgEl.src = member.image;
+                    nameEl.textContent = member.name;
+                    roleEl.textContent = member.role;
+
+                    bubbles.forEach((bubble, i) => {
+                        if (member.skills[i]) {
+                            bubble.textContent = member.skills[i];
+                            bubble.style.display = 'block';
+                        } else {
+                            bubble.style.display = 'none';
+                        }
+                    });
+
+                    socialContainer.innerHTML = '';
+                    member.socials.forEach(social => {
+                        const a = document.createElement('a');
+                        a.href = social.link;
+                        a.className = 'team-social-icon';
+                        a.innerHTML = `<i class="${social.icon}"></i>`;
+                        socialContainer.appendChild(a);
+                    });
+
+                    imgEl.style.opacity = 1;
+                    imgEl.style.transform = "scale(1) rotate(0deg)";
+                    memberInfoContainer.classList.add('active');
+
+                    bubbles.forEach((bubble, i) => {
+                        setTimeout(() => bubble.classList.add('visible'), i * 100);
+                    });
+                }, 400);
+            }
+
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % teamData.length;
+                renderSlide(currentIndex);
+            }
+
+            function resetTimer() {
+                clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, 4000);
+            }
+
+            createDots();
+            renderSlide(0);
+            resetTimer();
         }
 
-        function getNextIndex() {
-            return (currentIndex + 1) % testimonials.length;
-        }
+        // --- TECH STACK ANIMATION LOGIC ---
+        function initTechStack() {
+            const techStack = [
+                { icon: 'ri-html5-fill', color: '#E34F26' },
+                { icon: 'ri-css3-fill', color: '#1572B6' },
+                { icon: 'ri-javascript-fill', color: '#F7DF1E' },
+                { icon: 'ri-reactjs-line', color: '#61DAFB' },
+                { icon: 'ri-database-2-line', color: '#336791' },
+                { icon: 'ri-github-fill', color: '#ffffff' },
+                { icon: 'ri-android-fill', color: '#3DDC84' },
+                { icon: 'ri-apple-fill', color: '#A2AAAD' },
+                { icon: 'ri-google-fill', color: '#EA4335' },
+                { icon: 'ri-windows-fill', color: '#0078D6' },
+                { icon: 'ri-stack-line', color: '#3b82f6' },
+            ];
 
-        function startAutoSlide() {
-            autoSlideInterval = setInterval(() => {
-                currentIndex = getNextIndex();
-                updateClasses();
-            }, 4000);
-        }
+            const stage = document.getElementById('techStage');
+            const curvePath = document.getElementById('techCurvePath');
+            if (!stage || !curvePath) return;
 
-        function resetAutoSlide() {
-            clearInterval(autoSlideInterval);
-            startAutoSlide();
-        }
+            const iconSpacing = 100;
+            const speed = 0.5;
+            let iconElements = [];
+            let width, height, centerX, vertexY;
 
-        initSlider();
-        startAutoSlide();
+            function init() {
+                const existing = document.querySelectorAll('.tech-icon-bubble');
+                existing.forEach(e => e.remove());
+                iconElements = [];
+
+                techStack.forEach((tech, index) => {
+                    const el = document.createElement('div');
+                    el.className = 'tech-icon-bubble';
+                    el.style.color = tech.color;
+                    el.style.borderColor = `${tech.color}40`;
+                    el.style.boxShadow = `0 10px 20px ${tech.color}15`;
+                    el.innerHTML = `<i class="${tech.icon}"></i>`;
+                    stage.appendChild(el);
+
+                    iconElements.push({
+                        el: el,
+                        x: index * iconSpacing
+                    });
+                });
+
+                updateDimensions();
+                animate();
+            }
+
+            function updateDimensions() {
+                width = stage.offsetWidth;
+                height = stage.offsetHeight;
+                centerX = width / 2;
+                vertexY = height - 50;
+                const d = `M -100 ${vertexY - 100} Q ${centerX} ${vertexY + 100} ${width + 100} ${vertexY - 100}`;
+                curvePath.setAttribute('d', d);
+            }
+
+            function getCurveY(x) {
+                const k = vertexY + 50;
+                const a = -0.0005;
+                return a * Math.pow(x - centerX, 2) + k;
+            }
+
+            function animate() {
+                iconElements.forEach(item => {
+                    item.x += speed;
+                    if (item.x > width + 50) {
+                        item.x = -50;
+                    }
+                    const y = getCurveY(item.x);
+                    item.el.style.left = `${item.x}px`;
+                    item.el.style.top = `${y}px`;
+                });
+                requestAnimationFrame(animate);
+            }
+
+            window.addEventListener('resize', updateDimensions);
+            init();
+        }
     </script>
 </body>
 
