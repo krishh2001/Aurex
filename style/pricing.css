@@ -31,9 +31,6 @@
        }
    }
 
-   .container {
-       margin-top: 30%;
-   }
 
    .header {
        text-align: center;
@@ -473,9 +470,6 @@
 
    /* --- MEDIA QUERIES (Responsiveness) --- */
    @media (max-width: 1024px) {
-       .container {
-           margin-top: 70%;
-       }
 
        .pricing-grid {
            flex-direction: column;
@@ -499,9 +493,6 @@
 
    @media (max-width: 768px) {
 
-       .container {
-           margin-top: 70%;
-       }
 
        .header h1 {
            margin-bottom: 10px;

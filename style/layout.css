@@ -165,12 +165,14 @@ body {
 
 .bg-large-text {
     position: fixed;
-    top: 18%;
+    top: 15%;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 12rem;
+    font-size: clamp(5rem, 15vw, 12rem);
+    /* Better scaling */
     font-weight: 800;
-    color: rgba(255, 255, 255, 0.119);
+    color: rgba(255, 255, 255, 0.079);
+    /* Faded nicely */
     letter-spacing: -5px;
     text-transform: uppercase;
     z-index: -1;
@@ -179,14 +181,17 @@ body {
 }
 
 /* =========================================
-   4. COMMON UTILITIES (Buttons & Containers)
+   3. CONTAINER & SPACING (CRITICAL FIX)
    ========================================= */
 .container {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    margin-top: 25%;
-    padding: 0 20px;
+    /* OLD: margin-top: 25%; (Removed) */
+    /* NEW: Fixed Padding from top */
+    padding-top: 400px;
+    padding-left: 20px;
+    padding-right: 20px;
     position: relative;
     z-index: 1;
 }
@@ -470,17 +475,23 @@ body {
    ========================================= */
 @media (max-width: 1024px) {
 
+    .bg-large-text {
+        font-size: 18vw;
+        transform: translate(-50%, -100%);
+    }
+
+    .container {
+        padding-top: 30vh;
+    }
+
+
     .tech-line {
         width: 120px;
         top: 15%;
     }
 
-    .nav-btn{
+    .nav-btn {
         padding: 8px 12px;
-    }
-
-    .container{
-        margin-top: 55%;
     }
 
     .footer-top {
@@ -550,9 +561,13 @@ body {
     }
 
     .bg-large-text {
-        top: 15%;
-        font-size: 18vw;
-        letter-spacing:normal;
+        font-size: 20vw;
+        top: 20%;
+        transform: translate(-50%, -50%);
+    }
+
+    .container {
+        padding-top: 180px;
     }
 
     /* Menu styling update */
@@ -624,9 +639,6 @@ body {
         display: none;
     }
 
-    .container {
-        margin-top: 55%;
-    }
 
     .footer-top {
         grid-template-columns: 1fr;
