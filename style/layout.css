@@ -189,7 +189,7 @@ body {
     margin: 0 auto;
     /* OLD: margin-top: 25%; (Removed) */
     /* NEW: Fixed Padding from top */
-    padding-top: 400px;
+    padding-top: 450px;
     padding-left: 20px;
     padding-right: 20px;
     position: relative;
@@ -477,11 +477,11 @@ body {
 
     .bg-large-text {
         font-size: 18vw;
-        transform: translate(-50%, -100%);
+        /* transform: translate(-50%, -100%); */
     }
 
     .container {
-        padding-top: 30vh;
+        padding-top: 35vh;
     }
 
 
@@ -563,11 +563,11 @@ body {
     .bg-large-text {
         font-size: 20vw;
         top: 20%;
-        transform: translate(-50%, -50%);
+        /* transform: translate(-50%, -50%); */
     }
 
     .container {
-        padding-top: 180px;
+        padding-top: 240px;
     }
 
     /* Menu styling update */
