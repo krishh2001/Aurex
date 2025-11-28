@@ -639,7 +639,7 @@ body {
 
     /* Container Spacing */
     .container {
-        padding-top: 180px; /* Reduce gap significantly */
+        padding-top: 250px; 
         padding-left: 15px;
         padding-right: 15px;
     }
