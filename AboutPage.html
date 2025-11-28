@@ -280,49 +280,46 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
-
+    <script src="/script.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            initOrbitalSlider();
-            initTechStack();
-        });
 
-        // --- ORBITAL TEAM SLIDER LOGIC ---
         function initOrbitalSlider() {
             const teamData = [
                 {
                     name: "Vishnu Rajput",
                     role: "Founder & CEO",
                     image: "https://softwarehousetechnology.com/assets/images/team/vishnu.png",
-                    skills: ["Leadership", "Strategy", "Vision", "Operations"],
+                    skills: ["Leadership", "Business Strategy", "Brand Vision", "Operations", "Market Expansion", "Team Management", "Decision Making", "Growth Planning"],
                     socials: [{ icon: 'ri-linkedin-fill', link: '#' }, { icon: 'ri-twitter-x-line', link: '#' }]
                 },
                 {
                     name: "Samsunge Sharma",
                     role: "Head of Product",
                     image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=1000&auto=format&fit=crop",
-                    skills: ["Product", "Research", "Agile", "Planning"],
-                    socials: [{ icon: 'ri-linkedin-fill', link: '#' }]
+                    skills: ["Product Strategy", "User Research", "Agile Workflow", "UX Planning", "Data Insights", "Roadmapping", "Feature Design", "Growth Metrics"],
+                    socials: [{ icon: 'ri-linkedin-fill', link: '#' }, { icon: 'ri-dribbble-line', link: '#' }]
                 },
                 {
                     name: "Carbon Kapoor",
                     role: "Lead Designer",
                     image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1000&auto=format&fit=crop",
-                    skills: ["UI/UX", "Brand", "Figma", "Motion"],
-                    socials: [{ icon: 'ri-behance-line', link: '#' }]
+                    skills: ["UI/UX Design", "Brand Identity", "Figma Expert", "Motion Graphics", "Creative Direction", "Wireframing", "Visual Strategy", "Design Systems"],
+                    socials: [{ icon: 'ri-instagram-line', link: '#' }, { icon: 'ri-behance-line', link: '#' }]
                 },
                 {
                     name: "Vivo Verma",
                     role: "Senior Developer",
                     image: "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=80&w=1000&auto=format&fit=crop",
-                    skills: ["React", "Node", "AWS", "Security"],
+                    skills: ["React.js", "Node.js", "API Engineering", "AWS Cloud", "System Architecture", "Security", "Performance Tuning", "Database Design"],
                     socials: [{ icon: 'ri-github-fill', link: '#' }]
                 }
             ];
 
+
             let currentIndex = 0;
             let slideInterval;
+            const autoPlaySpeed = 4000;
+
             const imgEl = document.getElementById('member-img');
             const nameEl = document.getElementById('member-name');
             const roleEl = document.getElementById('member-role');
@@ -330,8 +327,6 @@
             const memberInfoContainer = document.querySelector('.member-info');
             const dotsContainer = document.getElementById('slider-dots');
             const socialContainer = document.getElementById('social-links');
-
-            if (!imgEl) return;
 
             function createDots() {
                 dotsContainer.innerHTML = '';
@@ -349,8 +344,10 @@
             }
 
             function updateDots(index) {
-                document.querySelectorAll('.dot').forEach((dot, i) => {
-                    dot.classList.toggle('active', i === index);
+                const dots = document.querySelectorAll('.dot');
+                dots.forEach((dot, i) => {
+                    if (i === index) dot.classList.add('active');
+                    else dot.classList.remove('active');
                 });
             }
 
@@ -358,16 +355,20 @@
                 const member = teamData[index];
                 updateDots(index);
 
+                // Animation Out
                 imgEl.style.opacity = 0;
                 imgEl.style.transform = "scale(0.9) rotate(-5deg)";
-                memberInfoContainer.classList.remove('active');
+                memberInfoContainer.style.opacity = 0;
+                memberInfoContainer.style.transform = "translateY(20px)";
                 bubbles.forEach(b => b.classList.remove('visible'));
 
                 setTimeout(() => {
+                    // Update Data
                     imgEl.src = member.image;
                     nameEl.textContent = member.name;
                     roleEl.textContent = member.role;
 
+                    // Update Skills
                     bubbles.forEach((bubble, i) => {
                         if (member.skills[i]) {
                             bubble.textContent = member.skills[i];
@@ -377,6 +378,7 @@
                         }
                     });
 
+                    // Update Socials
                     socialContainer.innerHTML = '';
                     member.socials.forEach(social => {
                         const a = document.createElement('a');
@@ -386,13 +388,20 @@
                         socialContainer.appendChild(a);
                     });
 
+                    // Animation In
                     imgEl.style.opacity = 1;
                     imgEl.style.transform = "scale(1) rotate(0deg)";
-                    memberInfoContainer.classList.add('active');
+
+                    memberInfoContainer.style.opacity = 1;
+                    memberInfoContainer.style.transform = "translateY(0)";
+                    memberInfoContainer.style.transition = "all 0.5s ease";
 
                     bubbles.forEach((bubble, i) => {
-                        setTimeout(() => bubble.classList.add('visible'), i * 100);
+                        setTimeout(() => {
+                            bubble.classList.add('visible');
+                        }, i * 60);
                     });
+
                 }, 400);
             }
 
@@ -401,97 +410,152 @@
                 renderSlide(currentIndex);
             }
 
-            function resetTimer() {
-                clearInterval(slideInterval);
-                slideInterval = setInterval(nextSlide, 4000);
+            function startAutoPlay() {
+                slideInterval = setInterval(nextSlide, autoPlaySpeed);
             }
 
+            function resetTimer() {
+                clearInterval(slideInterval);
+                startAutoPlay();
+            }
+
+            // Start
             createDots();
-            renderSlide(0);
-            resetTimer();
+            renderSlide(currentIndex);
+            startAutoPlay();
         }
 
-        // --- TECH STACK ANIMATION LOGIC ---
         function initTechStack() {
+            // Tech stack configuration with brand colors
             const techStack = [
                 { icon: 'ri-html5-fill', color: '#E34F26' },
                 { icon: 'ri-css3-fill', color: '#1572B6' },
                 { icon: 'ri-javascript-fill', color: '#F7DF1E' },
                 { icon: 'ri-reactjs-line', color: '#61DAFB' },
+                { icon: 'ri-terminal-box-fill', color: '#1f8f3d' },
                 { icon: 'ri-database-2-line', color: '#336791' },
                 { icon: 'ri-github-fill', color: '#ffffff' },
+                { icon: 'ri-gitlab-fill', color: '#FC6D26' },
                 { icon: 'ri-android-fill', color: '#3DDC84' },
                 { icon: 'ri-apple-fill', color: '#A2AAAD' },
                 { icon: 'ri-google-fill', color: '#EA4335' },
+                { icon: 'ri-amazon-fill', color: '#FF9900' },
                 { icon: 'ri-windows-fill', color: '#0078D6' },
+                { icon: 'ri-chrome-fill', color: '#4285F4' },
                 { icon: 'ri-stack-line', color: '#3b82f6' },
             ];
 
+
+            // Settings
             const stage = document.getElementById('techStage');
             const curvePath = document.getElementById('techCurvePath');
-            if (!stage || !curvePath) return;
 
-            const iconSpacing = 100;
-            const speed = 0.5;
-            let iconElements = [];
+            // Physics / Geometry
+            const iconSpacing = 110;
+            const animationSpeed = 0.6;
+            const steepness = 1800;
+            const vertexOffset = 50;
+
             let width, height, centerX, vertexY;
+            let iconElements = [];
 
+            // --- INITIALIZATION ---
             function init() {
+                // Clear existing
                 const existing = document.querySelectorAll('.tech-icon-bubble');
                 existing.forEach(e => e.remove());
                 iconElements = [];
 
+                updateDimensions();
+
+                // Create Icon Elements
                 techStack.forEach((tech, index) => {
                     const el = document.createElement('div');
                     el.className = 'tech-icon-bubble';
+                    // Apply Brand Color inline
                     el.style.color = tech.color;
                     el.style.borderColor = `${tech.color}40`;
                     el.style.boxShadow = `0 10px 20px ${tech.color}15`;
+
                     el.innerHTML = `<i class="${tech.icon}"></i>`;
                     stage.appendChild(el);
 
+                    // Start them spaced out from left to right
+                    const startX = (index * iconSpacing) - (techStack.length * iconSpacing) / 2;
+
                     iconElements.push({
                         el: el,
-                        x: index * iconSpacing
+                        x: startX
                     });
                 });
 
-                updateDimensions();
+                // Start Animation Loop
                 animate();
             }
 
+            // --- GEOMETRY UPDATE ---
             function updateDimensions() {
                 width = stage.offsetWidth;
                 height = stage.offsetHeight;
                 centerX = width / 2;
-                vertexY = height - 50;
-                const d = `M -100 ${vertexY - 100} Q ${centerX} ${vertexY + 100} ${width + 100} ${vertexY - 100}`;
-                curvePath.setAttribute('d', d);
+                vertexY = height - vertexOffset;
+                drawCurve();
             }
 
+            // --- DRAW SVG LINE ---
+            function drawCurve() {
+                const drawWidth = width / 2 + 400; // Draw extra wide to prevent line clipping
+
+                let pathData = `M ${-drawWidth + centerX} ${getCurveY(-drawWidth)}`;
+
+                for (let x = -drawWidth; x <= drawWidth; x += 10) {
+                    pathData += ` L ${x + centerX} ${getCurveY(x)}`;
+                }
+
+                curvePath.setAttribute('d', pathData);
+            }
+
+            // Helper to get Y position on curve based on X
             function getCurveY(x) {
-                const k = vertexY + 50;
-                const a = -0.0005;
-                return a * Math.pow(x - centerX, 2) + k;
+                return vertexY - (Math.pow(x, 2) / steepness);
             }
 
+            // --- ANIMATION LOOP ---
             function animate() {
-                iconElements.forEach(item => {
-                    item.x += speed;
-                    if (item.x > width + 50) {
-                        item.x = -50;
+                // Reset limit
+                const totalWidth = techStack.length * iconSpacing;
+                const boundary = totalWidth / 2;
+
+                iconElements.forEach(iconObj => {
+                    // 1. Move X
+                    iconObj.x += animationSpeed;
+
+                    // 2. Infinite Loop Logic
+                    if (iconObj.x > boundary) {
+                        iconObj.x -= totalWidth;
                     }
-                    const y = getCurveY(item.x);
-                    item.el.style.left = `${item.x}px`;
-                    item.el.style.top = `${y}px`;
+
+                    // 3. Calculate Y
+                    const currentY = getCurveY(iconObj.x);
+
+                    // 4. Apply Transform
+                    iconObj.el.style.left = `${iconObj.x + centerX - 32}px`; // -32 is half width
+                    iconObj.el.style.top = `${currentY - 32}px`;
                 });
+
                 requestAnimationFrame(animate);
             }
 
-            window.addEventListener('resize', updateDimensions);
+            // --- EVENTS ---
+            window.addEventListener('resize', () => {
+                updateDimensions();
+            });
+
+            // Initialize tech stack
             init();
         }
     </script>
+
 </body>
 
 </html>
