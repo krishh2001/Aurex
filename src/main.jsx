@@ -5,7 +5,7 @@ import App from "./App.jsx";
 
 // Import all global styles here
 import "./styles/layout.css";
-import "./styles/style.css";
+import "./styles/home.css";
 import "./styles/about.css";
 import "./styles/blog-list.css";
 import "./styles/contact.css";

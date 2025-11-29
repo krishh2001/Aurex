@@ -284,7 +284,7 @@ export default function Home() {
                 </section>
 
                 {/* TESTIMONIALS */}
-                <section className="testimonial-section section-margin">
+                {/* <section className="testimonial-section section-margin">
                     <div className="section-header reveal">
                         <span className="section-subtitle">Testimonials</span>
                         <h2 className="section-title">What Clients Say</h2>
@@ -310,7 +310,7 @@ export default function Home() {
                             <div key={index} className={`dot ${index === currentIndex ? "active" : ""}`} onClick={() => setCurrentIndex(index)}></div>
                         ))}
                     </div>
-                </section>
+                </section> */}
             </main>
         </div>
     );

@@ -173,7 +173,7 @@ body {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: clamp(120px, 25vh, 200px) 20px 0;
+    padding: clamp(150px, 30vh, 240px) 20px 0;
     position: relative;
     z-index: 1;
 }

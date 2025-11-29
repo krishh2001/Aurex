@@ -329,7 +329,6 @@ export default function About() {
                         <svg className="tech-curve-svg">
                             <path ref={pathRef} className="tech-curve-path" />
                         </svg>
-                        {/* Icons are rendered here and animated via Refs */}
                         {techStack.map((tech, i) => (
                             <div
                                 key={i}
@@ -348,7 +347,7 @@ export default function About() {
                 </section>
 
                 {/* TEAM SECTION (ORBITAL SLIDER) */}
-                <section className="team-section reveal">
+                {/* <section className="team-section reveal">
                     <div className="section-header">
                         <div className="section-badge">The Team</div>
                         <h2 className="section-title">People Behind The Vision</h2>
@@ -370,7 +369,6 @@ export default function About() {
                                 />
                             </div>
 
-                            {/* Skill Bubbles */}
                             {[1, 2, 3, 4, 5, 6].map((pos) => {
                                 const skill = teamData[currentMember].skills[pos - 1];
                                 return (
@@ -406,7 +404,7 @@ export default function About() {
                             ))}
                         </div>
                     </div>
-                </section>
+                </section> */}
 
                        <CTA />
 
