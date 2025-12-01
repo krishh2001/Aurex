@@ -347,7 +347,7 @@ export default function About() {
                 </section>
 
                 {/* TEAM SECTION (ORBITAL SLIDER) */}
-                {/* <section className="team-section reveal">
+                <section className="team-section reveal">
                     <div className="section-header">
                         <div className="section-badge">The Team</div>
                         <h2 className="section-title">People Behind The Vision</h2>
@@ -356,9 +356,9 @@ export default function About() {
 
                     <div className="orbit-wrapper">
                         <div className="orbit-system">
-                            <div className="orbit-ring ring-1"></div>
+                            {/* <div className="orbit-ring ring-1"></div>
                             <div className="orbit-ring ring-2"></div>
-                            <div className="orbit-ring ring-3"></div>
+                            <div className="orbit-ring ring-3"></div> */}
                             <div className="sun-glow-ring"></div>
 
                             <div className="sun-profile">
@@ -404,7 +404,7 @@ export default function About() {
                             ))}
                         </div>
                     </div>
-                </section> */}
+                </section>
 
                        <CTA />
 

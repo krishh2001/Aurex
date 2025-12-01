@@ -322,7 +322,6 @@
     z-index: 1;
 }
 
-
 .learning-section {
     width: 100%;
     position: relative;
@@ -633,14 +632,15 @@
 }
 
 /* =========================================
-   10. TESTIMONIALS 3D SLIDER
+   10. TESTIMONIALS 3D SLIDER (Updated & Responsive)
    ========================================= */
 .testimonial-section {
     position: relative;
     width: 100%;
-    padding: 50px 0;
+    padding: clamp(40px, 8vw, 80px) 0;
     z-index: 1;
     text-align: center;
+    overflow: hidden;
 }
 
 .testimonial-section .section-header::before {
@@ -653,8 +653,8 @@
 }
 
 .testimonial-section .section-header h2 {
-    font-size: clamp(1.5rem, 3vw, 1.8rem);
-    letter-spacing: 4px;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    letter-spacing: clamp(2px, 1vw, 4px);
     text-transform: uppercase;
     font-weight: 400;
     color: #e2e8f0;
@@ -663,18 +663,19 @@
 .slider-wrapper {
     position: relative;
     width: 100%;
-    height: 500px;
+    height: clamp(450px, 60vh, 550px);
     display: flex;
     justify-content: center;
     align-items: center;
     perspective: 1000px;
     transform-style: preserve-3d;
+    margin-top: 20px;
 }
 
 .testimonial-card {
     position: absolute;
-    width: min(380px, 90vw);
-    transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+    width: min(450px, 90vw);
+    transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
     opacity: 0;
     z-index: 0;
     cursor: pointer;
@@ -692,7 +693,7 @@
 
 .testimonial-card.prev {
     opacity: 0.4;
-    transform: translateX(-120%) scale(0.85) translateZ(-50px) rotateY(15deg);
+    transform: translateX(-110%) scale(0.85) translateZ(-50px) rotateY(15deg);
     z-index: 5;
     filter: blur(4px);
     pointer-events: auto;
@@ -700,7 +701,7 @@
 
 .testimonial-card.next {
     opacity: 0.4;
-    transform: translateX(120%) scale(0.85) translateZ(-50px) rotateY(-15deg);
+    transform: translateX(110%) scale(0.85) translateZ(-50px) rotateY(-15deg);
     z-index: 5;
     filter: blur(4px);
     pointer-events: auto;
@@ -718,7 +719,7 @@
 
 .quote-box,
 .user-info {
-    transition: transform 0.8s ease, opacity 0.8s ease;
+    transition: transform 0.6s ease, opacity 0.6s ease;
 }
 
 .testimonial-card:not(.active) .quote-box,
@@ -741,15 +742,24 @@
 
 .quote-box {
     background: rgba(255, 255, 255, 0.03);
-    padding: 35px;
-    border-radius: 15px;
+    padding: clamp(25px, 5vw, 40px);
+    border-radius: 20px;
     position: relative;
-    min-height: 200px;
+    min-height: 220px;
     display: flex;
     align-items: flex-start;
     gap: 15px;
     border: 1px solid var(--glass-border);
     backdrop-filter: blur(10px);
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media (min-width: 768px) {
+    .quote-box {
+        flex-direction: row;
+        text-align: left;
+    }
 }
 
 .testimonial-card.active .quote-box {
@@ -759,9 +769,9 @@
 }
 
 .quote-icon {
-    font-size: 2.2rem;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
     color: rgba(255, 255, 255, 0.3);
-    margin-top: -5px;
+    flex-shrink: 0;
 }
 
 .testimonial-card.active .quote-icon {
@@ -769,10 +779,10 @@
 }
 
 .quote-text {
-    font-size: 1rem;
+    font-size: clamp(0.95rem, 2vw, 1.05rem);
     line-height: 1.6;
-    text-align: left;
     color: var(--text-muted);
+    margin: 0;
 }
 
 .testimonial-card.active .quote-text {
@@ -821,8 +831,8 @@
 }
 
 .avatar {
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     border: 3px solid rgba(255, 255, 255, 0.1);
     object-fit: cover;
@@ -838,8 +848,7 @@
     font-size: 1.1rem;
     font-weight: 700;
     color: var(--text-muted);
-    margin-bottom: 4px;
-    transition: color 0.3s;
+    margin-bottom: 2px;
 }
 
 .testimonial-card.active .user-name {
@@ -847,14 +856,14 @@
 }
 
 .user-role {
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.4);
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
 .dots-container {
-    margin-top: 20px;
+    margin-top: 10px;
     display: flex;
     justify-content: center;
     gap: 12px;
@@ -865,20 +874,16 @@
 .dot {
     width: 10px;
     height: 10px;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.4s ease;
 }
 
-.dot:hover {
-    background-color: rgba(255, 255, 255, 0.5);
-}
-
 .dot.active {
     background-color: var(--accent-primary);
-    transform: scale(1.4);
-    box-shadow: 0 0 15px rgba(16, 185, 129, 0.6);
+    transform: scale(1.3);
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
 }
 
 /* =========================================
@@ -953,6 +958,17 @@
     .item-5 {
         order: 6;
     }
+
+    /* Tablet Logic for Slider */
+    .testimonial-card.prev {
+        transform: translateX(-60%) scale(0.8) translateZ(-100px);
+        opacity: 0.2;
+    }
+
+    .testimonial-card.next {
+        transform: translateX(60%) scale(0.8) translateZ(-100px);
+        opacity: 0.2;
+    }
 }
 
 @media (max-width: 768px) {
@@ -972,21 +988,37 @@
         padding: 30px 20px;
     }
 
-    .cta-section {
-        padding: 60px 20px;
-    }
 
+    /* Slider Mobile Fix: Turn 3D into Fade */
     .slider-wrapper {
-        height: 450px;
+        height: auto;
+        min-height: 450px;
+        margin-top: 0;
     }
 
     .testimonial-card {
-        width: 90%;
+        width: 92%;
+        left: 4%;
+    }
+
+    .testimonial-card.active {
+        transform: translateX(0) scale(1) translateZ(0);
     }
 
     .testimonial-card.prev,
     .testimonial-card.next {
         opacity: 0;
+        transform: translateX(0) scale(0.9) translateZ(-50px);
+        pointer-events: none;
+    }
+
+    .quote-box {
+        align-items: center;
+        text-align: center;
+    }
+
+    .quote-icon {
+        margin-bottom: 10px;
     }
 }
 
@@ -1018,5 +1050,23 @@
 
     .stat-number {
         font-size: 2rem;
+    }
+
+    /* Small Mobile Slider tweaks */
+    .testimonial-section {
+        padding: 40px 0;
+    }
+
+    .slider-wrapper {
+        min-height: 420px;
+    }
+
+    .user-info {
+        margin-top: 25px;
+    }
+
+    .avatar {
+        width: 50px;
+        height: 50px;
     }
 }

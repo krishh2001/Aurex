@@ -253,35 +253,31 @@
       pointer-events: none;
   }
 
-  .tech-icon-bubble {
-      position: absolute;
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      background: var(--bubble-bg);
-      border: 1px solid var(--glass-border);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      backdrop-filter: blur(8px);
-      z-index: 10;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-      will-change: transform;
-      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
-      cursor: pointer;
-  }
+ .tech-icon-bubble {
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--bubble-bg);
+    border: 1px solid var(--glass-border);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(8px);
+    z-index: 10;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    will-change: transform, left, top;
+    cursor: pointer;
+    font-size: 1.8rem;
+    transition: transform 0.3s;
+}
 
-  .tech-icon-bubble i {
-      font-size: 1.8rem;
-  }
-
-  .tech-icon-bubble:hover {
-      border-color: #fff;
-      background: rgba(40, 40, 45, 1);
-      box-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
-      z-index: 30;
-      transform: scale(1.2) !important;
-  }
+.tech-icon-bubble:hover {
+    z-index: 30;
+    transform: scale(1.2) !important;
+    background: rgba(40, 40, 45, 1);
+    border-color: #fff !important;
+}
 
   /* --- ORBITAL TEAM SECTION --- */
   .team-section {
@@ -431,7 +427,7 @@
       pointer-events: none;
   }
 
-  .orbit-ring {
+  /* .orbit-ring {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -458,7 +454,7 @@
       height: 850px;
       opacity: 0.2;
       border-style: dashed;
-  }
+  } */
 
   .bubble {
       position: absolute;
@@ -488,12 +484,12 @@
   }
 
   .pos-1 {
-      top: 34%;
-      left: 15%;
+      top: 30%;
+      left: 10%;
   }
 
   .pos-2 {
-      top: 25%;
+      top: 20%;
       right: 20%;
   }
 
@@ -637,10 +633,7 @@
           font-size: 1.8rem;
       }
 
-      /* CTA */
-      .cta-section {
-          padding: 50px 20px;
-      }
+     
   }
 
   /* Mobile Phones (Max 480px) */

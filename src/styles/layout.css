@@ -173,7 +173,7 @@ body {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: clamp(150px, 30vh, 240px) 20px 0;
+padding: clamp(260px, 45vh, 450px) 20px 0;
     position: relative;
     z-index: 1;
 }
@@ -460,7 +460,8 @@ body {
     }
 
     .container {
-        padding-top: clamp(100px, 20vh, 150px);
+        padding: clamp(180px, 35vh, 300px) 20px 0;
+
     }
 
     .tech-line {
@@ -567,7 +568,8 @@ body {
     }
 
     .container {
-        padding-top: clamp(80px, 15vh, 120px);
+        padding: clamp(180px, 35vh, 300px) 20px 0;
+
     }
 
     .footer-top {
@@ -617,7 +619,7 @@ body {
     }
 
     .container {
-        padding-top: clamp(60px, 12vh, 100px);
+        padding: clamp(180px, 35vh, 300px) 20px 0;
         padding-left: 15px;
         padding-right: 15px;
     }
