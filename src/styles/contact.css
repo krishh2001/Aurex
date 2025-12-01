@@ -43,22 +43,7 @@
            CONTACT PAGE SPECIFIC STYLES
            ========================================= */
 
-   .section-badge {
-       display: inline-flex;
-       align-items: center;
-       gap: 8px;
-       padding: 6px 12px;
-       border-radius: 30px;
-       color: var(--accent-primary);
-       font-size: 0.85rem;
-       font-weight: 500;
-       margin-bottom: 20px;
-       text-transform: uppercase;
-       letter-spacing: 0.5px;
-       /* Animation */
-       opacity: 0;
-       animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.1s;
-   }
+ 
 
    .contact-section {
        padding-top: 80px;
@@ -371,11 +356,6 @@
        margin: 0 auto;
    }
 
-   .section-title {
-       font-size: 3rem;
-       font-weight: 400;
-   }
-
 
 
    .cta-btn {
@@ -463,9 +443,6 @@
            justify-content: flex-start;
        }
 
-       .section-badge {
-           margin: 0 auto 20px auto;
-       }
 
        .contact-cards {
            align-items: stretch;

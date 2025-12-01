@@ -15,21 +15,6 @@
   z-index: 1;
 }
 
-.section-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 12px;
-  border-radius: 30px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--blog-glass-border);
-  color: var(--blog-accent);
-  font-size: 0.85rem;
-  font-weight: 500;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
 
 /* --- Hero Section --- */
 .blog-hero-section {
