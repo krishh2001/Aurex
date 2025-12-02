@@ -132,6 +132,7 @@ export default function Home() {
 
             <main className="expertise_container">
                 {/* SERVICES */}
+                {/* SERVICES - Updated with 6 cards */}
                 <section className="section-margin" id="services">
                     <div className="section-header reveal">
                         <span className="section-subtitle">Our Expertise</span>
@@ -140,6 +141,7 @@ export default function Home() {
                     </div>
 
                     <div className="services-grid">
+                        {/* Existing 3 cards + 3 new cards */}
                         <div className="service-card reveal">
                             <div className="service-icon"><RiCloudLine /></div>
                             <h3>Cloud Engineering</h3>
@@ -154,6 +156,23 @@ export default function Home() {
                             <div className="service-icon"><RiCodeSSlashLine /></div>
                             <h3>Custom Development</h3>
                             <p>Web, mobile and software products built for speed, precision and long-term growth.</p>
+                        </div>
+
+                        {/* NEW SERVICE CARDS */}
+                        <div className="service-card reveal">
+                            <div className="service-icon"><RiCommandFill /></div>
+                            <h3>DevOps & Automation</h3>
+                            <p>CI/CD pipelines, infrastructure as code, and deployment automation for efficiency.</p>
+                        </div>
+                        <div className="service-card reveal">
+                            <div className="service-icon"><RiLineChartLine /></div>
+                            <h3>Data Analytics</h3>
+                            <p>Business intelligence, data visualization, and predictive analytics solutions.</p>
+                        </div>
+                        <div className="service-card reveal">
+                            <div className="service-icon"><RiGlobalLine /></div>
+                            <h3>Digital Transformation</h3>
+                            <p>End-to-end modernization of legacy systems and processes for digital-first operations.</p>
                         </div>
                     </div>
                 </section>
@@ -230,31 +249,6 @@ export default function Home() {
                     </div>
                 </section>
 
-                {/* FEATURES */}
-                <section className="features-section section-margin" id="features">
-                    <div className="section-header reveal">
-                        <span className="section-subtitle">Why AUREX</span>
-                        <h2 className="section-title">Built for Performance</h2>
-                        <p style={{ color: "var(--text-muted)" }}>Designed to deliver speed, security and reliability.</p>
-                    </div>
-                    <div className="features-grid">
-                        <div className="feature-card reveal">
-                            <div className="feature-icon"><RiRocket2Line /></div>
-                            <h3>High Performance</h3>
-                            <p>Every solution is tuned for speed, stability and low-latency results.</p>
-                        </div>
-                        <div className="feature-card reveal">
-                            <div className="feature-icon"><RiShieldCheckLine /></div>
-                            <h3>Security First</h3>
-                            <p>Enterprise-grade protection to keep your data, apps and users safe.</p>
-                        </div>
-                        <div className="feature-card reveal">
-                            <div className="feature-icon"><RiLineChartLine /></div>
-                            <h3>Scalable Systems</h3>
-                            <p>Architecture engineered to grow effortlessly with your business.</p>
-                        </div>
-                    </div>
-                </section>
 
                 {/* CASE STUDIES */}
                 <section className="case-studies-section section-margin" id="case-studies">

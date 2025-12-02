@@ -465,7 +465,7 @@ padding: clamp(260px, 45vh, 450px) 20px 0;
     }
 
     .tech-line {
-        width: clamp(80px, 10vw, 120px);
+        /* width: clamp(80px, 10vw, 120px); */
         top: 15%;
     }
 
@@ -550,16 +550,8 @@ padding: clamp(260px, 45vh, 450px) 20px 0;
     }
 
     .tech-line {
-        width: clamp(60px, 12vw, 90px);
-        top: 25%;
-    }
-
-    .left-line {
-        left: clamp(-30px, -8vw, -40px);
-    }
-
-    .right-line {
-        right: clamp(-30px, -8vw, -40px);
+        /* width: clamp(60px, 12vw, 90px); */
+        top: 45%;
     }
 
     .bg-large-text {
@@ -615,17 +607,10 @@ padding: clamp(260px, 45vh, 450px) 20px 0;
     }
 
      .tech-line {
-        width: clamp(60px, 12vw, 90px);
-        top: 25%;
+        /* width: clamp(60px, 12vw, 90px); */
+        top: 45%;
     }
 
-    .left-line {
-        left: clamp(-30px, -8vw, -40px);
-    }
-
-    .right-line {
-        right: clamp(-30px, -8vw, -40px);
-    }
 
     .container {
         padding: clamp(180px, 35vh, 300px) 20px 0;

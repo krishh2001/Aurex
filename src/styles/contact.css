@@ -43,7 +43,7 @@
            CONTACT PAGE SPECIFIC STYLES
            ========================================= */
 
- 
+
 
    .contact-section {
        padding-top: 80px;
@@ -356,6 +356,20 @@
        margin: 0 auto;
    }
 
+   .cta-section-title {
+       font-size: 3rem;
+       font-weight: 700;
+       margin-bottom: 20px;
+       line-height: 1.1;
+   }
+
+
+   .cta-section-desc {
+       font-size: 1.1rem;
+       color: var(--text-muted);
+       max-width: 600px;
+       margin: 0 auto;
+   }
 
 
    .cta-btn {
@@ -466,6 +480,14 @@
 
        .cta-section {
            padding: 60px 20px;
+       }
+
+       .cta-section-title {
+           font-size: 2.5rem;
+       }
+
+       .cta-section-desc {
+           font-size: 1rem;
        }
    }
 

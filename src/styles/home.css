@@ -185,6 +185,10 @@
     z-index: 1;
 }
 
+/* =========================================
+   4. SERVICES GRID - Updated with 6 unique colors
+   ========================================= */
+
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -207,15 +211,14 @@
 
 .service-card:hover {
     transform: translateY(-10px);
-    border-color: rgba(16, 185, 129, 0.3);
     background: rgba(255, 255, 255, 0.03);
+        box-shadow: 0 10px 30px rgba(16, 185, 129, 0.1);
+
 }
 
 .service-icon {
     font-size: 2.5rem;
-    color: var(--accent-primary);
     margin-bottom: 20px;
-    background: rgba(16, 185, 129, 0.1);
     width: 70px;
     height: 70px;
     display: flex;
@@ -224,15 +227,54 @@
     border-radius: 18px;
 }
 
-.service-card:nth-child(2) .service-icon {
-    color: var(--accent-secondary);
-    background: rgba(59, 130, 246, 0.1);
+/* Card 1: Cloud Engineering - Teal/Green */
+.service-card:nth-child(1) .service-icon {
+    color: #10b981;
+    /* Emerald Green */
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.2);
 }
 
+/* Card 2: Security & Protection - Blue */
+.service-card:nth-child(2) .service-icon {
+    color: #3b82f6;
+    /* Royal Blue */
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+/* Card 3: Custom Development - Pink */
 .service-card:nth-child(3) .service-icon {
     color: #ec4899;
+    /* Hot Pink */
     background: rgba(236, 72, 153, 0.1);
+    border: 1px solid rgba(236, 72, 153, 0.2);
 }
+
+/* Card 4: DevOps & Automation - Orange */
+.service-card:nth-child(4) .service-icon {
+    color: #f97316;
+    /* Vibrant Orange */
+    background: rgba(249, 115, 22, 0.1);
+    border: 1px solid rgba(249, 115, 22, 0.2);
+}
+
+/* Card 5: Data Analytics - Purple */
+.service-card:nth-child(5) .service-icon {
+    color: #8b5cf6;
+    /* Purple */
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+/* Card 6: Digital Transformation - Cyan */
+.service-card:nth-child(6) .service-icon {
+    color: #06b6d4;
+    /* Cyan */
+    background: rgba(6, 182, 212, 0.1);
+    border: 1px solid rgba(6, 182, 212, 0.2);
+}
+
 
 .service-card h3 {
     font-size: 1.4rem;
@@ -242,6 +284,37 @@
 .service-card p {
     font-size: 0.95rem;
     color: var(--text-muted);
+}
+
+/* Optional: Add subtle shadow on hover for each card */
+.service-card:hover .service-icon {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+/* Optional: Gradient backgrounds for icons on hover */
+.service-card:nth-child(1):hover .service-icon {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.1));
+}
+
+.service-card:nth-child(2):hover .service-icon {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(59, 130, 246, 0.1));
+}
+
+.service-card:nth-child(3):hover .service-icon {
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.2), rgba(236, 72, 153, 0.1));
+}
+
+.service-card:nth-child(4):hover .service-icon {
+    background: linear-gradient(135deg, rgba(249, 115, 22, 0.2), rgba(249, 115, 22, 0.1));
+}
+
+.service-card:nth-child(5):hover .service-icon {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(139, 92, 246, 0.1));
+}
+
+.service-card:nth-child(6):hover .service-icon {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(6, 182, 212, 0.1));
 }
 
 /* =========================================
@@ -507,8 +580,6 @@
 }
 
 .process-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(16, 185, 129, 0.3);
     box-shadow: 0 10px 30px rgba(16, 185, 129, 0.1);
 }
 
@@ -542,49 +613,7 @@
     line-height: 1.6;
 }
 
-/* =========================================
-   9. FEATURES & CASE STUDIES
-   ========================================= */
-.features-section {
-    padding: 70px 0;
-}
 
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-}
-
-.feature-card {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    padding: 40px 30px;
-    border-radius: 24px;
-    transition: 0.4s;
-    position: relative;
-    overflow: hidden;
-}
-
-.feature-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(16, 185, 129, 0.3);
-}
-
-.feature-icon {
-    font-size: 2.5rem;
-    color: var(--accent-primary);
-    margin-bottom: 20px;
-}
-
-.feature-card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 15px;
-}
-
-.feature-card p {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-}
 
 .case-studies-grid {
     display: grid;
@@ -644,7 +673,7 @@
 .testimonial-section {
     position: relative;
     width: 100%;
-    padding: clamp(40px, 8vw, 80px) 0;
+    /* padding: clamp(40px, 8vw, 80px) 0; */
     z-index: 1;
     text-align: center;
     overflow: hidden;

@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import BlogList from "./pages/BlogList";
+import BlogPost from "./pages/BlogPost"; // Add this import
 import Services from "./pages/Services";
 import Pricing from "./pages/Pricing";
 import Contact from "./pages/Contact";
@@ -30,10 +31,28 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/blog-list" element={<BlogList />} />
+        <Route path="/blog" element={<BlogList />} /> 
+        <Route path="/blog/:id" element={<BlogPost />} /> 
         <Route path="/services" element={<Services />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/contact" element={<Contact />} />
+
+        {/* Optional: Add a catch-all route for 404 page */}
+        <Route path="*" element={
+          <div style={{
+            minHeight: '70vh',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            textAlign: 'center',
+            padding: '2rem'
+          }}>
+            <div>
+              <h1>404 - Page Not Found</h1>
+              <p>The page you are looking for doesn't exist.</p>
+            </div>
+          </div>
+        } />
       </Routes>
       <Footer />
     </>

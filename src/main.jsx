@@ -11,6 +11,7 @@ import "./styles/blog-list.css";
 import "./styles/contact.css";
 import "./styles/pricing.css";
 import "./styles/services.css";
+import "./styles/blogpost.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

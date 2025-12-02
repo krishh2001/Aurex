@@ -1,102 +1,189 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   RiArticleLine,
   RiArrowRightLine,
-  RiFolderOpenLine,
-  RiHistoryLine,
-  RiPriceTag3Line,
-  RiMailLine
+  RiSearchLine,
+  RiEyeLine,
+  RiFilterLine,
+  RiCloseLine,
+  RiMailSendLine,
+  RiTimeLine,
+  RiCalendarLine,
+  RiHashtag
 } from "react-icons/ri";
-
-import CTA from "../components/CTA";
 
 
 export default function BlogList() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [visiblePosts, setVisiblePosts] = useState(9);
+  const [showFilter, setShowFilter] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // --- Data: Blog Posts ---
-  const blogPosts = [
+  // All blog posts data - Cleaner and more professional
+  const allBlogPosts = [
     {
       id: 1,
-      title: "Building Scalable React Applications",
-      excerpt: "Learn best practices for structuring and scaling your React applications for maintainability and performance.",
+      title: "Advanced React Patterns for 2023",
+      excerpt: "Master the latest React design patterns and architectural best practices for building scalable applications.",
       category: "Web Development",
-      date: "June 10, 2023",
-      readTime: "6 min read",
-      image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+      date: "June 15, 2023",
+      readTime: "8 min read",
+      image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      tags: ["React", "Architecture", "Best Practices"]
     },
     {
       id: 2,
-      title: "The Psychology of Color in UI Design",
-      excerpt: "How color choices impact user behavior and perception in digital interfaces.",
+      title: "Modern UI/UX Design Principles",
+      excerpt: "Explore contemporary design principles that enhance user experience and drive engagement.",
       category: "UI/UX Design",
-      date: "June 5, 2023",
-      readTime: "5 min read",
-      image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2064&q=80"
+      date: "June 12, 2023",
+      readTime: "6 min read",
+      image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2064&q=80",
+      tags: ["Design", "UI", "UX", "Principles"]
     },
     {
       id: 3,
-      title: "Mobile-First Design: Why It Matters",
-      excerpt: "Understanding the importance of designing for mobile devices first in today's digital landscape.",
-      category: "UI/UX Design",
-      date: "May 28, 2023",
-      readTime: "7 min read",
-      image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1974&q=80"
+      title: "Cloud Infrastructure Optimization",
+      excerpt: "Strategies for optimizing cloud resources and reducing costs while maintaining performance.",
+      category: "Cloud Solutions",
+      date: "June 10, 2023",
+      readTime: "10 min read",
+      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2072&q=80",
+      tags: ["Cloud", "AWS", "Optimization"]
     },
     {
       id: 4,
-      title: "SEO Strategies for 2023",
-      excerpt: "Latest SEO techniques and algorithm updates to improve your website's visibility.",
-      category: "Digital Marketing",
-      date: "May 20, 2023",
-      readTime: "8 min read",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2015&q=80"
+      title: "Performance Optimization Techniques",
+      excerpt: "Essential techniques for improving web application performance and user experience.",
+      category: "Web Development",
+      date: "June 8, 2023",
+      readTime: "7 min read",
+      image: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80",
+      tags: ["Performance", "Optimization", "Web"]
     },
     {
       id: 5,
-      title: "Introduction to Cloud-Native Development",
-      excerpt: "What it means to build applications specifically for cloud environments.",
-      category: "Cloud Solutions",
-      date: "May 15, 2023",
-      readTime: "10 min read",
-      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2072&q=80"
+      title: "Mobile App Development Trends",
+      excerpt: "Latest trends and technologies shaping the future of mobile application development.",
+      category: "Mobile Development",
+      date: "June 5, 2023",
+      readTime: "9 min read",
+      image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1974&q=80",
+      tags: ["Mobile", "Trends", "Development"]
     },
     {
       id: 6,
-      title: "Building Progressive Web Apps with Next.js",
-      excerpt: "How to leverage Next.js to create fast, reliable progressive web applications.",
+      title: "Data Security Best Practices",
+      excerpt: "Comprehensive guide to implementing robust security measures in modern applications.",
+      category: "Security",
+      date: "June 3, 2023",
+      readTime: "11 min read",
+      image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      tags: ["Security", "Data", "Best Practices"]
+    },
+    {
+      id: 7,
+      title: "AI Integration in Web Apps",
+      excerpt: "How to effectively integrate artificial intelligence features into web applications.",
       category: "Web Development",
-      date: "May 10, 2023",
+      date: "May 30, 2023",
+      readTime: "8 min read",
+      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      tags: ["AI", "Integration", "Web Apps"]
+    },
+    {
+      id: 8,
+      title: "Design Systems Implementation",
+      excerpt: "Step-by-step guide to creating and implementing design systems for consistent UI.",
+      category: "UI/UX Design",
+      date: "May 25, 2023",
+      readTime: "7 min read",
+      image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2064&q=80",
+      tags: ["Design Systems", "UI", "Consistency"]
+    },
+    {
+      id: 9,
+      title: "Serverless Architecture Patterns",
+      excerpt: "Exploring modern serverless patterns for scalable and cost-effective applications.",
+      category: "Cloud Solutions",
+      date: "May 20, 2023",
       readTime: "9 min read",
-      image: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80"
+      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2072&q=80",
+      tags: ["Serverless", "Architecture", "Cloud"]
+    },
+    {
+      id: 10,
+      title: "Modern JavaScript Best Practices",
+      excerpt: "Essential JavaScript patterns and practices for writing clean, efficient code.",
+      category: "Web Development",
+      date: "May 18, 2023",
+      readTime: "8 min read",
+      image: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80",
+      tags: ["JavaScript", "Best Practices", "ES6+"]
+    },
+    {
+      id: 11,
+      title: "Responsive Web Design Strategies",
+      excerpt: "Modern approaches to creating responsive websites that work across all devices.",
+      category: "UI/UX Design",
+      date: "May 15, 2023",
+      readTime: "6 min read",
+      image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1974&q=80",
+      tags: ["Responsive", "Design", "Mobile"]
+    },
+    {
+      id: 12,
+      title: "Database Optimization Techniques",
+      excerpt: "Advanced techniques for optimizing database performance and query efficiency.",
+      category: "Backend Development",
+      date: "May 12, 2023",
+      readTime: "10 min read",
+      image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      tags: ["Database", "Optimization", "Performance"]
     }
   ];
 
-  // --- Data: Recent Posts ---
-  const recentPosts = [
-    {
-      id: 101,
-      title: "The Future of Web Development",
-      date: "June 15, 2023",
-      image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-    },
-    {
-      id: 102,
-      title: "Building Scalable React Applications",
-      date: "June 10, 2023",
-      image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-    },
-    {
-      id: 103,
-      title: "The Psychology of Color in UI Design",
-      date: "June 5, 2023",
-      image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2064&q=80"
-    }
-  ];
+  // Get unique categories
+  const categories = ["All", ...new Set(allBlogPosts.map(post => post.category))];
 
-  // --- Effects: Particles & Parallax ---
+  // Filter posts based on search and category
+  const filteredPosts = allBlogPosts.filter(post => {
+    const matchesSearch = searchQuery === "" ||
+      post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      post.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+
+    const matchesCategory = selectedCategory === "All" || post.category === selectedCategory;
+
+    return matchesSearch && matchesCategory;
+  });
+
+  // Posts to display
+  const displayPosts = filteredPosts.slice(0, visiblePosts);
+
+  // Handle load more
+  const handleLoadMore = () => {
+    setVisiblePosts(prev => prev + 6);
+  };
+
+  // Clear all filters
+  const clearFilters = () => {
+    setSearchQuery("");
+    setSelectedCategory("All");
+  };
+
+  // Simulate loading for better UX
   useEffect(() => {
-    // 1. Parallax background text
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Effects: Particles & Parallax
+  useEffect(() => {
     const handleScroll = () => {
       const bgText = document.querySelector('.bg-large-text');
       if (bgText) {
@@ -107,7 +194,6 @@ export default function BlogList() {
     };
     window.addEventListener('scroll', handleScroll);
 
-    // 2. Particles
     const particleContainer = document.getElementById('particles');
     if (particleContainer && particleContainer.childElementCount === 0) {
       for (let i = 0; i < 30; i++) {
@@ -130,150 +216,188 @@ export default function BlogList() {
   return (
     <div className="blog-list-wrapper">
       {/* Background Effects */}
-            <div className="ambient-glow"></div>
-            <div className="ambient-glow-2"></div>
-            <div className="ambient-glow-3"></div>
-            <h1 className="bg-large-text">Blogs</h1>
-            <div className="particles" id="particles"></div>
-            <div className="tech-line left-line"></div>
-            <div className="tech-line right-line"></div>
+      <div className="ambient-glow"></div>
+      <div className="ambient-glow-2"></div>
+      <div className="ambient-glow-3"></div>
+      <h1 className="bg-large-text">Blogs</h1>
+      <div className="particles" id="particles"></div>
+      <div className="tech-line left-line"></div>
+      <div className="tech-line right-line"></div>
 
       <main className="container">
-
         {/* Hero Section */}
-        <section className="blog-hero-section">
-          <div className="hero-content">
+        <section className="blog-list-hero-section">
+          <div className="blog-list-hero-content">
             <div className="section-badge"><RiArticleLine /> Insights & Updates</div>
             <h1>Digital Insights & <br />Industry Trends</h1>
-            <p className="hero-text">
+            <p className="blog-list-hero-text">
               Explore our latest articles on web development, design trends, and digital innovation.
             </p>
           </div>
         </section>
 
-        {/* Blog Content Layout */}
-        <div className="blog-layout">
-
-          <div className="main-content">
-            {/* Featured Post */}
-            <section className="featured-post">
-              <div className="featured-card">
-                <div className="featured-image">
-                  <div className="featured-badge">Featured</div>
-                  <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-                    alt="Featured Post" />
-                </div>
-                <div className="featured-content">
-                  <div className="post-meta">
-                    <span className="post-category">Web Development</span>
-                    <span>June 15, 2023</span>
-                    <span>8 min read</span>
-                  </div>
-                  <h2 className="featured-title">The Future of Web Development: Trends to Watch in 2023</h2>
-                  <p className="featured-excerpt">
-                    Explore the emerging technologies and methodologies that are shaping the future of web
-                    development. From AI-powered tools to new frameworks, discover what's next for the industry.
-                  </p>
-                  {/* Example link to details page */}
-                  <Link to="/blog-details" className="read-more">
-                    Read Article <RiArrowRightLine />
-                  </Link>
-                </div>
-              </div>
-            </section>
-
-            {/* Posts Grid */}
-            <div className="posts-container">
-              <div className="posts-grid">
-                {blogPosts.map((post) => (
-                  <article className="post-card" key={post.id}>
-                    <div className="post-image">
-                      <img src={post.image} alt={post.title} />
-                    </div>
-                    <div className="post-content">
-                      <div className="post-meta">
-                        <span className="post-category">{post.category}</span>
-                        <span>{post.date}</span>
-                        <span>{post.readTime}</span>
-                      </div>
-                      <h3 className="post-title">{post.title}</h3>
-                      <p className="post-excerpt">{post.excerpt}</p>
-                      <Link to="/blog-details" className="read-more">
-                        Read More <RiArrowRightLine />
-                      </Link>
-                    </div>
-                  </article>
-                ))}
-              </div>
-
-              <div className="load-more">
-                <button className="load-btn" onClick={() => alert('Loading more...')}>
-                  Load More Articles
+        {/* Filter & Search Section */}
+        <div className="blog-list-filters-section">
+          <div className="blog-list-search-container">
+            <div className="blog-list-search-box">
+              <RiSearchLine className="blog-list-search-icon" />
+              <input
+                type="text"
+                className="blog-list-search-input"
+                placeholder="Search articles by title, content, or tags..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              {searchQuery && (
+                <button
+                  className="blog-list-clear-search"
+                  onClick={() => setSearchQuery("")}
+                >
+                  <RiCloseLine />
                 </button>
-              </div>
+              )}
+            </div>
+
+            <button
+              className="blog-list-filter-toggle"
+              onClick={() => setShowFilter(!showFilter)}
+            >
+              <RiFilterLine /> Filter
+            </button>
+          </div>
+
+          {/* Category Filter */}
+          <div className={`blog-list-categories-filter ${showFilter ? 'active' : ''}`}>
+            <div className="blog-list-categories-header">
+              <span className="blog-list-categories-title">Filter by Category</span>
+              <button
+                className="blog-list-clear-filters"
+                onClick={clearFilters}
+              >
+                Clear All
+              </button>
+            </div>
+            <div className="blog-list-categories-grid">
+              {categories.map(category => (
+                <button
+                  key={category}
+                  className={`blog-list-category-btn ${selectedCategory === category ? 'active' : ''}`}
+                  onClick={() => setSelectedCategory(category)}
+                >
+                  {category}
+                  <span className="blog-list-category-count">
+                    {category === "All"
+                      ? allBlogPosts.length
+                      : allBlogPosts.filter(p => p.category === category).length}
+                  </span>
+                </button>
+              ))}
             </div>
           </div>
 
-          {/* Sidebar */}
-          <aside className="sidebar">
-
-            {/* Categories */}
-            <div className="sidebar-widget">
-              <h3 className="widget-title"><RiFolderOpenLine /> Categories</h3>
-              <ul className="categories-list">
-                <li><Link to="#">Web Development <span>12</span></Link></li>
-                <li><Link to="#">UI/UX Design <span>8</span></Link></li>
-                <li><Link to="#">Digital Marketing <span>5</span></Link></li>
-                <li><Link to="#">Mobile Development <span>7</span></Link></li>
-                <li><Link to="#">Cloud Solutions <span>4</span></Link></li>
-                <li><Link to="#">Business Strategy <span>6</span></Link></li>
-              </ul>
-            </div>
-
-            {/* Recent Posts */}
-            <div className="sidebar-widget">
-              <h3 className="widget-title"><RiHistoryLine /> Recent Posts</h3>
-              <div className="recent-posts-list">
-                {recentPosts.map((post) => (
-                  <div className="recent-post-item" key={post.id}>
-                    <div className="recent-post-image">
-                      <img src={post.image} alt={post.title} />
-                    </div>
-                    <div className="recent-post-content">
-                      <h4 className="recent-post-title">{post.title}</h4>
-                      <div className="recent-post-date">{post.date}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Tags */}
-            <div className="sidebar-widget">
-              <h3 className="widget-title"><RiPriceTag3Line /> Popular Tags</h3>
-              <div className="tags-container">
-                {['React', 'Next.js', 'UI Design', 'SEO', 'JavaScript', 'TypeScript', 'Web Performance', 'Mobile First'].map((tag) => (
-                  <Link to="#" className="tag" key={tag}>{tag}</Link>
-                ))}
-              </div>
-            </div>
-
-            {/* Newsletter */}
-            <div className="sidebar-widget">
-              <h3 className="widget-title"><RiMailLine /> Newsletter</h3>
-              <p style={{ color: 'var(--blog-text-muted)', marginBottom: '15px', fontSize: '0.9rem' }}>
-                Subscribe to get the latest articles and updates.
-              </p>
-              <form className="newsletter-form" onSubmit={(e) => e.preventDefault()}>
-                <input type="email" className="newsletter-input" placeholder="Your email address" required />
-                <button type="submit" className="newsletter-btn">Subscribe</button>
-              </form>
-            </div>
-
-          </aside>
+          {/* Results Info */}
+          <div className="blog-list-results-info">
+            <span className="blog-list-results-count">
+              Showing {displayPosts.length} of {filteredPosts.length} articles
+              {selectedCategory !== "All" && ` in "${selectedCategory}"`}
+            </span>
+            {searchQuery && (
+              <span className="blog-list-search-info">
+                Search results for: <strong>"{searchQuery}"</strong>
+              </span>
+            )}
+          </div>
         </div>
 
-      <CTA />
+        {/* Posts Grid */}
+        <div className="blog-list-posts-container">
+          {isLoading ? (
+            <div className="blog-list-loading">
+              <div className="blog-list-loading-spinner"></div>
+              <p>Loading articles...</p>
+            </div>
+          ) : (
+            <>
+              <div className="blog-list-posts-grid">
+                {displayPosts.length > 0 ? (
+                  displayPosts.map((post) => (
+                    <article className="blog-list-post-card" key={post.id}>
+                      <div className="blog-list-post-image">
+                        <img src={post.image} alt={post.title} />
+                      </div>
+                      <div className="blog-list-post-content">
+                        <div className="blog-list-post-meta">
+                          <span className="blog-list-post-category">{post.category}</span>
+                          <span><RiCalendarLine /> {post.date}</span>
+                          <span><RiTimeLine /> {post.readTime}</span>
+                        </div>
+                        <h3 className="blog-list-post-title">{post.title}</h3>
+                        <p className="blog-list-post-excerpt">{post.excerpt}</p>
+                        <div className="blog-list-tags-container">
+                          <RiHashtag className="blog-list-tag-icon" />
+                          {post.tags.slice(0, 3).map(tag => (
+                            <span key={tag} className="blog-list-tag">{tag}</span>
+                          ))}
+                        </div>
+                        <Link to={`/blog/${post.id}`} className="blog-list-read-more">
+                          Read More <RiArrowRightLine />
+                        </Link>
+                      </div>
+                    </article>
+                  ))
+                ) : (
+                  <div className="blog-list-no-results">
+                    <p>No articles found. Try a different search or category.</p>
+                    <button onClick={clearFilters} className="blog-list-clear-filters-btn">
+                      Clear Filters
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {/* Load More Button */}
+              {displayPosts.length > 0 && visiblePosts < filteredPosts.length && (
+                <div className="blog-list-load-more">
+                  <button className="blog-list-load-btn" onClick={handleLoadMore}>
+                    <RiEyeLine /> View More Articles
+                  </button>
+                </div>
+              )}
+            </>
+          )}
+        </div>
+
+        {/* Newsletter Section */}
+        <section className="blog-list-newsletter-section">
+          <div className="blog-list-newsletter-container">
+            <div className="blog-list-newsletter-content">
+              <RiMailSendLine className="blog-list-newsletter-icon" />
+              <h2 className="blog-list-newsletter-title">Stay Updated</h2>
+              <p className="blog-list-newsletter-text">
+                Subscribe to our newsletter and get the latest articles, tutorials, and industry insights delivered directly to your inbox.
+              </p>
+              <form className="blog-list-newsletter-form" onSubmit={(e) => {
+                e.preventDefault();
+                const email = e.target.querySelector('.blog-list-newsletter-input').value;
+                alert(`Thank you for subscribing with: ${email}`);
+                e.target.reset();
+              }}>
+                <input
+                  type="email"
+                  className="blog-list-newsletter-input"
+                  placeholder="Your email address"
+                  required
+                />
+                <button type="submit" className="blog-list-newsletter-btn">
+                  Subscribe <RiArrowRightLine />
+                </button>
+              </form>
+              <p className="blog-list-newsletter-note">
+                No spam, unsubscribe at any time.
+              </p>
+            </div>
+          </div>
+        </section>
 
       </main>
     </div>
