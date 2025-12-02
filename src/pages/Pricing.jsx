@@ -239,7 +239,7 @@ export default function Pricing() {
                 </div>
 
 
-                       <CTA />
+                <CTA />
 
 
 

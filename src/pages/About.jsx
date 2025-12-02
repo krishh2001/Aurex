@@ -89,16 +89,20 @@ export default function About() {
         );
         document.querySelectorAll(".about-reveal").forEach((el) => observer.observe(el));
 
-        const particleContainer = document.getElementById("particles");
+        // Particle System
+        const particleContainer = document.getElementById('particles');
         if (particleContainer && particleContainer.childElementCount === 0) {
-            for (let i = 0; i < 20; i++) {
-                const span = document.createElement("span");
-                span.className = "particle";
-                span.style.left = Math.random() * 100 + "%";
-                span.style.top = Math.random() * 100 + "%";
-                span.style.animationDuration = Math.random() * 10 + 5 + "s";
-                span.style.animationDelay = Math.random() * 5 + "s";
-                particleContainer.appendChild(span);
+            for (let i = 0; i < 30; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                let size = Math.random() * 3 + 1;
+                p.style.width = `${size}px`;
+                p.style.height = `${size}px`;
+                p.style.left = `${Math.random() * 100}vw`;
+                p.style.top = `${Math.random() * 100}vh`;
+                p.style.animationDelay = `-${Math.random() * 20}s`;
+                p.style.opacity = Math.random() * 0.5;
+                particleContainer.appendChild(p);
             }
         }
 
