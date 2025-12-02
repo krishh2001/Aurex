@@ -601,9 +601,6 @@
         grid-template-columns: 1fr;
     }
 
-    .tech-line {
-        display: none;
-    }
 
     .container {
         margin-top: 60px;
