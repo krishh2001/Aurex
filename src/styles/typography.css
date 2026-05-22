@@ -1,0 +1,307 @@
+/* =========================================
+   Global typography tuning (import last)
+   ========================================= */
+
+/* --- Home --- */
+.hero-title {
+    font-size: var(--text-hero) !important;
+}
+
+.hero-desc {
+    font-size: var(--text-lg) !important;
+}
+
+.hero-badge,
+.section-subtitle,
+.services-section-subtitle {
+    font-size: var(--text-xs) !important;
+}
+
+.section-title,
+.learning-section .section-title {
+    font-size: var(--text-section) !important;
+}
+
+.section-desc,
+.services-section-desc {
+    font-size: var(--text-base) !important;
+}
+
+.service-card h3,
+.about-process-title,
+.about-process-card h3 {
+    font-size: var(--text-xl) !important;
+}
+
+.service-card p,
+.stat-number {
+    font-size: clamp(2rem, 3.5vw, 2.75rem) !important;
+}
+
+.stat-label {
+    font-size: var(--text-sm) !important;
+}
+
+.quote-text {
+    font-size: var(--text-md) !important;
+}
+
+.user-name {
+    font-size: var(--text-md) !important;
+}
+
+.user-role {
+    font-size: var(--text-sm) !important;
+}
+
+.btn-primary,
+.btn-secondary {
+    font-size: var(--text-sm) !important;
+}
+
+.hero-ticker__item {
+    font-size: var(--text-sm) !important;
+}
+
+.service-icon {
+    font-size: 1.5rem !important;
+}
+
+.service-card h3 {
+    font-size: var(--text-lg) !important;
+}
+
+.service-card p {
+    font-size: var(--text-sm) !important;
+}
+
+.item-number {
+    font-size: clamp(2rem, 3.5vw, 2.75rem) !important;
+}
+
+.item-text,
+.inner-text {
+    font-size: var(--text-sm) !important;
+}
+
+/* --- About page --- */
+.about-story-content h1 {
+    font-size: var(--text-page-title) !important;
+}
+
+.about-story-text,
+.section-desc {
+    font-size: var(--text-base) !important;
+}
+
+.about-exp-number {
+    font-size: 2rem !important;
+}
+
+.about-exp-text {
+    font-size: var(--text-sm) !important;
+}
+
+.about-process-title {
+    font-size: var(--text-lg) !important;
+}
+
+.about-process-desc {
+    font-size: var(--text-sm) !important;
+}
+
+.about-member-name {
+    font-size: var(--text-2xl) !important;
+}
+
+.about-member-role {
+    font-size: var(--text-base) !important;
+}
+
+.about-section-badge,
+.section-badge {
+    font-size: var(--text-xs) !important;
+}
+
+/* --- Services --- */
+.services-section-title {
+    font-size: var(--text-section) !important;
+}
+
+.services-offering-card h3 {
+    font-size: var(--text-xl) !important;
+}
+
+.services-offering-card p,
+.services-card-features li {
+    font-size: var(--text-sm) !important;
+}
+
+.services-card-icon-container {
+    font-size: 1.5rem !important;
+}
+
+.services-tech-name {
+    font-size: var(--text-2xl) !important;
+}
+
+.services-tech-category {
+    font-size: var(--text-sm) !important;
+}
+
+/* --- Pricing --- */
+.pricing-header h1 {
+    font-size: var(--text-page-title) !important;
+}
+
+.pricing-header p {
+    font-size: var(--text-base) !important;
+}
+
+.pricing-card .features li {
+    font-size: var(--text-sm) !important;
+}
+
+.faq-header h2 {
+    font-size: var(--text-section) !important;
+}
+
+.faq-question {
+    font-size: var(--text-md) !important;
+}
+
+.faq-answer {
+    font-size: var(--text-sm) !important;
+}
+
+/* --- Contact --- */
+.contact-content h1 {
+    font-size: var(--text-page-title) !important;
+}
+
+.contact-lead,
+.map-hero-desc {
+    font-size: var(--text-base) !important;
+}
+
+.contact-eyebrow,
+.contact-pill,
+.map-kicker,
+.map-hero-badge-label,
+.map-info-tile-label,
+.map-cta-tile-label,
+.contact-info-label {
+    font-size: var(--text-xs) !important;
+}
+
+.contact-highlights li,
+.contact-info-value,
+.contact-hours,
+.contact-form-head p,
+.input-group label,
+.input-group input,
+.input-group textarea,
+.contact-select,
+.map-info-tile-value,
+.map-hero-badge strong,
+.map-cta-tile-text strong,
+.success-modal-desc,
+.success-modal-btn {
+    font-size: var(--text-sm) !important;
+}
+
+.contact-form-head h2,
+.success-modal-title {
+    font-size: var(--text-xl) !important;
+}
+
+.map-hero-title {
+    font-size: var(--text-section) !important;
+}
+
+.submit-btn {
+    font-size: var(--text-sm) !important;
+}
+
+/* --- Blog list --- */
+.blog-list-hero-content h1 {
+    font-size: var(--text-page-title) !important;
+}
+
+.blog-list-hero-text {
+    font-size: var(--text-lg) !important;
+}
+
+.blog-list-post-title {
+    font-size: var(--text-xl) !important;
+}
+
+.blog-list-post-excerpt,
+.blog-list-post-meta {
+    font-size: var(--text-sm) !important;
+}
+
+/* --- Blog post --- */
+.article-title {
+    font-size: var(--text-page-title) !important;
+}
+
+.article-excerpt {
+    font-size: var(--text-lg) !important;
+}
+
+.article-body h2 {
+    font-size: var(--text-2xl) !important;
+}
+
+.article-body h3 {
+    font-size: var(--text-xl) !important;
+}
+
+.article-body p,
+.article-body li {
+    font-size: var(--text-base) !important;
+}
+
+.blogpost-title,
+.comments-section h2 {
+    font-size: var(--text-2xl) !important;
+}
+
+.related-title {
+    font-size: var(--text-md) !important;
+}
+
+/* --- CTA --- */
+.cta-card__title {
+    font-size: var(--text-2xl) !important;
+}
+
+.cta-card__desc {
+    font-size: var(--text-base) !important;
+}
+
+.cta-card__btn {
+    font-size: var(--text-sm) !important;
+}
+
+/* --- Nav & footer --- */
+.nav-links a,
+.nav-btn {
+    font-size: var(--text-sm) !important;
+}
+
+.footer-link,
+.copyright {
+    font-size: var(--text-xs) !important;
+}
+
+.footer-slogan,
+.footer-col-title {
+    font-size: var(--text-xs) !important;
+}
+
+/* --- Buttons (global) --- */
+.btn-pricing {
+    font-size: var(--text-sm) !important;
+}

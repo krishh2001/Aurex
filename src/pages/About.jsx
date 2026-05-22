@@ -1,22 +1,47 @@
 import React, { useEffect, useRef, useState } from "react";
-// Import Icons
+import { useReveal } from "../hooks/useReveal";
+import { usePageEffects } from "../hooks/usePageEffects";
+import { usePageMeta } from "../hooks/usePageMeta";
+import { useIntervalWhenVisible } from "../hooks/useIntervalWhenVisible";
+import { optimizeImageUrl } from "../utils/imageUrl";
+import PersonAvatar from "../components/PersonAvatar";
 import {
     RiFlashlightFill, RiSearchEyeLine, RiLightbulbFlashLine, RiPantoneLine,
-    RiCodeSSlashLine, RiToolsLine, RiRocket2Line, RiStackLine, RiArrowRightLine,
-    RiLinkedinFill, RiTwitterXLine, RiDribbbleLine, RiInstagramLine, RiBehanceLine,
+    RiCodeSSlashLine, RiToolsLine, RiRocket2Line, RiStackLine,
     RiGithubFill, RiHtml5Fill, RiCss3Fill, RiJavascriptFill, RiReactjsLine,
     RiTerminalBoxFill, RiDatabase2Line, RiGitlabFill, RiAndroidFill, RiAppleFill,
-    RiGoogleFill, RiAmazonFill, RiWindowsFill, RiChromeFill
+    RiGoogleFill, RiAmazonFill, RiWindowsFill, RiChromeFill,
+    RiLinkedinFill, RiTwitterXLine,
 } from "react-icons/ri";
 
 import CTA from "../components/CTA";
+import { PAGE_META, TEAM_MEMBERS, TEAM_SECTION } from "../data/company";
+
+const TEAM_SOCIAL_ICONS = {
+    linkedin: RiLinkedinFill,
+    twitter: RiTwitterXLine,
+    github: RiGithubFill,
+};
+
+function memberPhoto(member) {
+    if (!member.image?.trim()) return "";
+    return member.image.startsWith("http")
+        ? optimizeImageUrl(member.image, 400)
+        : member.image;
+}
 
 export default function About() {
     const [currentMember, setCurrentMember] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
+    const pageRef = useRef(null);
     const stageRef = useRef(null);
     const pathRef = useRef(null);
     const iconsRef = useRef([]);
+    const teamRef = useRef(null);
+
+    usePageMeta(PAGE_META.about);
+    usePageEffects(".bg-large-text");
+    useReveal(".about-reveal", pageRef);
 
     const techStack = [
         { icon: <RiHtml5Fill />, color: '#E34F26' },
@@ -36,165 +61,109 @@ export default function About() {
         { icon: <RiStackLine />, color: '#3b82f6' },
     ];
 
-    const teamData = [
-        {
-            name: "Vishnu Rajput",
-            role: "Founder & CEO",
-            image: "https://softwarehousetechnology.com/assets/images/team/vishnu.png",
-            skills: ["Leadership", "Business Strategy", "Brand Vision", "Operations", "Team Management", "Growth"],
-            socials: [
-                { icon: <RiLinkedinFill />, link: '#' },
-                { icon: <RiTwitterXLine />, link: '#' }
-            ]
-        },
-        {
-            name: "Samsunge Sharma",
-            role: "Head of Product",
-            image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=1000&auto=format&fit=crop",
-            skills: ["Product Strategy", "User Research", "Agile Workflow", "UX Planning", "Data Insights", "Metrics"],
-            socials: [
-                { icon: <RiLinkedinFill />, link: '#' },
-                { icon: <RiDribbbleLine />, link: '#' }
-            ]
-        },
-        {
-            name: "Carbon Kapoor",
-            role: "Lead Designer",
-            image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1000&auto=format&fit=crop",
-            skills: ["UI/UX Design", "Brand Identity", "Figma Expert", "Motion Graphics", "Wireframing", "Systems"],
-            socials: [
-                { icon: <RiInstagramLine />, link: '#' },
-                { icon: <RiBehanceLine />, link: '#' }
-            ]
-        },
-        {
-            name: "Vivo Verma",
-            role: "Senior Developer",
-            image: "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=80&w=1000&auto=format&fit=crop",
-            skills: ["React.js", "Node.js", "API Engineering", "AWS Cloud", "System Architecture", "Security"],
-            socials: [
-                { icon: <RiGithubFill />, link: '#' }
-            ]
-        }
-    ];
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) entry.target.classList.add("active");
-                });
-            },
-            { threshold: 0.1 }
-        );
-        document.querySelectorAll(".about-reveal").forEach((el) => observer.observe(el));
-
-        // Particle System
-        const particleContainer = document.getElementById('particles');
-        if (particleContainer && particleContainer.childElementCount === 0) {
-            for (let i = 0; i < 30; i++) {
-                const p = document.createElement('div');
-                p.className = 'particle';
-                let size = Math.random() * 3 + 1;
-                p.style.width = `${size}px`;
-                p.style.height = `${size}px`;
-                p.style.left = `${Math.random() * 100}vw`;
-                p.style.top = `${Math.random() * 100}vh`;
-                p.style.animationDelay = `-${Math.random() * 20}s`;
-                p.style.opacity = Math.random() * 0.5;
-                particleContainer.appendChild(p);
-            }
-        }
-
-        const handleScroll = () => {
-            const bgText = document.querySelector('.bg-large-text');
-            if (bgText) {
-                let scroll = window.scrollY;
-                bgText.style.transform = `translate(-50%, ${scroll * 0.15}px)`;
-                bgText.style.opacity = 1 - (scroll * 0.001);
-            }
-        };
-        window.addEventListener('scroll', handleScroll);
-
-        return () => {
-            observer.disconnect();
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
-
     useEffect(() => {
         const stage = stageRef.current;
         const path = pathRef.current;
-        if (!stage || !path) return;
+        if (!stage || !path) return undefined;
 
-        let animationFrameId;
+        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (reducedMotion) return undefined;
+
+        let rafId = null;
+        let isVisible = false;
         let iconData = [];
+        let layout = { centerX: 0, vertexY: 0, boundary: 0 };
 
         const iconSpacing = 110;
         const animationSpeed = 0.6;
         const steepness = 1800;
         const vertexOffset = 50;
+        const iconCount = techStack.length;
 
         const initTech = () => {
             const width = stage.offsetWidth;
             const height = stage.offsetHeight;
             const centerX = width / 2;
             const vertexY = height - vertexOffset;
-
             const drawWidth = width / 2 + 400;
-            const getCurveY = (x) => vertexY - (Math.pow(x, 2) / steepness);
+            const getCurveY = (x) => vertexY - (x * x) / steepness;
 
             let pathData = `M ${-drawWidth + centerX} ${getCurveY(-drawWidth)}`;
             for (let x = -drawWidth; x <= drawWidth; x += 10) {
                 pathData += ` L ${x + centerX} ${getCurveY(x)}`;
             }
-            path.setAttribute('d', pathData);
+            path.setAttribute("d", pathData);
 
-            iconData = techStack.map((_, index) => ({
-                x: (index * iconSpacing) - (techStack.length * iconSpacing) / 2
-            }));
+            layout = {
+                centerX,
+                vertexY,
+                boundary: (iconCount * iconSpacing) / 2,
+            };
+
+            if (!iconData.length) {
+                iconData = techStack.map((_, index) => ({
+                    x: index * iconSpacing - layout.boundary,
+                }));
+            }
         };
 
         const animate = () => {
-            const width = stage.offsetWidth;
-            const height = stage.offsetHeight;
-            const centerX = width / 2;
-            const vertexY = height - vertexOffset;
-            const totalWidth = techStack.length * iconSpacing;
-            const boundary = totalWidth / 2;
+            if (!isVisible) {
+                rafId = null;
+                return;
+            }
 
-            iconData.forEach((data, i) => {
+            const { centerX, vertexY, boundary } = layout;
+            const totalWidth = iconCount * iconSpacing;
+
+            for (let i = 0; i < iconData.length; i += 1) {
+                const data = iconData[i];
                 data.x += animationSpeed;
                 if (data.x > boundary) data.x -= totalWidth;
 
-                const currentY = vertexY - (Math.pow(data.x, 2) / steepness);
-
                 const el = iconsRef.current[i];
                 if (el) {
+                    const currentY = vertexY - (data.x * data.x) / steepness;
                     el.style.left = `${data.x + centerX - 32}px`;
                     el.style.top = `${currentY - 32}px`;
                 }
-            });
+            }
 
-            animationFrameId = requestAnimationFrame(animate);
+            rafId = requestAnimationFrame(animate);
         };
+
+        const startLoop = () => {
+            if (rafId === null) rafId = requestAnimationFrame(animate);
+        };
+
+        const stopLoop = () => {
+            if (rafId !== null) {
+                cancelAnimationFrame(rafId);
+                rafId = null;
+            }
+        };
+
+        const visibilityObserver = new IntersectionObserver(
+            ([entry]) => {
+                isVisible = entry.isIntersecting;
+                if (isVisible) startLoop();
+                else stopLoop();
+            },
+            { threshold: 0.05, rootMargin: "80px" }
+        );
 
         initTech();
-        animate();
+        visibilityObserver.observe(stage);
 
-        window.addEventListener('resize', initTech);
+        const onResize = () => initTech();
+        window.addEventListener("resize", onResize, { passive: true });
+
         return () => {
-            cancelAnimationFrame(animationFrameId);
-            window.removeEventListener('resize', initTech);
+            stopLoop();
+            visibilityObserver.disconnect();
+            window.removeEventListener("resize", onResize);
         };
-    }, []);
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            changeSlide((currentMember + 1) % teamData.length);
-        }, 4000);
-        return () => clearInterval(interval);
-    }, [currentMember]);
+    }, [techStack.length]);
 
     const changeSlide = (index) => {
         if (index === currentMember) return;
@@ -205,70 +174,70 @@ export default function About() {
         }, 400);
     };
 
+    useIntervalWhenVisible(teamRef, () => {
+        changeSlide((currentMember + 1) % TEAM_MEMBERS.length);
+    }, 4000);
+
+    const member = TEAM_MEMBERS[currentMember];
     const memberContentStyle = {
         opacity: isAnimating ? 0 : 1,
         transform: isAnimating ? 'translateY(20px)' : 'translateY(0)',
-        transition: 'all 0.4s ease'
+        transition: 'all 0.4s ease',
     };
 
     const memberImageStyle = {
         opacity: isAnimating ? 0 : 1,
         transform: isAnimating ? 'scale(0.9) rotate(-5deg)' : 'scale(1) rotate(0deg)',
-        transition: 'all 0.4s ease'
+        transition: 'all 0.4s ease',
     };
 
     return (
-        <div className="about-page-wrapper">
+        <div className="about-page-wrapper" ref={pageRef}>
             <div className="ambient-glow"></div>
             <div className="ambient-glow-2"></div>
             <div className="ambient-glow-3"></div>
             <h1 className="bg-large-text">About</h1>
-            <div className="particles" id="particles"></div>
             <div className="tech-line left-line"></div>
             <div className="tech-line right-line"></div>
 
             <main className="container">
-                {/* ORIGIN / STORY SECTION */}
                 <section className="about-story-section about-reveal">
                     <div className="about-story-grid">
                         <div className="about-story-content">
-                            <div className="about-section-badge"><RiFlashlightFill /> Our Origin</div>
-                            <h1>Engineering the Future</h1>
+                            <div className="about-section-badge"><RiFlashlightFill /> Who We Are</div>
+                            <h1>Your IT Project Delivery Partner</h1>
                             <p className="about-story-text">
-                                AUREX began with a simple goal: build digital systems that feel powerful, precise, and
-                                effortless. No outdated methods. No overcomplication. Only sharp engineering and minimal design brought
-                                together as one.
+                                Founded in 2015, AUREX is an IT company that takes client projects and delivers production-ready
+                                websites, web applications, and mobile apps—backed by cloud, security, and support when you need them.
                             </p>
                             <p className="about-story-text">
-                                Over the years, we've transformed into a performance-first digital company trusted for building
-                                fast interfaces, scalable architectures, and polished customer experiences.
+                                You bring requirements and goals; we handle discovery, design, development, testing, and launch—with
+                                clear milestones whether you need a corporate site, a customer portal, or a full product build.
                             </p>
                             <div style={{ marginTop: '30px', paddingLeft: '20px', borderLeft: '2px solid var(--accent-primary)', display: 'inline-block' }}>
                                 <p style={{ color: '#fff', fontStyle: 'italic' }}>
-                                    "Our work blends precision engineering with clean design.
-                                    Technology should feel powerful, not overwhelming."
+                                    &ldquo;Every delivery is documented, tested, and handed over ready for real users—not demo-only builds.&rdquo;
                                 </p>
                             </div>
                         </div>
 
                         <div className="about-story-image-wrapper about-reveal about-delay-200">
-                            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop"
-                                alt="Office" className="about-story-img" />
+                            <img src={optimizeImageUrl("https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop", 900)}
+                                alt="Office" className="about-story-img" loading="lazy" decoding="async" width={900} height={600} />
                             <div className="about-exp-badge">
-                                <div className="about-exp-number">5+</div>
-                                <div className="about-exp-text">Years of<br />Innovation</div>
+                                <div className="about-exp-number">10+</div>
+                                <div className="about-exp-text">Years<br />Delivering IT</div>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                {/* PROCESS SECTION */}
                 <section className="about-process-section about-reveal">
                     <div className="section-header">
                         <div className="about-section-badge">How We Work</div>
                         <h2 className="section-title">The AUREX Method</h2>
                         <p className="section-desc">
-                            A focused workflow that removes guesswork and builds digital systems with clarity and intent.
+                            A focused workflow for client IT projects—from scoped websites to long-running application programs.
                         </p>
                     </div>
 
@@ -291,7 +260,6 @@ export default function About() {
                     </div>
                 </section>
 
-                {/* TECH STACK SECTION */}
                 <section className="about-tech-stack-section about-reveal">
                     <div className="section-header">
                         <div className="about-section-badge"><RiStackLine /> Our Arsenal</div>
@@ -322,28 +290,27 @@ export default function About() {
                     </div>
                 </section>
 
-                {/* TEAM SECTION */}
                 <section className="about-team-section about-reveal">
                     <div className="section-header">
-                        <div className="about-section-badge">The Team</div>
-                        <h2 className="section-title">People Behind The Vision</h2>
-                        <p className="section-desc">A tight crew of creators, strategists, and engineers.</p>
+                        <div className="about-section-badge">{TEAM_SECTION.subtitle}</div>
+                        <h2 className="section-title">{TEAM_SECTION.title}</h2>
+                        <p className="section-desc">{TEAM_SECTION.description}</p>
                     </div>
 
-                    <div className="about-orbit-wrapper">
+                    <div className="about-orbit-wrapper" ref={teamRef}>
                         <div className="about-orbit-system">
                             <div className="about-sun-glow-ring"></div>
 
-                            <div className="about-sun-profile">
-                                <img
-                                    src={teamData[currentMember].image}
-                                    alt="Team Member"
-                                    style={memberImageStyle}
+                            <div className="about-sun-profile" style={memberImageStyle}>
+                                <PersonAvatar
+                                    name={member.name}
+                                    image={memberPhoto(member)}
+                                    size={200}
                                 />
                             </div>
 
                             {[1, 2, 3, 4, 5, 6].map((pos) => {
-                                const skill = teamData[currentMember].skills[pos - 1];
+                                const skill = member.skills[pos - 1];
                                 return (
                                     <div
                                         key={pos}
@@ -357,29 +324,50 @@ export default function About() {
                         </div>
 
                         <div className="about-member-info" style={memberContentStyle}>
-                            <h2 className="about-member-name">{teamData[currentMember].name}</h2>
-                            <p className="about-member-role">{teamData[currentMember].role}</p>
+                            <h2 className="about-member-name">{member.name}</h2>
+                            <p className="about-member-role">{member.role}</p>
 
                             <div className="about-team-social-links">
-                                {teamData[currentMember].socials.map((social, idx) => (
-                                    <a href={social.link} key={idx} className="about-team-social-icon">{social.icon}</a>
-                                ))}
+                                {member.socials
+                                    .filter((s) => s.url?.trim())
+                                    .map((social) => {
+                                        const Icon = TEAM_SOCIAL_ICONS[social.type];
+                                        if (!Icon) return null;
+                                        return (
+                                            <a
+                                                href={social.url}
+                                                key={`${social.type}-${social.url}`}
+                                                className="about-team-social-icon"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                aria-label={`${member.name} on ${social.type}`}
+                                            >
+                                                <Icon />
+                                            </a>
+                                        );
+                                    })}
                             </div>
                         </div>
 
                         <div className="about-slider-dots">
-                            {teamData.map((_, idx) => (
+                            {TEAM_MEMBERS.map((_, idx) => (
                                 <div
                                     key={idx}
                                     className={`about-team-dot ${idx === currentMember ? 'active' : ''}`}
                                     onClick={() => changeSlide(idx)}
-                                ></div>
+                                    role="button"
+                                    tabIndex={0}
+                                    aria-label={`Show ${TEAM_MEMBERS[idx].name}`}
+                                    onKeyDown={(e) => {
+                                        if (e.key === "Enter" || e.key === " ") changeSlide(idx);
+                                    }}
+                                />
                             ))}
                         </div>
                     </div>
                 </section>
 
-                <CTA />
+                <CTA pageKey="about" />
             </main>
         </div>
     );

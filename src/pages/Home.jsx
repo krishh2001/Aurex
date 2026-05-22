@@ -1,85 +1,39 @@
-import React, { useEffect, useState } from "react";
-// 1. Import the icons from react-icons/ri (Remix Icons)
+import React, { useRef, useState, useCallback } from "react";
+import { Link } from "react-router-dom";
+import { useReveal } from "../hooks/useReveal";
+import { usePageMeta } from "../hooks/usePageMeta";
+import { useIntervalWhenVisible } from "../hooks/useIntervalWhenVisible";
+import { RiFlashlightFill, RiDoubleQuotesL } from "react-icons/ri";
+import PremiumServiceIcon from "../components/PremiumServiceIcon";
+import PersonAvatar from "../components/PersonAvatar";
+import CTA from "../components/CTA";
 import {
-    RiShiningFill, RiGlobalLine, RiCommandFill, RiShape2Fill, RiFlashlightFill, RiCodeBoxLine,
-    RiCloudLine, RiShieldKeyholeLine, RiCodeSSlashLine,
-    RiRocket2Line, RiShieldCheckLine, RiLineChartLine,
-    RiArrowRightLine, RiDoubleQuotesL
-} from "react-icons/ri";
+    TECH_TICKER,
+    HOME_HERO,
+    HOME_STATS,
+    HOME_CAPABILITIES,
+    HOME_TESTIMONIALS,
+    HOME_TESTIMONIALS_SECTION,
+    SERVICE_OFFERINGS,
+    PAGE_META,
+} from "../data/company";
 
 export default function Home() {
-    const [currentIndex, setCurrentIndex] = useState(1);
+    const pageRef = useRef(null);
+    const testimonialRef = useRef(null);
+    const [currentIndex, setCurrentIndex] = useState(0);
 
-    const testimonials = [
-        {
-            name: "Carol D. Story",
-            role: "CTO, TechCorp",
-            text: "AUREX transformed our cloud infrastructure, reducing costs by 40% while improving performance and scalability.",
-            image: "https://randomuser.me/api/portraits/women/32.jpg",
-        },
-        {
-            name: "Sarah J. Christopher",
-            role: "CEO, InnovateX",
-            text: "Their security solutions protected us from a major cyber attack. Their team's expertise is truly exceptional.",
-            image: "https://randomuser.me/api/portraits/women/44.jpg",
-        },
-        {
-            name: "Martin A. Wright",
-            role: "Director, Global Solutions",
-            text: "The custom software they developed streamlined our operations and improved efficiency by 60%. Outstanding work!",
-            image: "https://randomuser.me/api/portraits/men/86.jpg",
-        },
-        {
-            name: "James L. Smith",
-            role: "Tech Lead, FutureStack",
-            text: "Working with AUREX was a game-changer for our digital transformation journey. Professional, knowledgeable, and results-driven.",
-            image: "https://randomuser.me/api/portraits/men/45.jpg",
-        },
-        {
-            name: "Emily R. Davis",
-            role: "Product Manager, QuantumSoft",
-            text: "Their team delivered beyond our expectations. The solution was scalable, secure, and perfectly aligned with our business goals.",
-            image: "https://randomuser.me/api/portraits/women/68.jpg",
-        },
-    ];
+    usePageMeta(PAGE_META.home);
+    useReveal(".reveal", pageRef);
 
-    useEffect(() => {
-        // Scroll Reveal
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) entry.target.classList.add("active");
-                });
-            },
-            { threshold: 0.1 }
-        );
-        document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
-
-        // Particles
-        const particleContainer = document.getElementById("particles");
-        if (particleContainer && particleContainer.childElementCount === 0) {
-            for (let i = 0; i < 20; i++) {
-                const span = document.createElement("span");
-                span.className = "particle";
-                span.style.left = Math.random() * 100 + "%";
-                span.style.top = Math.random() * 100 + "%";
-                span.style.animationDuration = Math.random() * 10 + 5 + "s";
-                span.style.animationDelay = Math.random() * 5 + "s";
-                particleContainer.appendChild(span);
-            }
-        }
-        return () => observer.disconnect();
+    const advanceTestimonial = useCallback(() => {
+        setCurrentIndex((prev) => (prev + 1) % HOME_TESTIMONIALS.length);
     }, []);
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-        }, 4000);
-        return () => clearInterval(interval);
-    }, [testimonials.length]);
+    useIntervalWhenVisible(testimonialRef, advanceTestimonial, 4000);
 
     const getCardClass = (index) => {
-        const total = testimonials.length;
+        const total = HOME_TESTIMONIALS.length;
         const prevIndex = (currentIndex - 1 + total) % total;
         const nextIndex = (currentIndex + 1) % total;
         if (index === currentIndex) return "testimonial-card active";
@@ -89,210 +43,144 @@ export default function Home() {
     };
 
     return (
-        <div className="home-container">
+        <div className="home-container" ref={pageRef}>
             <div className="ambient-glow-2"></div>
             <div className="ambient-glow-3"></div>
-            <div className="particles" id="particles"></div>
             <div className="tech-line left-line"></div>
             <div className="tech-line right-line"></div>
 
             <header className="hero-section">
-                <div className="reveal active">
-                    <div className="hero-badge">AUREX DIGITAL</div>
+                <div className="hero-section__content reveal active">
+                    <div className="hero-badge">{HOME_HERO.badge}</div>
                     <h1 className="hero-title">
-                        Digital Transformation <br /> for Modern Businesses
+                        {HOME_HERO.title} <br />
+                        <span className="hero-title-accent">{HOME_HERO.titleLine2}</span>
                     </h1>
-                    <p className="hero-desc">
-                        AUREX creates fast, scalable and modern digital solutions that help
-                        brands grow, perform and lead with confidence.
-                    </p>
+                    <p className="hero-desc">{HOME_HERO.description}</p>
                     <div className="hero-btns">
-                        <a href="#" className="btn-primary">Explore Our Work</a>
-                        <a href="#" className="btn-secondary">Book a Call</a>
+                        <Link to={HOME_HERO.primaryCta.to} className="btn-primary">
+                            {HOME_HERO.primaryCta.label}
+                        </Link>
+                        <Link to={HOME_HERO.secondaryCta.to} className="btn-secondary">
+                            {HOME_HERO.secondaryCta.label}
+                        </Link>
+                    </div>
+                </div>
+
+                <div className="hero-ticker" aria-hidden>
+                    <div className="hero-ticker__track">
+                        {[0, 1].map((copy) => (
+                            <div className="hero-ticker__group" key={copy}>
+                                {TECH_TICKER.map((tech) => (
+                                    <span key={`${copy}-${tech}`} className="hero-ticker__item">
+                                        <RiFlashlightFill /> {tech}
+                                    </span>
+                                ))}
+                            </div>
+                        ))}
                     </div>
                 </div>
             </header>
 
-            {/* TICKER SECTION (Updated with Icons) */}
-            <div className="ticker-wrap">
-                <div className="ticker">
-                    {/* We repeat this block twice for the infinite scroll effect */}
-                    {[1, 2].map((i) => (
-                        <React.Fragment key={i}>
-                            <div className="ticker-item"><RiShiningFill /> MICROSOFT</div>
-                            <div className="ticker-item"><RiGlobalLine /> GOOGLE</div>
-                            <div className="ticker-item"><RiCommandFill /> AMAZON</div>
-                            <div className="ticker-item"><RiShape2Fill /> IBM</div>
-                            <div className="ticker-item"><RiFlashlightFill /> TESLA</div>
-                            <div className="ticker-item"><RiCodeBoxLine /> NETFLIX</div>
-                        </React.Fragment>
-                    ))}
-                </div>
-            </div>
-
             <main className="expertise_container">
-                {/* SERVICES */}
-                {/* SERVICES - Updated with 6 cards */}
                 <section className="section-margin" id="services">
                     <div className="section-header reveal">
-                        <span className="section-subtitle">Our Expertise</span>
-                        <h2 className="section-title">Digital Solutions That Deliver</h2>
-                        <p style={{ color: "var(--text-muted)" }}>High-performance technology services designed to accelerate your business.</p>
+                        <span className="section-subtitle">IT Services</span>
+                        <h2 className="section-title">Websites, Apps & IT Delivery</h2>
+                        <p className="section-desc">
+                            One partner for your client project—from corporate sites to full-stack applications and ongoing support.
+                        </p>
                     </div>
 
                     <div className="services-grid">
-                        {/* Existing 3 cards + 3 new cards */}
-                        <div className="service-card reveal">
-                            <div className="service-icon"><RiCloudLine /></div>
-                            <h3>Cloud Engineering</h3>
-                            <p>Powerful, secure and scalable cloud setups for fast-growing businesses.</p>
-                        </div>
-                        <div className="service-card reveal">
-                            <div className="service-icon"><RiShieldKeyholeLine /></div>
-                            <h3>Security & Protection</h3>
-                            <p>Advanced cybersecurity, proactive monitoring and full data protection systems.</p>
-                        </div>
-                        <div className="service-card reveal">
-                            <div className="service-icon"><RiCodeSSlashLine /></div>
-                            <h3>Custom Development</h3>
-                            <p>Web, mobile and software products built for speed, precision and long-term growth.</p>
-                        </div>
-
-                        {/* NEW SERVICE CARDS */}
-                        <div className="service-card reveal">
-                            <div className="service-icon"><RiCommandFill /></div>
-                            <h3>DevOps & Automation</h3>
-                            <p>CI/CD pipelines, infrastructure as code, and deployment automation for efficiency.</p>
-                        </div>
-                        <div className="service-card reveal">
-                            <div className="service-icon"><RiLineChartLine /></div>
-                            <h3>Data Analytics</h3>
-                            <p>Business intelligence, data visualization, and predictive analytics solutions.</p>
-                        </div>
-                        <div className="service-card reveal">
-                            <div className="service-icon"><RiGlobalLine /></div>
-                            <h3>Digital Transformation</h3>
-                            <p>End-to-end modernization of legacy systems and processes for digital-first operations.</p>
-                        </div>
-                    </div>
-                </section>
-
-                {/* ABOUT */}
-                <section className="section-margin" id="about">
-                    <div className="about-grid">
-                        <div className="about-content reveal">
-                            <span className="section-subtitle">About AUREX</span>
-                            <h2>Engineering Digital Excellence<br /><span style={{ color: "var(--accent-primary)" }}>Since 2015</span></h2>
-                            <p style={{ color: "var(--text-muted)", marginBottom: "20px" }}>
-                                AUREX is a next-generation digital company focused on building systems that are fast, secure and future-ready.
-                            </p>
-                            <a href="#" style={{ color: "#fff", textDecoration: "none", borderBottom: "1px solid var(--accent-primary)" }}>
-                                Discover our journey
-                            </a>
-                        </div>
-                        <div className="about-img-wrapper reveal">
-                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop" alt="Modern Office" className="about-img" />
-                        </div>
-                    </div>
-                </section>
-
-                {/* STATS */}
-                <section className="stats-section reveal">
-                    <div className="stats-container">
-                        <div className="stats-grid">
-                            <div className="stat-item"><div className="stat-number">250+</div><div className="stat-label">Projects Delivered</div></div>
-                            <div className="stat-item"><div className="stat-number">98%</div><div className="stat-label">Client Retention</div></div>
-                            <div className="stat-item"><div className="stat-number">50+</div><div className="stat-label">Tech Experts</div></div>
-                            <div className="stat-item"><div className="stat-number">8 Years</div><div className="stat-label">Industry Experience</div></div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* LEARNING */}
-                <section className="learning-section section-margin" id="learning">
-                    <div className="learning_container">
-                        <h2 className="section-title reveal">What You’ll Master with <span className="highlight-text">AUREX</span></h2>
-                        <div className="content-wrapper">
-                            <div className="center-circle-container">
-                                <div className="glowing-ring"></div>
-                                <div className="inner-circle">
-                                    <span className="inner-text">Cloud Architecture</span>
-                                    <div className="divider-line"></div>
-                                    <span className="inner-text">Security Systems</span>
-                                    <div className="divider-line"></div>
-                                    <span className="inner-text">DevOps Pipelines</span>
-                                </div>
-                            </div>
-                            <div className="learn-item item-1 reveal"><div className="item-number">01</div><div className="item-text">Infrastructure<br />Engineering</div></div>
-                            <div className="learn-item item-2 reveal"><div className="item-number">02</div><div className="item-text">Modern<br />Development</div></div>
-                            <div className="learn-item item-3 reveal"><div className="item-number">03</div><div className="item-text">Security<br />Fundamentals</div></div>
-                            <div className="learn-item item-4 reveal"><div className="item-number">04</div><div className="item-text">Performance<br />Scaling</div></div>
-                            <div className="learn-item item-5 reveal"><div className="item-number">05</div><div className="item-text">Compliance &<br />Standards</div></div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* PROCESS */}
-                <section className="section-margin" id="process">
-                    <div className="section-header reveal">
-                        <span className="section-subtitle">Our Workflow</span>
-                        <h2 className="section-title">The AUREX Method</h2>
-                    </div>
-                    <div className="process-grid">
-                        {[{ num: "01", t: "Discovery" }, { num: "02", t: "Design & Build" }, { num: "03", t: "Launch" }, { num: "04", t: "Optimization" }, { num: "05", t: "Future-Proofing" }, { num: "06", t: "Training" }].map((p, idx) => (
-                            <div className="process-card reveal" key={idx}>
-                                <span className="process-num">{p.num}</span>
-                                <h3>{p.t}</h3>
-                                <p style={{ color: 'var(--text-muted)' }}>Standardized high-quality workflow ensuring consistent results.</p>
+                        {SERVICE_OFFERINGS.map((service) => (
+                            <div className="service-card reveal" key={service.title}>
+                                <PremiumServiceIcon type={service.icon} className="service-icon" />
+                                <h3>{service.title}</h3>
+                                <p>{service.description}</p>
                             </div>
                         ))}
                     </div>
                 </section>
 
-
-                {/* CASE STUDIES */}
-                <section className="case-studies-section section-margin" id="case-studies">
-                    <div className="section-header reveal">
-                        <span className="section-subtitle">Client Wins</span>
-                        <h2 className="section-title">Case Studies</h2>
-                        <p style={{ color: "var(--text-muted)" }}>Real results from real partnerships.</p>
-                    </div>
-                    <div className="case-studies-grid">
-                        <div className="case-study-card reveal">
-                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop" alt="Case Study" className="case-study-img" />
-                            <div className="case-study-content">
-                                <h3>Enterprise Cloud Upgrade</h3>
-                                <p>A complete cloud overhaul that reduced infrastructure cost and improved system performance.</p>
-                                <a href="#" className="case-study-link">Read More <RiArrowRightLine style={{ marginLeft: 5 }} /></a>
-                            </div>
-                        </div>
-                        <div className="case-study-card reveal">
-                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop" alt="Case Study" className="case-study-img" />
-                            <div className="case-study-content">
-                                <h3>Security Overhaul</h3>
-                                <p>Full cybersecurity setup for a financial brand—blocking threats before they could cause damage.</p>
-                                <a href="#" className="case-study-link">Read More <RiArrowRightLine style={{ marginLeft: 5 }} /></a>
-                            </div>
+                <section className="stats-section reveal">
+                    <div className="stats-container">
+                        <div className="stats-grid">
+                            {HOME_STATS.map((stat) => (
+                                <div className="stat-item" key={stat.label}>
+                                    <div className="stat-number">{stat.value}</div>
+                                    <div className="stat-label">{stat.label}</div>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </section>
 
-                {/* TESTIMONIALS */}
-                <section className="testimonial-section section-margin">
+                <section className="learning-section section-margin" id="capabilities">
+                    <div className="learning_container">
+                        <h2 className="section-title reveal">
+                            {HOME_CAPABILITIES.title}{" "}
+                            <span className="highlight-text">{HOME_CAPABILITIES.highlight}</span>
+                        </h2>
+                        <div className="content-wrapper">
+                            <div className="center-circle-container">
+                                <div className="glowing-ring"></div>
+                                <div className="inner-circle">
+                                    {HOME_CAPABILITIES.center.map((line, i) => (
+                                        <React.Fragment key={line}>
+                                            {i > 0 && <div className="divider-line" />}
+                                            <span className="inner-text">{line}</span>
+                                        </React.Fragment>
+                                    ))}
+                                </div>
+                            </div>
+                            {HOME_CAPABILITIES.items.map((item, idx) => (
+                                <div className={`learn-item item-${idx + 1} reveal`} key={item.num}>
+                                    <div className="item-number">{item.num}</div>
+                                    <div className="item-text">
+                                        {item.text.split("\n").map((line, i, arr) => (
+                                            <React.Fragment key={i}>
+                                                {line}
+                                                {i < arr.length - 1 && <br />}
+                                            </React.Fragment>
+                                        ))}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                <section className="testimonial-section section-margin" ref={testimonialRef}>
                     <div className="section-header reveal">
-                        <span className="section-subtitle">Testimonials</span>
-                        <h2 className="section-title">What Clients Say</h2>
+                        <span className="section-subtitle">{HOME_TESTIMONIALS_SECTION.subtitle}</span>
+                        <h2 className="section-title">{HOME_TESTIMONIALS_SECTION.title}</h2>
+                        <p className="section-desc">{HOME_TESTIMONIALS_SECTION.description}</p>
                     </div>
                     <div className="slider-wrapper" id="slider-container">
-                        {testimonials.map((item, index) => (
-                            <div key={index} className={getCardClass(index)} onClick={() => setCurrentIndex(index)}>
+                        {HOME_TESTIMONIALS.map((item, index) => (
+                            <div
+                                key={`${item.name}-${index}`}
+                                className={getCardClass(index)}
+                                onClick={() => setCurrentIndex(index)}
+                                role="button"
+                                tabIndex={0}
+                                onKeyDown={(e) => {
+                                    if (e.key === "Enter" || e.key === " ") setCurrentIndex(index);
+                                }}
+                            >
                                 <div className="quote-box">
                                     <RiDoubleQuotesL className="quote-icon" />
                                     <p className="quote-text">{item.text}</p>
                                 </div>
                                 <div className="user-info">
                                     <div className="connection-dot"></div>
-                                    <img src={item.image} alt={item.name} className="avatar" />
+                                    <PersonAvatar
+                                        name={item.name}
+                                        image={item.image}
+                                        className="avatar"
+                                        size={64}
+                                    />
                                     <h4 className="user-name">{item.name}</h4>
                                     <span className="user-role">{item.role}</span>
                                 </div>
@@ -300,11 +188,23 @@ export default function Home() {
                         ))}
                     </div>
                     <div className="dots-container" id="dots-container">
-                        {testimonials.map((_, index) => (
-                            <div key={index} className={`dot ${index === currentIndex ? "active" : ""}`} onClick={() => setCurrentIndex(index)}></div>
+                        {HOME_TESTIMONIALS.map((_, index) => (
+                            <div
+                                key={index}
+                                className={`dot ${index === currentIndex ? "active" : ""}`}
+                                onClick={() => setCurrentIndex(index)}
+                                role="button"
+                                tabIndex={0}
+                                aria-label={`Show testimonial ${index + 1}`}
+                                onKeyDown={(e) => {
+                                    if (e.key === "Enter" || e.key === " ") setCurrentIndex(index);
+                                }}
+                            />
                         ))}
                     </div>
                 </section>
+
+                <CTA pageKey="home" />
             </main>
         </div>
     );

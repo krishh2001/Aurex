@@ -1,209 +1,360 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { usePageEffects } from "../hooks/usePageEffects";
+import { usePageMeta } from "../hooks/usePageMeta";
 import {
-  RiQuestionLine,
   RiMailLine,
   RiPhoneLine,
   RiMapPinLine,
-  RiArrowRightUpLine,
+  RiCheckLine,
+  RiTimeLine,
+  RiMap2Line,
   RiArrowRightLine,
-  RiCheckLine
+  RiCloseLine,
 } from "react-icons/ri";
 
-import CTA from "../components/CTA";
+import {
+  COMPANY,
+  CONTACT_PAGE,
+  CONTACT_CHANNELS,
+  CONTACT_SERVICE_OPTIONS,
+  PAGE_META,
+} from "../data/company";
 
+const CHANNEL_ICONS = {
+  mail: RiMailLine,
+  phone: RiPhoneLine,
+  map: RiMapPinLine,
+};
 
+const INITIAL_FORM = {
+  name: "",
+  email: "",
+  company: "",
+  phone: "",
+  service: "",
+  message: "",
+};
 
 export default function Contact() {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState(INITIAL_FORM);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSent, setIsSent] = useState(false);
+  const [sentTo, setSentTo] = useState({ name: "", email: "" });
 
-  // --- Particle Effect ---
-  useEffect(() => {
-    // Parallax background text
-    const handleScroll = () => {
-      const bgText = document.querySelector('.bg-large-text');
-      if (bgText) {
-        let scroll = window.scrollY;
-        bgText.style.transform = `translate(-50%, ${scroll * 0.15}px)`;
-        bgText.style.opacity = 1 - (scroll * 0.001);
-      }
-    };
-    window.addEventListener('scroll', handleScroll);
+  usePageMeta(PAGE_META.contact);
+  usePageEffects(".contact-bg-text");
 
-    // Particles logic
-    const particleContainer = document.getElementById('particles');
-    if (particleContainer && particleContainer.childElementCount === 0) {
-      for (let i = 0; i < 30; i++) {
-        const p = document.createElement('div');
-        p.className = 'particle';
-        let size = Math.random() * 3 + 1;
-        p.style.width = `${size}px`;
-        p.style.height = `${size}px`;
-        p.style.left = `${Math.random() * 100}vw`;
-        p.style.top = `${Math.random() * 100}vh`;
-        p.style.animationDelay = `-${Math.random() * 20}s`;
-        p.style.opacity = Math.random() * 0.5;
-        particleContainer.appendChild(p);
-      }
-    }
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // --- Form Handling ---
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value });
+    const { id, value } = e.target;
+    setFormData((prev) => ({ ...prev, [id]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API call
     setTimeout(() => {
+      setSentTo({ name: formData.name, email: formData.email });
       setIsSubmitting(false);
       setIsSent(true);
-      setFormData({ name: "", email: "", message: "" });
-
-      // Hide success message after 3 seconds
-      setTimeout(() => setIsSent(false), 3000);
-    }, 1500);
+      setFormData(INITIAL_FORM);
+    }, 1200);
   };
+
+  const closeSuccess = () => setIsSent(false);
 
   return (
     <div className="contact-page-wrapper">
-      {/* Background Ambience */}
       <div className="ambient-glow"></div>
-      <div className="ambient-glow-2"></div>
-      <div className="ambient-glow-3"></div>
-      <div className="particles" id="particles"></div>
+      <div className="ambient-glow-2 contact-glow-form"></div>
       <div className="tech-line left-line"></div>
       <div className="tech-line right-line"></div>
 
-      {/* Parallax Title */}
-      <h1 className="bg-large-text">Contact</h1>
+      <h1 className="bg-large-text contact-bg-text">Contact</h1>
 
       <main className="container">
-
         <section className="contact-section">
           <div className="contact-grid">
-            {/* Left Content */}
             <div className="contact-content">
-              <div className="section-badge"><RiQuestionLine /> Contact</div>
-              <h1>Get in touch</h1>
-              <p className="contact-text">
-                Have questions or ready to transform your business? Drop a message — we'll respond fast.
-              </p>
-              <p className="contact-text">
-                Whether you're looking to start a new project or just want to explore possibilities,
-                we're here to help you navigate the digital landscape.
-              </p>
-
-              <div className="contact-cards">
-                <a href="mailto:hello@nova.com" className="contact-card">
-                  <div className="contact-icon"><RiMailLine /></div>
-                  <div className="contact-details">
-                    <div className="contact-label">Email us</div>
-                    <div className="contact-value">hello@nova.com</div>
-                  </div>
-                  <div className="contact-arrow"><RiArrowRightUpLine /></div>
-                </a>
-
-                <a href="tel:+15551234567" className="contact-card">
-                  <div className="contact-icon"><RiPhoneLine /></div>
-                  <div className="contact-details">
-                    <div className="contact-label">Call us</div>
-                    <div className="contact-value">+1 (555) 123-4567</div>
-                  </div>
-                  <div className="contact-arrow"><RiArrowRightUpLine /></div>
-                </a>
-
-                <div className="contact-card">
-                  <div className="contact-icon"><RiMapPinLine /></div>
-                  <div className="contact-details">
-                    <div className="contact-label">Our location</div>
-                    <div className="contact-value">San Francisco, CA</div>
-                  </div>
-                  <div className="contact-arrow"><RiArrowRightUpLine /></div>
-                </div>
+              <div className="contact-hero-meta">
+                <span className="contact-eyebrow">{CONTACT_PAGE.badge}</span>
+                <span className="contact-pill">24h response</span>
               </div>
+              <h1>{CONTACT_PAGE.title}</h1>
+              <p className="contact-lead">{CONTACT_PAGE.lead}</p>
+
+              <ul className="contact-highlights">
+                {CONTACT_PAGE.highlights.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+
+              <div className="contact-cards-grid">
+                {CONTACT_CHANNELS.map((channel) => {
+                  const Icon = CHANNEL_ICONS[channel.icon] || RiMailLine;
+                  const cardClass = `contact-info-card${channel.static ? " contact-info-card--static" : ""}`;
+                  const inner = (
+                    <>
+                      <span className="contact-info-icon" aria-hidden>
+                        <Icon />
+                      </span>
+                      <span className="contact-info-label">{channel.label}</span>
+                      <span className="contact-info-value">{channel.value}</span>
+                    </>
+                  );
+
+                  if (channel.href) {
+                    return (
+                      <a key={channel.id} href={channel.href} className={cardClass}>
+                        {inner}
+                      </a>
+                    );
+                  }
+
+                  return (
+                    <div key={channel.id} className={cardClass}>
+                      {inner}
+                    </div>
+                  );
+                })}
+              </div>
+
+              <p className="contact-hours">
+                <RiTimeLine aria-hidden />
+                {COMPANY.hours}
+              </p>
             </div>
 
-            {/* Right Form */}
             <div className="form-wrapper">
-              <form className="glass-form" onSubmit={handleSubmit}>
-                <div className="input-group">
-                  <label htmlFor="name">Name</label>
-                  <input
-                    id="name"
-                    type="text"
-                    placeholder="Your full name"
-                    required
-                    value={formData.name}
-                    onChange={handleChange}
-                  />
+              <form className="contact-form" onSubmit={handleSubmit} noValidate>
+                <div className="contact-form-head">
+                  <h2>{CONTACT_PAGE.formTitle}</h2>
+                  <p>{CONTACT_PAGE.formHint}</p>
                 </div>
-                <div className="input-group">
-                  <label htmlFor="email">Email</label>
-                  <input
-                    id="email"
-                    type="email"
-                    placeholder="your.email@example.com"
-                    required
-                    value={formData.email}
-                    onChange={handleChange}
-                  />
+
+                <div className="contact-form-fields">
+                <div className="contact-form-row">
+                  <div className="input-group">
+                    <label htmlFor="name">Name *</label>
+                    <input
+                      id="name"
+                      type="text"
+                      placeholder="e.g. Rahul Sharma"
+                      required
+                      autoComplete="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="input-group">
+                    <label htmlFor="email">Email *</label>
+                    <input
+                      id="email"
+                      type="email"
+                      placeholder="you@company.com"
+                      required
+                      autoComplete="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                    />
+                  </div>
                 </div>
+
+                <div className="contact-form-row">
+                  <div className="input-group">
+                    <label htmlFor="company">Company</label>
+                    <input
+                      id="company"
+                      type="text"
+                      placeholder="Optional"
+                      autoComplete="organization"
+                      value={formData.company}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="input-group">
+                    <label htmlFor="phone">Phone</label>
+                    <input
+                      id="phone"
+                      type="tel"
+                      placeholder="+91 …"
+                      autoComplete="tel"
+                      value={formData.phone}
+                      onChange={handleChange}
+                    />
+                  </div>
+                </div>
+
                 <div className="input-group">
-                  <label htmlFor="message">Message</label>
+                  <label htmlFor="service">Service</label>
+                  <select
+                    id="service"
+                    value={formData.service}
+                    onChange={handleChange}
+                    className="contact-select"
+                  >
+                    <option value="">Choose one</option>
+                    {CONTACT_SERVICE_OPTIONS.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="input-group input-group--grow">
+                  <label htmlFor="message">Message *</label>
                   <textarea
                     id="message"
-                    placeholder="Tell us about your project..."
+                    placeholder="What do you need? Timeline? Budget range?"
                     required
+                    rows={4}
                     value={formData.message}
                     onChange={handleChange}
-                  ></textarea>
+                  />
                 </div>
+                </div>
+
                 <button
                   type="submit"
-                  className="submit-btn"
+                  className={`submit-btn${isSent ? " submit-btn--success" : ""}`}
                   disabled={isSubmitting}
-                  style={isSent ? { background: '#10b981', color: '#fff' } : {}}
                 >
-                  {isSubmitting ? 'Sending...' : isSent ? 'Message Sent!' : 'Submit Message'}
+                  {isSubmitting ? "Sending…" : isSent ? "Sent" : "Send message"}
                 </button>
               </form>
             </div>
           </div>
         </section>
 
-        {/* Map Section */}
-        <section className="map-section">
-          <div className="map-wrapper">
-            <iframe
-              className="map-iframe"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.063683057404!2d-122.4194!3d37.7749!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085809c6c8f4459%3A0xb10ed6d9b5050fa5!2sSan+Francisco%2C+CA!5e0!3m2!1sen!2sus!4v1700000000000"
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Aurex Location"
-            ></iframe>
+        <section className="map-section" aria-labelledby="map-section-title">
+          <div className="map-section-inner">
+            <header className="map-hero">
+              <div className="map-hero-copy">
+                <span className="map-kicker">
+                  <RiMap2Line aria-hidden /> Our office
+                </span>
+                <h2 id="map-section-title" className="map-hero-title">
+                  Visit us in <span className="map-hero-accent">Noida</span>
+                </h2>
+                <p className="map-hero-desc">
+                  {COMPANY.name} headquarters — walk-ins welcome by appointment during business hours.
+                </p>
+              </div>
+              <div className="map-hero-badge" aria-hidden>
+                <span className="map-hero-badge-label">Region</span>
+                <strong>{COMPANY.location}</strong>
+              </div>
+            </header>
+
+            <div className="map-stage">
+              <div className="map-stage-glow" aria-hidden />
+              <div className="map-stage-frame">
+                <iframe
+                  className="map-iframe"
+                  src={COMPANY.mapEmbedUrl}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title={`${COMPANY.name} office location`}
+                />
+              </div>
+              <div className="map-stage-marker" aria-hidden>
+                <span className="map-stage-marker-ring" />
+                <span className="map-stage-marker-dot">
+                  <RiMapPinLine />
+                </span>
+              </div>
+            </div>
+
+            <div className="map-info-bar">
+              <article className="map-info-tile map-info-tile--wide">
+                <span className="map-info-tile-icon" aria-hidden>
+                  <RiMapPinLine />
+                </span>
+                <div className="map-info-tile-body">
+                  <span className="map-info-tile-label">Address</span>
+                  <p className="map-info-tile-value">{COMPANY.address}</p>
+                </div>
+              </article>
+              <article className="map-info-tile">
+                <span className="map-info-tile-icon" aria-hidden>
+                  <RiTimeLine />
+                </span>
+                <div className="map-info-tile-body">
+                  <span className="map-info-tile-label">Hours</span>
+                  <p className="map-info-tile-value">{COMPANY.hours}</p>
+                </div>
+              </article>
+              <article className="map-info-tile">
+                <span className="map-info-tile-icon" aria-hidden>
+                  <RiPhoneLine />
+                </span>
+                <div className="map-info-tile-body">
+                  <span className="map-info-tile-label">Phone</span>
+                  <a
+                    className="map-info-tile-value map-info-tile-link"
+                    href={`tel:${COMPANY.phone.replace(/\s/g, "")}`}
+                  >
+                    {COMPANY.phone}
+                  </a>
+                </div>
+              </article>
+              <a
+                href={COMPANY.mapDirectionsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="map-cta-tile"
+              >
+                <span className="map-cta-tile-text">
+                  <span className="map-cta-tile-label">Navigate</span>
+                  <strong>Get directions</strong>
+                </span>
+                <span className="map-cta-tile-icon" aria-hidden>
+                  <RiArrowRightLine />
+                </span>
+              </a>
+            </div>
           </div>
         </section>
-
-        <CTA />
-
-
-        {/* Success Message Toast */}
-        <div className={`success-message ${isSent ? 'active' : ''}`}>
-          <div className="success-icon"><RiCheckLine /></div>
-          <h3 style={{ color: '#fff', marginBottom: '6px', fontSize: '1.1rem' }}>Message Sent!</h3>
-          <p style={{ color: 'var(--contact-text-muted)', margin: 0, fontSize: '0.9rem' }}>We'll get back to you soon.</p>
-        </div>
-
       </main>
+
+      {isSent && (
+        <div className="success-overlay" role="presentation" onClick={closeSuccess}>
+          <div
+            className="success-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="success-modal-title"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button type="button" className="success-close" onClick={closeSuccess} aria-label="Close">
+              <RiCloseLine />
+            </button>
+            <div className="success-modal-icon">
+              <RiCheckLine aria-hidden />
+            </div>
+            <h3 id="success-modal-title" className="success-modal-title">
+              Thank you{sentTo.name ? `, ${sentTo.name}` : ""}!
+            </h3>
+            <p className="success-modal-desc">
+              Your inquiry was sent successfully. We will reply within one business day
+              {sentTo.email ? (
+                <>
+                  {" "}
+                  at <strong>{sentTo.email}</strong>
+                </>
+              ) : (
+                ""
+              )}
+              .
+            </p>
+            <button type="button" className="success-modal-btn" onClick={closeSuccess}>
+              Got it
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

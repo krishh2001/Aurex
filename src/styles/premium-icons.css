@@ -1,0 +1,450 @@
+/* Premium animated service icons */
+
+@keyframes psi-float {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-4px);
+    }
+}
+
+@keyframes psi-glow-pulse {
+    0%,
+    100% {
+        opacity: 0.2;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.35;
+        transform: scale(1.04);
+    }
+}
+
+@keyframes psi-ring-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes psi-dot-flow {
+    0%,
+    100% {
+        opacity: 0.65;
+        transform: translateX(0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateX(3px);
+    }
+}
+
+@keyframes psi-scan-sweep {
+    0%,
+    100% {
+        transform: translateY(-8px);
+        opacity: 0;
+    }
+
+    40%,
+    60% {
+        opacity: 0.9;
+    }
+
+    50% {
+        transform: translateY(10px);
+        opacity: 1;
+    }
+}
+
+@keyframes psi-cursor-blink {
+    0%,
+    45%,
+    100% {
+        opacity: 1;
+    }
+
+    50%,
+    95% {
+        opacity: 0.15;
+    }
+}
+
+@keyframes psi-bracket-pulse {
+    0%,
+    100% {
+        opacity: 0.92;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes psi-orbit-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes psi-node-pulse {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+@keyframes psi-bar-grow {
+    0%,
+    100% {
+        transform: scaleY(0.75);
+        transform-origin: bottom;
+    }
+
+    50% {
+        transform: scaleY(1);
+        transform-origin: bottom;
+    }
+}
+
+@keyframes psi-trend-draw {
+    0% {
+        stroke-dashoffset: 40;
+        opacity: 0.4;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes psi-satellite-orbit {
+    0% {
+        transform: rotate(0deg) translateX(14px) rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg) translateX(14px) rotate(-360deg);
+    }
+}
+
+.premium-service-icon {
+    position: relative;
+    width: 88px;
+    height: 88px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 22px;
+    color: var(--accent-primary);
+    flex-shrink: 0;
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.premium-service-icon__glow {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(circle at 50% 55%, currentColor 0%, transparent 72%);
+    opacity: 0.22;
+    animation: psi-glow-pulse 3s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.premium-service-icon__ring {
+    position: absolute;
+    inset: 4px;
+    border-radius: 18px;
+    border: 1px solid currentColor;
+    opacity: 0.12;
+    animation: psi-ring-spin 14s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.premium-service-icon__svg {
+    position: relative;
+    z-index: 2;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: psi-float 3.5s ease-in-out infinite;
+    filter: drop-shadow(0 2px 10px currentColor);
+}
+
+.premium-service-icon__svg svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: visible;
+}
+
+/* Cloud */
+.premium-service-icon--cloud .psi-cloud-body {
+    animation: psi-bracket-pulse 2.5s ease-in-out infinite;
+}
+
+.premium-service-icon--cloud .psi-dot--1 {
+    animation: psi-dot-flow 2s ease-in-out infinite;
+}
+
+.premium-service-icon--cloud .psi-dot--2 {
+    animation: psi-dot-flow 2s ease-in-out 0.35s infinite;
+}
+
+.premium-service-icon--cloud .psi-dot--3 {
+    animation: psi-dot-flow 2s ease-in-out 0.7s infinite;
+}
+
+/* Security */
+.premium-service-icon--security .psi-scan {
+    animation: psi-scan-sweep 2.8s ease-in-out infinite;
+}
+
+.premium-service-icon--security .psi-lock {
+    animation: psi-bracket-pulse 2.2s ease-in-out infinite;
+}
+
+/* Website */
+.premium-service-icon--website .psi-web-hero {
+    animation: psi-bracket-pulse 2.4s ease-in-out infinite;
+}
+
+.premium-service-icon--website .psi-web-line--1 {
+    animation: psi-code-typing 2.2s ease-in-out infinite;
+}
+
+.premium-service-icon--website .psi-web-line--2 {
+    animation: psi-code-typing 2.2s ease-in-out 0.35s infinite;
+}
+
+/* Web app */
+.premium-service-icon--webapp .psi-app-layer--front {
+    animation: psi-float 3.5s ease-in-out infinite;
+}
+
+.premium-service-icon--webapp .psi-app-tile--1 {
+    animation: psi-bar-grow 2.2s ease-in-out infinite;
+}
+
+.premium-service-icon--webapp .psi-app-tile--2 {
+    animation: psi-bar-grow 2.2s ease-in-out 0.25s infinite;
+}
+
+.premium-service-icon--webapp .psi-app-tile--3 {
+    animation: psi-bracket-pulse 2.5s ease-in-out infinite;
+}
+
+/* Mobile */
+.premium-service-icon--mobile .psi-phone-screen {
+    animation: psi-bracket-pulse 2.6s ease-in-out infinite;
+}
+
+.premium-service-icon--mobile .psi-phone-app {
+    animation: psi-dot-flow 2s ease-in-out infinite;
+}
+
+.premium-service-icon--mobile .psi-phone-app--wide {
+    animation-delay: 0.35s;
+}
+
+/* Dev — Custom Software (</> in code window) */
+.premium-service-icon--dev .psi-dev-window {
+    animation: psi-bracket-pulse 2.8s ease-in-out infinite;
+}
+
+.premium-service-icon--dev .psi-chevron--l {
+    animation: psi-bracket-pulse 2s ease-in-out infinite;
+}
+
+.premium-service-icon--dev .psi-chevron--r {
+    animation: psi-bracket-pulse 2s ease-in-out 0.25s infinite;
+}
+
+.premium-service-icon--dev .psi-slash {
+    transform-origin: 24px 24px;
+    transform-box: fill-box;
+    animation: psi-dev-slash 2.4s ease-in-out infinite;
+}
+
+.premium-service-icon--dev .psi-code-line--1 {
+    animation: psi-code-typing 2.2s ease-in-out infinite;
+}
+
+.premium-service-icon--dev .psi-code-line--2 {
+    animation: psi-code-typing 2.2s ease-in-out 0.35s infinite;
+}
+
+@keyframes psi-dev-slash {
+    0%,
+    100% {
+        opacity: 0.85;
+        transform: rotate(-8deg);
+    }
+
+    50% {
+        opacity: 1;
+        transform: rotate(8deg);
+    }
+}
+
+@keyframes psi-code-typing {
+    0%,
+    100% {
+        opacity: 0.4;
+        stroke-dasharray: 24;
+        stroke-dashoffset: 8;
+    }
+
+    50% {
+        opacity: 0.85;
+        stroke-dasharray: 24;
+        stroke-dashoffset: 0;
+    }
+}
+
+/* DevOps */
+.premium-service-icon--devops .psi-orbit {
+    transform-origin: 24px 24px;
+    animation: psi-orbit-spin 8s linear infinite;
+}
+
+.premium-service-icon--devops .psi-node--1,
+.premium-service-icon--devops .psi-node--2,
+.premium-service-icon--devops .psi-node--3 {
+    transform-origin: center;
+    animation: psi-node-pulse 2s ease-in-out infinite;
+}
+
+.premium-service-icon--devops .psi-node--2 {
+    animation-delay: 0.35s;
+}
+
+.premium-service-icon--devops .psi-node--3 {
+    animation-delay: 0.7s;
+}
+
+/* Data */
+.premium-service-icon--data .psi-bar--1 {
+    animation: psi-bar-grow 2.2s ease-in-out infinite;
+}
+
+.premium-service-icon--data .psi-bar--2 {
+    animation: psi-bar-grow 2.2s ease-in-out 0.25s infinite;
+}
+
+.premium-service-icon--data .psi-bar--3 {
+    animation: psi-bar-grow 2.2s ease-in-out 0.5s infinite;
+}
+
+.premium-service-icon--data .psi-trend {
+    stroke-dasharray: 40;
+    animation: psi-trend-draw 2.5s ease-in-out infinite alternate;
+}
+
+/* Transform / consulting */
+.premium-service-icon--transform .psi-globe {
+    animation: psi-bracket-pulse 3s ease-in-out infinite;
+}
+
+.premium-service-icon--transform .psi-satellite {
+    transform-origin: 24px 24px;
+    animation: psi-satellite-orbit 6s linear infinite;
+}
+
+/* Card color themes — brighter strokes on dark icon tile */
+.service-card:nth-child(1) .premium-service-icon,
+.services-offering-card:nth-child(1) .premium-service-icon {
+    color: #4ade80;
+    border: 1px solid rgba(74, 222, 128, 0.45);
+    box-shadow: 0 8px 24px rgba(16, 185, 129, 0.2);
+}
+
+.service-card:nth-child(2) .premium-service-icon,
+.services-offering-card:nth-child(2) .premium-service-icon {
+    color: #60a5fa;
+    border: 1px solid rgba(96, 165, 250, 0.45);
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.2);
+}
+
+.service-card:nth-child(3) .premium-service-icon,
+.services-offering-card:nth-child(3) .premium-service-icon {
+    color: #f472b6;
+    border: 1px solid rgba(244, 114, 182, 0.45);
+    box-shadow: 0 8px 24px rgba(236, 72, 153, 0.2);
+}
+
+.service-card:nth-child(4) .premium-service-icon,
+.services-offering-card:nth-child(4) .premium-service-icon {
+    color: #fb923c;
+    border: 1px solid rgba(251, 146, 60, 0.45);
+    box-shadow: 0 8px 24px rgba(249, 115, 22, 0.2);
+}
+
+.service-card:nth-child(5) .premium-service-icon,
+.services-offering-card:nth-child(5) .premium-service-icon {
+    color: #c4b5fd;
+    border: 1px solid rgba(196, 181, 253, 0.45);
+    box-shadow: 0 8px 24px rgba(139, 92, 246, 0.2);
+}
+
+.service-card:nth-child(6) .premium-service-icon,
+.services-offering-card:nth-child(6) .premium-service-icon {
+    color: #22d3ee;
+    border: 1px solid rgba(34, 211, 238, 0.45);
+    box-shadow: 0 8px 24px rgba(6, 182, 212, 0.2);
+}
+
+.service-card:hover .premium-service-icon,
+.services-offering-card:hover .premium-service-icon {
+    transform: scale(1.05);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    filter: brightness(1.08);
+}
+
+.service-card:hover .premium-service-icon__glow,
+.services-offering-card:hover .premium-service-icon__glow {
+    opacity: 0.38;
+}
+
+.service-card:hover .premium-service-icon__svg,
+.services-offering-card:hover .premium-service-icon__svg {
+    filter: drop-shadow(0 4px 14px currentColor);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .premium-service-icon__glow,
+    .premium-service-icon__ring,
+    .premium-service-icon__svg,
+    .premium-service-icon--cloud .psi-dot,
+    .premium-service-icon--security .psi-scan,
+    .premium-service-icon--dev .psi-slash,
+    .premium-service-icon--dev .psi-code-line,
+    .premium-service-icon--devops .psi-orbit,
+    .premium-service-icon--devops .psi-node,
+    .premium-service-icon--data .psi-bar,
+    .premium-service-icon--data .psi-trend,
+    .premium-service-icon--transform .psi-satellite {
+        animation: none;
+    }
+}

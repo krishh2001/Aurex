@@ -7,12 +7,29 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation(); // Gets current URL path
 
-  // Handle Scroll Effect
+  // Scroll state batched via rAF to avoid layout thrashing
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 50);
+    let ticking = false;
+    let lastScrolled = window.scrollY > 50;
+
+    const update = () => {
+      const next = window.scrollY > 50;
+      if (next !== lastScrolled) {
+        lastScrolled = next;
+        setScrolled(next);
+      }
+      ticking = false;
     };
-    window.addEventListener("scroll", onScroll);
+
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    update();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -20,6 +37,13 @@ export default function Navbar() {
   useEffect(() => {
     setMobileOpen(false);
   }, [location]);
+
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
 
   // Helper to check if link is active
   const isActive = (path) => location.pathname === path ? "active" : "";
@@ -46,7 +70,12 @@ export default function Navbar() {
             <Link to="/blog" className={isActive("/blog")}>Blogs</Link>
         </li>
         <li>
-            <Link to="/pricing" className={isActive("/pricing")}>Pricing</Link>
+            <Link to="/pricing" className={isActive("/pricing")}>Plans</Link>
+        </li>
+        <li className="nav-links-contact">
+            <Link to="/contact" className={`nav-link-contact ${isActive("/contact")}`}>
+              Get a Quote
+            </Link>
         </li>
       </ul>
 
@@ -59,7 +88,7 @@ export default function Navbar() {
         <span className="bar" />
       </button>
 
-      <Link to="/contact" className="nav-btn">Let's Talk</Link>
+      <Link to="/contact" className="nav-btn">Get a Quote</Link>
     </nav>
   );
 }

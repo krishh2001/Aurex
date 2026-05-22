@@ -17,6 +17,44 @@
     margin: 0 auto 100px;
 }
 
+.blog-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--accent-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-bottom: 28px;
+}
+
+.blog-back-link:hover {
+    text-decoration: underline;
+}
+
+.author-avatar--initials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--accent-gradient);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.related-card {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.25s ease;
+}
+
+.related-card:hover {
+    transform: translateY(-4px);
+}
+
 /* Article Header */
 .article-header {
     margin-bottom: 60px;
@@ -518,58 +556,42 @@
     gap: 12px;
 }
 
-/* --- CTA Section --- */
-.cta-section {
-    position: relative;
-    border-radius: 30px;
-    overflow: hidden;
-    padding: 80px 40px;
-    text-align: center;
-    border: 1px solid var(--glass-border);
-    margin-bottom: 80px;
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.cta-bg {
-    position: absolute;
-    inset: 0;
-    background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop') center/cover;
-    opacity: 0.15;
-    z-index: -1;
-    transition: 0.5s;
-}
-
-.cta-section:hover .cta-bg {
-    transform: scale(1.05);
-    opacity: 0.25;
-}
-
-.cta-content {
-    position: relative;
-    z-index: 2;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.cta-btn {
+.blog-back-link {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    margin-top: 30px;
-    padding: 16px 32px;
-    background: #fff;
-    color: #000;
-    border-radius: 100px;
-    font-weight: 600;
+    gap: 6px;
+    color: var(--accent-color);
     text-decoration: none;
-    transition: 0.3s;
+    font-size: 0.9rem;
+    margin-bottom: 28px;
 }
 
-.cta-btn:hover {
-    background: var(--accent-color);
-    transform: scale(1.05);
+.blog-back-link:hover {
+    text-decoration: underline;
+}
+
+.author-avatar--initials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--accent-gradient);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+a.related-card {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+a.related-card:hover {
+    transform: translateY(-4px);
 }
 
 /* --- Responsive --- */

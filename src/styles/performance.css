@@ -1,0 +1,78 @@
+/* =========================================
+   Site-wide performance (visual match, less GPU cost)
+   NOTE: .bg-large-text page headings are NOT modified here — see layout.css
+   ========================================= */
+
+/* Navbar: opaque glass instead of live blur */
+.navbar {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(8, 8, 8, 0.88) !important;
+}
+
+.navbar.scrolled {
+    background: rgba(0, 0, 0, 0.94) !important;
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background: rgba(5, 5, 5, 0.98) !important;
+    }
+}
+
+/* Cards & panels: solid glass (no per-element blur) */
+.service-card,
+.services-offering-card,
+.about-process-card,
+.about-story-img,
+.quote-box,
+.contact-form,
+.contact-cards-grid,
+.contact-info-card,
+.blog-list-post-card,
+.related-card,
+.comment-form,
+.faq-item,
+.services-tech-label-card,
+.success-modal {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* Long pages: skip off-screen section paint where supported */
+.section-margin,
+.about-story-section,
+.about-process-section,
+.about-tech-stack-section,
+.about-team-section,
+.sp-margin-lg,
+.services-tech-orbit-section,
+.blog-list-post-card,
+.testimonial-section,
+.contact-section,
+.map-section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 500px;
+}
+
+/* Carousels / sliders */
+.slider-wrapper,
+.services-tech-carousel-wrapper,
+.about-tech-curve-stage,
+.about-orbit-wrapper {
+    contain: layout style;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .particle,
+    .hero-ticker__track {
+        animation: none !important;
+    }
+
+    .testimonial-card,
+    .services-tech-item {
+        transition: none !important;
+    }
+}

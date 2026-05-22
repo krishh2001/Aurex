@@ -14,26 +14,44 @@
     --font-family: 'Inter', sans-serif;
     --section-spacing: clamp(60px, 8vw, 140px);
     --accent-glow: rgba(16, 185, 129, 0.4);
+
+    /* Typography scale — balanced, readable */
+    --text-xs: 0.8125rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-md: 1.0625rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 1.75rem;
+    --text-4xl: 2.125rem;
+    --text-hero: clamp(2.25rem, 4.2vw, 3.25rem);
+    --text-page-title: clamp(2rem, 3.8vw, 2.625rem);
+    --text-section: clamp(1.75rem, 3vw, 2.125rem);
+    --text-bg-watermark: clamp(4rem, 14vw, 10rem);
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    scroll-behavior: smooth;
 }
 
 html {
+    font-size: 16px;
+    scroll-behavior: auto;
     scroll-padding-top: 100px;
 }
 
 body {
     background: var(--bg-color);
     font-family: var(--font-family);
+    font-size: var(--text-base);
     overflow-x: hidden;
     min-height: 100vh;
     color: var(--text-main);
     line-height: 1.6;
+    margin: 0;
 }
 
 /* =========================================
@@ -43,13 +61,15 @@ body {
     position: absolute;
     top: -100px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
     width: min(800px, 90vw);
     height: min(500px, 60vh);
     background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
     z-index: 0;
     pointer-events: none;
     filter: blur(100px);
+    will-change: transform;
+    contain: layout style paint;
 }
 
 .ambient-glow-2 {
@@ -62,6 +82,9 @@ body {
     border-radius: 50%;
     z-index: -1;
     filter: blur(80px);
+    transform: translateZ(0);
+    contain: strict;
+    pointer-events: none;
 }
 
 .ambient-glow-3 {
@@ -74,6 +97,9 @@ body {
     border-radius: 50%;
     z-index: -1;
     filter: blur(80px);
+    transform: translateZ(0);
+    contain: strict;
+    pointer-events: none;
 }
 
 .particles {
@@ -81,6 +107,8 @@ body {
     inset: 0;
     pointer-events: none;
     z-index: 0;
+    contain: strict;
+    overflow: hidden;
 }
 
 .particle {
@@ -88,6 +116,7 @@ body {
     background: rgba(255, 255, 255, 0.3);
     border-radius: 50%;
     animation: float 20s linear infinite;
+    will-change: transform, opacity;
 }
 
 @keyframes float {
@@ -151,19 +180,23 @@ body {
     left: 0;
 }
 
+/* Large fixed page titles (CONTACT, ABOUT, BLOGS, etc.) — do not override in performance.css */
 .bg-large-text {
     position: fixed;
     top: 15%;
     left: 50%;
-    transform: translateX(-50%);
-    font-size: clamp(4rem, 12vw, 12rem);
+    transform: translate3d(-50%, 0, 0);
+    font-size: var(--text-bg-watermark);
     font-weight: 800;
-    color: rgba(255, 255, 255, 0.079);
-    letter-spacing: -5px;
+    color: rgba(255, 255, 255, 0.09);
+    letter-spacing: -4px;
     text-transform: uppercase;
     z-index: -1;
     pointer-events: none;
     white-space: nowrap;
+    opacity: 1;
+    will-change: transform, opacity;
+    user-select: none;
 }
 
 /* =========================================
@@ -227,6 +260,10 @@ body {
     display: flex;
     list-style: none;
     gap: clamp(3px, 1vw, 5px);
+}
+
+.nav-links-contact {
+    display: none;
 }
 
 .nav-links a {
@@ -332,8 +369,8 @@ body {
 
 .footer-top {
     display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
-    gap: clamp(20px, 4vw, 40px);
+    grid-template-columns: 1.4fr repeat(4, minmax(0, 1fr));
+    gap: clamp(20px, 3vw, 36px);
     margin-bottom: clamp(40px, 8vw, 80px);
     align-items: start;
 }
@@ -345,25 +382,70 @@ body {
     gap: 8px;
 }
 
-.footer-logo img {
+.footer-logo {
+    display: block;
+    line-height: 0;
+    text-align: left;
+}
+
+.footer-logo img,
+.footer-brand .aurex-logo {
+    display: block;
+    margin-left: 0;
+    margin-right: auto;
     width: clamp(120px, 12vw, 150px);
     height: clamp(38px, 4vw, 48px);
     object-fit: contain;
+    object-position: left center;
 }
 
 .footer-slogan {
     font-size: clamp(0.7rem, 1.5vw, 0.8rem);
     color: var(--text-muted);
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-transform: none;
     font-weight: 500;
-    opacity: 0.7;
+    opacity: 0.85;
+    line-height: 1.55;
+    max-width: 300px;
+    text-align: left;
+}
+
+.social-links--bottom {
+    justify-content: center;
 }
 
 .footer-col {
     display: flex;
     flex-direction: column;
-    gap: clamp(10px, 2vw, 15px);
+    gap: clamp(10px, 2vw, 12px);
+    align-items: flex-start;
+}
+
+.footer-col-title {
+    margin: 0 0 6px;
+    font-size: clamp(0.68rem, 1.4vw, 0.75rem);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-primary);
+}
+
+.footer-link--static {
+    cursor: default;
+    text-transform: none;
+    letter-spacing: 0.02em;
+    line-height: 1.45;
+}
+
+.footer-link--static:hover {
+    color: var(--text-muted);
+    transform: none;
+    text-shadow: none;
+}
+
+.footer-link--static:hover::before {
+    opacity: 0;
 }
 
 .footer-link {
@@ -456,7 +538,7 @@ body {
 /* Tablet Landscape (1024px and below) */
 @media (max-width: 1024px) {
     .bg-large-text {
-        font-size: clamp(5rem, 15vw, 10rem);
+        font-size: clamp(3.5rem, 14vw, 7.5rem);
     }
 
     .container {
@@ -470,8 +552,12 @@ body {
     }
 
     .footer-top {
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: clamp(30px, 6vw, 50px);
+        grid-template-columns: repeat(2, 1fr);
+        gap: clamp(28px, 5vw, 40px);
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
     }
 }
 
@@ -549,13 +635,18 @@ body {
         display: none;
     }
 
+    .nav-links-contact {
+        display: list-item;
+        margin-top: 8px;
+    }
+
     .tech-line {
         /* width: clamp(60px, 12vw, 90px); */
         top: 45%;
     }
 
     .bg-large-text {
-        font-size: clamp(4rem, 18vw, 8rem);
+        font-size: clamp(3rem, 18vw, 5.5rem);
         top: 18%;
     }
 
@@ -567,16 +658,32 @@ body {
     .footer-top {
         grid-template-columns: 1fr;
         gap: clamp(25px, 6vw, 40px);
-        text-align: center;
     }
 
     .footer-brand {
-        align-items: center;
-        text-align: center;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .footer-logo,
+    .footer-logo img,
+    .footer-brand .aurex-logo {
+        margin-left: 0;
+        margin-right: auto;
+        object-position: left center;
+    }
+
+    .footer-slogan {
+        text-align: left;
     }
 
     .footer-col {
-        align-items: center;
+        align-items: flex-start;
+    }
+
+    .footer-col-title,
+    .footer-link {
+        text-align: left;
     }
 
     .footer-link:hover {
@@ -602,7 +709,7 @@ body {
     }
 
     .bg-large-text {
-        font-size: clamp(3rem, 20vw, 6rem);
+        font-size: clamp(2.75rem, 20vw, 4.5rem);
         letter-spacing: -2px;
     }
 
@@ -673,6 +780,30 @@ body {
 
     .navbar {
         max-width: 1400px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .particle {
+        animation: none;
+        display: none;
+    }
+
+    .ambient-glow,
+    .ambient-glow-2,
+    .ambient-glow-3 {
+        filter: blur(40px);
+    }
+}
+
+@media (max-width: 768px) {
+    .ambient-glow {
+        filter: blur(70px);
+    }
+
+    .ambient-glow-2,
+    .ambient-glow-3 {
+        filter: blur(50px);
     }
 }
 

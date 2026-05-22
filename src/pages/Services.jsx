@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useCallback } from "react";
+import { usePageEffects } from "../hooks/usePageEffects";
+import { usePageMeta } from "../hooks/usePageMeta";
+import { useIntervalWhenVisible } from "../hooks/useIntervalWhenVisible";
 import { Link } from "react-router-dom";
-import {
-  RiCodeSSlashLine, RiPaletteLine, RiSmartphoneLine, RiCloudLine,
-  RiShoppingBag3Line, RiBarChartGroupedLine, RiCheckLine, RiArrowRightLine
-} from "react-icons/ri";
+import { RiCheckLine, RiArrowRightLine } from "react-icons/ri";
 import CTA from "../components/CTA";
+import PremiumServiceIcon from "../components/PremiumServiceIcon";
+import { SERVICE_OFFERINGS, PAGE_META } from "../data/company";
 
-export default function Services() {
-  const [techIndex, setTechIndex] = useState(2);
-
-  const techData = [
+const TECH_DATA = [
     { name: "React", category: "Frontend", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
     { name: "Node.js", category: "Backend", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
     { name: "Python", category: "Language", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
@@ -17,47 +16,23 @@ export default function Services() {
     { name: "Docker", category: "DevOps", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
     { name: "MongoDB", category: "Database", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
     { name: "Angular", category: "Frontend", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" }
-  ];
+];
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const bgText = document.querySelector('.services-bg-text');
-      if (bgText) {
-        let scroll = window.scrollY;
-        bgText.style.transform = `translate(-50%, ${scroll * 0.15}px)`;
-        bgText.style.opacity = 1 - (scroll * 0.001);
-      }
-    };
-    window.addEventListener('scroll', handleScroll);
+export default function Services() {
+  const [techIndex, setTechIndex] = useState(2);
+  const techOrbitRef = useRef(null);
 
-    const particleContainer = document.getElementById('particles');
-    if (particleContainer && particleContainer.childElementCount === 0) {
-      for (let i = 0; i < 30; i++) {
-        const p = document.createElement('div');
-        p.className = 'particle';
-        let size = Math.random() * 3 + 1;
-        p.style.width = `${size}px`;
-        p.style.height = `${size}px`;
-        p.style.left = `${Math.random() * 100}vw`;
-        p.style.top = `${Math.random() * 100}vh`;
-        p.style.animationDelay = `-${Math.random() * 20}s`;
-        p.style.opacity = Math.random() * 0.5;
-        particleContainer.appendChild(p);
-      }
-    }
+  usePageMeta(PAGE_META.services);
+  usePageEffects(".services-bg-text");
 
-    return () => window.removeEventListener('scroll', handleScroll);
+  const advanceTech = useCallback(() => {
+    setTechIndex((prev) => (prev + 1) % TECH_DATA.length);
   }, []);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTechIndex((prevIndex) => (prevIndex + 1) % techData.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [techData.length]);
+  useIntervalWhenVisible(techOrbitRef, advanceTech, 3000);
 
   const getTechItemClass = (index) => {
-    const len = techData.length;
+    const len = TECH_DATA.length;
     const diff = (index - techIndex + len) % len;
 
     if (diff === 0) return 'services-tech-item--active';
@@ -76,7 +51,6 @@ export default function Services() {
 
       <h1 className="bg-large-text services-bg-text">SERVICES</h1>
 
-      <div className="particles" id="particles"></div>
       <div className="tech-line left-line"></div>
       <div className="tech-line right-line"></div>
 
@@ -85,11 +59,10 @@ export default function Services() {
         {/* Hero */}
         <section className="services-hero-container">
           <div className="services-section-header">
-            <span className="services-section-subtitle">Our Expertise</span>
-            <h2 className="services-section-title">Digital Excellence,<br />Engineered for Impact</h2>
+            <span className="services-section-subtitle">IT Services</span>
+            <h2 className="services-section-title">Websites & Applications<br />Built for Your Clients</h2>
             <p className="services-section-desc">
-              Experience our services through an immersive interface. We deliver
-              high-performance solutions tailored to your business needs.
+              AUREX takes your IT project requirements and delivers production-ready websites, web apps, and mobile applications—with cloud, security, and support when you need them.
             </p>
           </div>
         </section>
@@ -97,91 +70,23 @@ export default function Services() {
         {/* Services Grid */}
         <section className="sp-margin-lg">
           <div className="services-cards-grid">
-
-            {/* Service 1 */}
-            <div className="services-offering-card">
-              <div className="services-card-icon-container"><RiCodeSSlashLine /></div>
-              <h3>Web Development</h3>
-              <p>Custom web applications built with modern frameworks. Fast, secure, and scalable solutions tailored to your business needs.</p>
-              <ul className="services-card-features">
-                <li><RiCheckLine /> React & Next.js Development</li>
-                <li><RiCheckLine /> Node.js Backend Systems</li>
-                <li><RiCheckLine /> Progressive Web Apps</li>
-                <li><RiCheckLine /> API Integration</li>
-              </ul>
-              <Link to="/contact" className="services-learn-more-link">Learn More <RiArrowRightLine /></Link>
-            </div>
-
-            {/* Service 2 */}
-            <div className="services-offering-card">
-              <div className="services-card-icon-container"><RiPaletteLine /></div>
-              <h3>UI/UX Design</h3>
-              <p>Intuitive interfaces that users love. From wireframes to high-fidelity prototypes, we design with the user in mind.</p>
-              <ul className="services-card-features">
-                <li><RiCheckLine /> User Research & Strategy</li>
-                <li><RiCheckLine /> Interactive Prototyping</li>
-                <li><RiCheckLine /> Design Systems</li>
-                <li><RiCheckLine /> Mobile-First Approach</li>
-              </ul>
-              <Link to="/contact" className="services-learn-more-link">Learn More <RiArrowRightLine /></Link>
-            </div>
-
-            {/* Service 3 */}
-            <div className="services-offering-card">
-              <div className="services-card-icon-container"><RiSmartphoneLine /></div>
-              <h3>Mobile Development</h3>
-              <p>Native and cross-platform mobile apps that deliver seamless experiences on iOS and Android devices.</p>
-              <ul className="services-card-features">
-                <li><RiCheckLine /> React Native & Flutter</li>
-                <li><RiCheckLine /> iOS & Android Native</li>
-                <li><RiCheckLine /> App Store Optimization</li>
-                <li><RiCheckLine /> Performance Tuning</li>
-              </ul>
-              <Link to="/contact" className="services-learn-more-link">Learn More <RiArrowRightLine /></Link>
-            </div>
-
-            {/* Service 4 */}
-            <div className="services-offering-card">
-              <div className="services-card-icon-container"><RiCloudLine /></div>
-              <h3>Cloud Solutions</h3>
-              <p>Scalable cloud infrastructure, migration services, and optimization to ensure 99.9% uptime and security.</p>
-              <ul className="services-card-features">
-                <li><RiCheckLine /> AWS & Azure Architecture</li>
-                <li><RiCheckLine /> DevOps Automation</li>
-                <li><RiCheckLine /> Serverless Computing</li>
-                <li><RiCheckLine /> Cloud Security</li>
-              </ul>
-              <Link to="/contact" className="services-learn-more-link">Learn More <RiArrowRightLine /></Link>
-            </div>
-
-            {/* Service 5 */}
-            <div className="services-offering-card">
-              <div className="services-card-icon-container"><RiShoppingBag3Line /></div>
-              <h3>E-commerce</h3>
-              <p>Complete e-commerce solutions that convert visitors into customers with seamless checkout experiences.</p>
-              <ul className="services-card-features">
-                <li><RiCheckLine /> Shopify & WooCommerce</li>
-                <li><RiCheckLine /> Custom Payment Gateways</li>
-                <li><RiCheckLine /> Inventory Management</li>
-                <li><RiCheckLine /> Sales Analytics</li>
-              </ul>
-              <Link to="/contact" className="services-learn-more-link">Learn More <RiArrowRightLine /></Link>
-            </div>
-
-            {/* Service 6 */}
-            <div className="services-offering-card">
-              <div className="services-card-icon-container"><RiBarChartGroupedLine /></div>
-              <h3>Digital Marketing</h3>
-              <p>Data-driven marketing strategies that increase visibility, drive traffic, and generate qualified leads.</p>
-              <ul className="services-card-features">
-                <li><RiCheckLine /> SEO Optimization</li>
-                <li><RiCheckLine /> Social Media Strategy</li>
-                <li><RiCheckLine /> Content Marketing</li>
-                <li><RiCheckLine /> PPC Campaigns</li>
-              </ul>
-              <Link to="/contact" className="services-learn-more-link">Learn More <RiArrowRightLine /></Link>
-            </div>
-
+            {SERVICE_OFFERINGS.map((service) => (
+              <div className="services-offering-card" key={service.title}>
+                <PremiumServiceIcon type={service.icon} className="services-card-icon-container" />
+                <h3>{service.title}</h3>
+                <p>{service.description}</p>
+                <ul className="services-card-features">
+                  {service.features.map((feature) => (
+                    <li key={feature}>
+                      <RiCheckLine /> {feature}
+                    </li>
+                  ))}
+                </ul>
+                <Link to="/contact" className="services-learn-more-link">
+                  Learn More <RiArrowRightLine />
+                </Link>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -193,7 +98,7 @@ export default function Services() {
         </div>
 
         {/* Tech Stack 3D Orbit */}
-        <section className="services-tech-orbit-section">
+        <section className="services-tech-orbit-section" ref={techOrbitRef}>
           {/* Animated Rings */}
           <div className="services-orbit-rings-container">
             <div className="services-orbit-ring services-orbit-ring--primary"></div>
@@ -205,13 +110,13 @@ export default function Services() {
 
           {/* Carousel */}
           <div className="services-tech-carousel-wrapper">
-            {techData.map((tech, index) => (
+            {TECH_DATA.map((tech, index) => (
               <div
                 key={index}
                 className={`services-tech-item ${getTechItemClass(index)}`}
                 onClick={() => setTechIndex(index)}
               >
-                <img src={tech.img} alt={tech.name} />
+                <img src={tech.img} alt={tech.name} loading="lazy" decoding="async" width={64} height={64} />
               </div>
             ))}
           </div>
@@ -232,13 +137,13 @@ export default function Services() {
             </svg>
 
             <div className="services-tech-label-card">
-              <span className="services-tech-name">{techData[techIndex].name}</span>
-              <span className="services-tech-category">({techData[techIndex].category})</span>
+              <span className="services-tech-name">{TECH_DATA[techIndex].name}</span>
+              <span className="services-tech-category">({TECH_DATA[techIndex].category})</span>
             </div>
           </div>
         </section>
 
-        <CTA />
+        <CTA pageKey="services" />
 
       </main>
     </div>

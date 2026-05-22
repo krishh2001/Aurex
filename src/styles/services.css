@@ -49,8 +49,9 @@
 /* --- Services Cards Grid --- */
 .services-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(20px, 3vw, 30px);
+  align-items: stretch;
 }
 
 .services-offering-card {
@@ -75,56 +76,9 @@
   box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
 }
 
-/* Card Icon Styling */
-.services-card-icon-container {
-  width: 70px;
-  height: 70px;
-  background: rgba(16, 185, 129, 0.1);
-  border-radius: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* Card Icon — premium animated (see premium-icons.css) */
+.services-offering-card .services-card-icon-container {
   margin-bottom: 25px;
-  transition: 0.3s;
-  font-size: 2rem;
-  color: var(--accent-primary);
-}
-
-/* Individual Icon Colors */
-.services-offering-card:nth-child(1) .services-card-icon-container {
-  background: rgba(16, 185, 129, 0.1);
-  color: #10b981;
-  border: 1px solid rgba(16, 185, 129, 0.2);
-}
-
-.services-offering-card:nth-child(2) .services-card-icon-container {
-  background: rgba(59, 130, 246, 0.1);
-  color: #3b82f6;
-  border: 1px solid rgba(59, 130, 246, 0.2);
-}
-
-.services-offering-card:nth-child(3) .services-card-icon-container {
-  background: rgba(236, 72, 153, 0.1);
-  color: #ec4899;
-  border: 1px solid rgba(236, 72, 153, 0.2);
-}
-
-.services-offering-card:nth-child(4) .services-card-icon-container {
-  background: rgba(245, 158, 11, 0.1);
-  color: #f59e0b;
-  border: 1px solid rgba(245, 158, 11, 0.2);
-}
-
-.services-offering-card:nth-child(5) .services-card-icon-container {
-  background: rgba(139, 92, 246, 0.1);
-  color: #8b5cf6;
-  border: 1px solid rgba(139, 92, 246, 0.2);
-}
-
-.services-offering-card:nth-child(6) .services-card-icon-container {
-  background: rgba(6, 182, 212, 0.1);
-  color: #06b6d4;
-  border: 1px solid rgba(6, 182, 212, 0.2);
 }
 
 /* Card Content */
@@ -439,14 +393,17 @@
 /* --- Responsive Design --- */
 @media (max-width: 1024px) {
   .services-cards-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .services-cards-grid {
+    grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 768px) {
-  .services-cards-grid {
-    grid-template-columns: 1fr;
-  }
 
   .services-section-title {
     font-size: 2.5rem;
