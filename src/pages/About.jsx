@@ -5,9 +5,9 @@ import { usePageMeta } from "../hooks/usePageMeta";
 import { useIntervalWhenVisible } from "../hooks/useIntervalWhenVisible";
 import { optimizeImageUrl } from "../utils/imageUrl";
 import PersonAvatar from "../components/PersonAvatar";
+import PremiumServiceIcon from "../components/PremiumServiceIcon";
 import {
-    RiFlashlightFill, RiSearchEyeLine, RiLightbulbFlashLine, RiPantoneLine,
-    RiCodeSSlashLine, RiToolsLine, RiRocket2Line, RiStackLine,
+    RiFlashlightFill, RiStackLine,
     RiGithubFill, RiHtml5Fill, RiCss3Fill, RiJavascriptFill, RiReactjsLine,
     RiTerminalBoxFill, RiDatabase2Line, RiGitlabFill, RiAndroidFill, RiAppleFill,
     RiGoogleFill, RiAmazonFill, RiWindowsFill, RiChromeFill,
@@ -196,7 +196,7 @@ export default function About() {
             <div className="ambient-glow"></div>
             <div className="ambient-glow-2"></div>
             <div className="ambient-glow-3"></div>
-            <h1 className="bg-large-text">About</h1>
+            <div className="bg-large-text" aria-hidden="true">About</div>
             <div className="tech-line left-line"></div>
             <div className="tech-line right-line"></div>
 
@@ -243,16 +243,18 @@ export default function About() {
 
                     <div className="about-process-grid">
                         {[
-                            { id: "01", icon: <RiSearchEyeLine />, title: "Discovery & Research", desc: "We study your goals, audience, and digital landscape to form a clear direction." },
-                            { id: "02", icon: <RiLightbulbFlashLine />, title: "Strategy & Structure", desc: "We design a scalable plan that aligns with performance, brand, and business needs." },
-                            { id: "03", icon: <RiPantoneLine />, title: "UI/UX Design", desc: "Interfaces crafted to be clean, modern, intuitive, and visually striking." },
-                            { id: "04", icon: <RiCodeSSlashLine />, title: "Development", desc: "Fast, secure, and optimized engineering built with modern technologies." },
-                            { id: "05", icon: <RiToolsLine />, title: "Testing & Polish", desc: "We refine every detail to ensure performance, stability, and consistency." },
-                            { id: "06", icon: <RiRocket2Line />, title: "Launch & Scale", desc: "Your product goes live-backed with ongoing support and growth optimization." }
+                            { id: "01", icon: "discovery", title: "Discovery & Research", desc: "We study your goals, audience, and digital landscape to form a clear direction." },
+                            { id: "02", icon: "strategy", title: "Strategy & Structure", desc: "We design a scalable plan that aligns with performance, brand, and business needs." },
+                            { id: "03", icon: "design", title: "UI/UX Design", desc: "Interfaces crafted to be clean, modern, intuitive, and visually striking." },
+                            { id: "04", icon: "development", title: "Development", desc: "Fast, secure, and optimized engineering built with modern technologies." },
+                            { id: "05", icon: "testing", title: "Testing & Polish", desc: "We refine every detail to ensure performance, stability, and consistency." },
+                            { id: "06", icon: "launch", title: "Launch & Scale", desc: "Your product goes live-backed with ongoing support and growth optimization." },
                         ].map((item, idx) => (
                             <div className={`about-process-card about-reveal about-delay-${(idx + 1) * 100}`} key={idx}>
                                 <span className="about-step-number">{item.id}</span>
-                                <div className="about-process-icon">{item.icon}</div>
+                                <div className="about-process-icon">
+                                    <PremiumServiceIcon type={item.icon} className="about-process-premium-icon" />
+                                </div>
                                 <h3 className="about-process-title">{item.title}</h3>
                                 <p className="about-process-desc">{item.desc}</p>
                             </div>

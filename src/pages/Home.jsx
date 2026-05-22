@@ -4,7 +4,7 @@ import { useReveal } from "../hooks/useReveal";
 import { usePageMeta } from "../hooks/usePageMeta";
 import { useIntervalWhenVisible } from "../hooks/useIntervalWhenVisible";
 import { RiFlashlightFill, RiDoubleQuotesL } from "react-icons/ri";
-import PremiumServiceIcon from "../components/PremiumServiceIcon";
+import ServiceOfferingCard from "../components/ServiceOfferingCard";
 import PersonAvatar from "../components/PersonAvatar";
 import CTA from "../components/CTA";
 import {
@@ -92,13 +92,15 @@ export default function Home() {
                         </p>
                     </div>
 
-                    <div className="services-grid">
-                        {SERVICE_OFFERINGS.map((service) => (
-                            <div className="service-card reveal" key={service.title}>
-                                <PremiumServiceIcon type={service.icon} className="service-icon" />
-                                <h3>{service.title}</h3>
-                                <p>{service.description}</p>
-                            </div>
+                    <div className="svc-grid">
+                        {SERVICE_OFFERINGS.map((service, index) => (
+                            <ServiceOfferingCard
+                                key={service.title}
+                                service={service}
+                                index={index}
+                                variant="home"
+                                className="reveal"
+                            />
                         ))}
                     </div>
                 </section>

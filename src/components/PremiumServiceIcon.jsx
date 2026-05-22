@@ -130,6 +130,284 @@ function MobileIcon() {
   );
 }
 
+/** AUREX Method — discovery & research (insights scan) */
+function DiscoveryIcon() {
+  return (
+    <svg viewBox="0 0 48 48" fill="none" aria-hidden>
+      <g className="psi-discovery">
+        {/* Research brief / data sheet */}
+        <rect
+          className="psi-disc-doc"
+          x="8"
+          y="10"
+          width="20"
+          height="26"
+          rx="3"
+          fill="currentColor"
+          fillOpacity="0.12"
+          stroke="currentColor"
+          strokeWidth="2.5"
+        />
+        <path
+          className="psi-disc-doc-fold"
+          d="M8 14h20"
+          stroke="currentColor"
+          strokeWidth="2"
+          opacity="0.35"
+        />
+        <line
+          className="psi-disc-line psi-disc-line--1"
+          x1="12"
+          y1="19"
+          x2="24"
+          y2="19"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+        />
+        <line
+          className="psi-disc-line psi-disc-line--2"
+          x1="12"
+          y1="24"
+          x2="21"
+          y2="24"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          opacity="0.7"
+        />
+        <rect
+          className="psi-disc-bar psi-disc-bar--1"
+          x="12"
+          y="29"
+          width="4"
+          height="5"
+          rx="1"
+          fill="currentColor"
+          fillOpacity="0.45"
+        />
+        <rect
+          className="psi-disc-bar psi-disc-bar--2"
+          x="17.5"
+          y="27"
+          width="4"
+          height="7"
+          rx="1"
+          fill="currentColor"
+          fillOpacity="0.55"
+        />
+        <rect
+          className="psi-disc-bar psi-disc-bar--3"
+          x="23"
+          y="30"
+          width="4"
+          height="4"
+          rx="1"
+          fill="currentColor"
+          fillOpacity="0.35"
+        />
+        {/* Magnifying glass — discovery */}
+        <g className="psi-disc-search">
+          <circle
+            className="psi-disc-lens"
+            cx="32"
+            cy="28"
+            r="9"
+            stroke="currentColor"
+            strokeWidth="3"
+            fill="currentColor"
+            fillOpacity="0.1"
+          />
+          <circle className="psi-disc-lens-dot" cx="32" cy="28" r="3" fill="currentColor" fillOpacity="0.4" />
+          <path
+            className="psi-disc-handle"
+            d="M38.5 34.5 L44 40"
+            stroke="currentColor"
+            strokeWidth="3.5"
+            strokeLinecap="round"
+          />
+        </g>
+        {/* Scan arc — exploring */}
+        <path
+          className="psi-disc-scan"
+          d="M26 16a12 12 0 0 1 14 8"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          opacity="0.45"
+        />
+      </g>
+    </svg>
+  );
+}
+
+/** AUREX Method — development (terminal + build nodes) */
+function DevelopmentIcon() {
+  return (
+    <svg viewBox="0 0 48 48" fill="none" aria-hidden>
+      <rect
+        className="psi-term-screen"
+        x="9"
+        y="11"
+        width="30"
+        height="22"
+        rx="4"
+        fill="currentColor"
+        fillOpacity="0.12"
+        stroke="currentColor"
+        strokeWidth="2.5"
+      />
+      <path className="psi-term-bar" d="M9 17h30" stroke="currentColor" strokeWidth="2" opacity="0.35" />
+      <circle cx="13" cy="14" r="1.5" fill="currentColor" opacity="0.5" />
+      <circle cx="17" cy="14" r="1.5" fill="currentColor" opacity="0.35" />
+      <path
+        className="psi-term-prompt"
+        d="M13 22 L17 26 L13 30"
+        stroke="currentColor"
+        strokeWidth="2.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <line
+        className="psi-term-cursor"
+        x1="20"
+        y1="26"
+        x2="28"
+        y2="26"
+        stroke="currentColor"
+        strokeWidth="2.75"
+        strokeLinecap="round"
+      />
+      <circle className="psi-term-node psi-term-node--1" cx="14" cy="38" r="3" fill="currentColor" fillOpacity="0.4" stroke="currentColor" strokeWidth="2" />
+      <circle className="psi-term-node psi-term-node--2" cx="24" cy="40" r="3" fill="currentColor" fillOpacity="0.35" stroke="currentColor" strokeWidth="2" />
+      <circle className="psi-term-node psi-term-node--3" cx="34" cy="38" r="3" fill="currentColor" fillOpacity="0.4" stroke="currentColor" strokeWidth="2" />
+      <path
+        className="psi-term-link"
+        d="M14 38 H24 M24 40 H34 M14 38 V34 M34 38 V34"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        opacity="0.45"
+      />
+    </svg>
+  );
+}
+
+/** Strategy & structure */
+function StrategyIcon() {
+  return (
+    <svg viewBox="0 0 48 48" fill="none" aria-hidden>
+      <path
+        className="psi-bulb-glass"
+        d="M24 9c-5.5 0-10 4.2-10 9.5 0 3.8 2 7 4.2 9.2L18 32h12l-.2-4.3C32 25.5 34 22.3 34 18.5 34 13.2 29.5 9 24 9z"
+        stroke="currentColor"
+        strokeWidth="2.75"
+        fill="currentColor"
+        fillOpacity="0.15"
+        strokeLinejoin="round"
+      />
+      <path className="psi-bulb-base" d="M19 34h10" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+      <rect className="psi-bulb-base" x="20" y="36" width="8" height="3" rx="1.5" fill="currentColor" fillOpacity="0.5" />
+      <path
+        className="psi-bulb-rays"
+        d="M24 5v2M11 12l1.5 1.5M37 12l-1.5 1.5"
+        stroke="currentColor"
+        strokeWidth="2.25"
+        strokeLinecap="round"
+        opacity="0.55"
+      />
+    </svg>
+  );
+}
+
+/** UI/UX design */
+function DesignIcon() {
+  return (
+    <svg viewBox="0 0 48 48" fill="none" aria-hidden>
+      <path
+        className="psi-palette"
+        d="M24 10c-8 0-14 5.5-14 13 0 6 4 10 10 10 1.5 0 2.5-.8 2.5-2 0-2.5 2-4.5 5-4.5 7.5 0 13-5.5 13-13 0-2.2-.6-4.2-1.6-6"
+        stroke="currentColor"
+        strokeWidth="2.75"
+        fill="currentColor"
+        fillOpacity="0.14"
+        strokeLinejoin="round"
+      />
+      <circle className="psi-swatch psi-swatch--1" cx="16" cy="20" r="3" fill="currentColor" fillOpacity="0.55" />
+      <circle className="psi-swatch psi-swatch--2" cx="22" cy="16" r="3" fill="currentColor" fillOpacity="0.4" />
+      <circle className="psi-swatch psi-swatch--3" cx="30" cy="22" r="3" fill="currentColor" fillOpacity="0.35" />
+      <circle className="psi-swatch psi-swatch--4" cx="26" cy="30" r="2.5" fill="currentColor" fillOpacity="0.5" />
+      <path
+        className="psi-brush"
+        d="M32 8l4 4-10 10-5 1 1-5 10-10z"
+        stroke="currentColor"
+        strokeWidth="2.25"
+        strokeLinejoin="round"
+        fill="currentColor"
+        fillOpacity="0.2"
+      />
+    </svg>
+  );
+}
+
+/** Testing & polish */
+function TestingIcon() {
+  return (
+    <svg viewBox="0 0 48 48" fill="none" aria-hidden>
+      <rect
+        className="psi-clip-board"
+        x="12"
+        y="9"
+        width="24"
+        height="32"
+        rx="4"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        fill="currentColor"
+        fillOpacity="0.12"
+      />
+      <path className="psi-clip-top" d="M18 9h12v5a3 3 0 0 1-3 3h-6a3 3 0 0 1-3-3V9z" stroke="currentColor" strokeWidth="2.25" fill="currentColor" fillOpacity="0.25" />
+      <path
+        className="psi-check-mark"
+        d="M17 26 L22 31 L33 19"
+        stroke="currentColor"
+        strokeWidth="3.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <line className="psi-clip-line" x1="16" y1="34" x2="32" y2="34" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" opacity="0.4" />
+    </svg>
+  );
+}
+
+/** Launch & scale */
+function LaunchIcon() {
+  return (
+    <svg viewBox="0 0 48 48" fill="none" aria-hidden>
+      <path
+        className="psi-rocket-body"
+        d="M24 7 L17 28 h14L24 7z"
+        stroke="currentColor"
+        strokeWidth="2.75"
+        fill="currentColor"
+        fillOpacity="0.2"
+        strokeLinejoin="round"
+      />
+      <circle className="psi-rocket-window" cx="24" cy="18" r="4" stroke="currentColor" strokeWidth="2.25" fill="currentColor" fillOpacity="0.35" />
+      <path className="psi-rocket-fin" d="M17 28 L12 38 M31 28 L36 38" stroke="currentColor" strokeWidth="2.75" strokeLinecap="round" />
+      <path
+        className="psi-rocket-flame"
+        d="M20 28c0 4 1.8 7 4 9 2.2-2 4-5 4-9"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        fill="currentColor"
+        fillOpacity="0.25"
+      />
+    </svg>
+  );
+}
+
 /** Custom Software — editor window with clear </> */
 function DevIcon() {
   return (
@@ -183,6 +461,12 @@ const ICONS = {
   website: WebsiteIcon,
   webapp: WebAppIcon,
   mobile: MobileIcon,
+  discovery: DiscoveryIcon,
+  strategy: StrategyIcon,
+  design: DesignIcon,
+  development: DevelopmentIcon,
+  testing: TestingIcon,
+  launch: LaunchIcon,
   cloud: CloudIcon,
   security: (
     <svg viewBox="0 0 48 48" fill="none" aria-hidden>

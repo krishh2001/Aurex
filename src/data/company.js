@@ -29,6 +29,20 @@ export const COMPANY = {
   github: "https://github.com/aurex",
 };
 
+const SITE_URL = (import.meta.env.VITE_SITE_URL || "https://aurex-phi.vercel.app").replace(
+  /\/$/,
+  ""
+);
+
+/** Production site URL — used for canonical, OG, sitemap (override via VITE_SITE_URL) */
+export const SITE = {
+  url: SITE_URL,
+  name: "AUREX IT Solutions",
+  locale: "en_IN",
+  twitterHandle: "@aurex",
+  ogImage: `${SITE_URL}/og-image.png`,
+};
+
 /** Footer social row — always 4 icons; update URLs in COMPANY above */
 export const FOOTER_SOCIAL = [
   { type: "linkedin", url: COMPANY.linkedin, label: "LinkedIn" },
@@ -83,6 +97,7 @@ export const PAGE_META = {
   notFound: {
     title: "Page Not Found | AUREX",
     description: "The page you requested could not be found.",
+    robots: "noindex, follow",
   },
 };
 
@@ -167,6 +182,7 @@ export const HOME_HERO = {
 export const SERVICE_OFFERINGS = [
   {
     icon: "website",
+    tag: "Websites",
     title: "Custom Websites",
     description:
       "Marketing sites, portals, and admin panels tailored to your brand—with responsive UI, CMS options, and SEO-ready structure.",
@@ -179,6 +195,7 @@ export const SERVICE_OFFERINGS = [
   },
   {
     icon: "webapp",
+    tag: "Web Apps",
     title: "Web Applications",
     description:
       "Business web apps, dashboards, and customer portals built with modern stacks—secure APIs, role-based access, and scalable architecture.",
@@ -191,6 +208,7 @@ export const SERVICE_OFFERINGS = [
   },
   {
     icon: "mobile",
+    tag: "Mobile",
     title: "Mobile Applications",
     description:
       "Cross-platform and native mobile apps connected to your backend—app store readiness, analytics, and push notifications.",
@@ -203,6 +221,7 @@ export const SERVICE_OFFERINGS = [
   },
   {
     icon: "cloud",
+    tag: "Cloud",
     title: "Cloud & DevOps",
     description:
       "Hosting, CI/CD, and observability so your website or application stays fast, available, and cost-efficient in production.",
@@ -215,6 +234,7 @@ export const SERVICE_OFFERINGS = [
   },
   {
     icon: "security",
+    tag: "Security",
     title: "Cybersecurity",
     description:
       "Security reviews and hardening for applications you ship—VAPT support, access control, and compliance-oriented practices.",
@@ -227,6 +247,7 @@ export const SERVICE_OFFERINGS = [
   },
   {
     icon: "transform",
+    tag: "Consulting",
     title: "IT Consulting",
     description:
       "Architecture reviews, technology roadmaps, and dedicated engineering teams when you need ongoing delivery capacity.",

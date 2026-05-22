@@ -70,7 +70,7 @@ export default function Contact() {
       <div className="tech-line left-line"></div>
       <div className="tech-line right-line"></div>
 
-      <h1 className="bg-large-text contact-bg-text">Contact</h1>
+      <div className="bg-large-text contact-bg-text" aria-hidden="true">Contact</div>
 
       <main className="container">
         <section className="contact-section">

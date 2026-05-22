@@ -1,23 +1,28 @@
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { DEFAULT_PAGE_META } from "../data/company";
+import { applyPageSeo } from "../lib/seo";
 
 /**
- * Sets document title and meta description per route.
+ * Sets per-route SEO: title, description, canonical, robots, Open Graph & Twitter.
  */
-export function usePageMeta({ title, description } = {}) {
+export function usePageMeta(meta = {}) {
+  const { pathname } = useLocation();
+
   useEffect(() => {
-    const prevTitle = document.title;
-    const meta = document.querySelector('meta[name="description"]');
-    const prevDescription = meta?.getAttribute("content") ?? "";
-
-    document.title = title ?? DEFAULT_PAGE_META.title;
-    if (meta) {
-      meta.setAttribute("content", description ?? DEFAULT_PAGE_META.description);
-    }
-
-    return () => {
-      document.title = prevTitle;
-      if (meta) meta.setAttribute("content", prevDescription);
+    const merged = {
+      ...DEFAULT_PAGE_META,
+      ...meta,
+      pathname,
     };
-  }, [title, description]);
+    return applyPageSeo(merged);
+  }, [
+    pathname,
+    meta.title,
+    meta.description,
+    meta.canonical,
+    meta.robots,
+    meta.image,
+    meta.ogType,
+  ]);
 }

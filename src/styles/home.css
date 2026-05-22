@@ -249,51 +249,7 @@
     overflow-x: clip;
 }
 
-/* =========================================
-   4. SERVICES GRID - Updated with 6 unique colors
-   ========================================= */
-
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(16px, 3vw, 25px);
-    align-items: stretch;
-}
-
-.service-card {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    padding: 40px 30px;
-    border-radius: 24px;
-    transition: 0.4s;
-    position: relative;
-    overflow: hidden;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.service-card:hover {
-    transform: translateY(-10px);
-    background: rgba(255, 255, 255, 0.03);
-        box-shadow: 0 10px 30px rgba(16, 185, 129, 0.1);
-
-}
-
-.service-card .service-icon {
-    margin-bottom: 20px;
-}
-
-.service-card h3 {
-    font-size: 1.4rem;
-    margin-bottom: 12px;
-}
-
-.service-card p {
-    font-size: 0.95rem;
-    color: var(--text-muted);
-}
+/* Service cards — see service-cards.css */
 
 /* =========================================
    5. STATS SECTION
@@ -784,10 +740,6 @@
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     }
 
-    .services-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
     .content-wrapper {
         height: auto;
         flex-direction: column;
@@ -864,10 +816,6 @@
         grid-template-columns: 1fr;
     }
 
-    .services-grid {
-        grid-template-columns: 1fr;
-    }
-
     .stats-container {
         padding: 30px 20px;
     }
@@ -920,7 +868,6 @@
         text-align: center;
     }
 
-    .service-card,
     .feature-card {
         padding: 25px 20px;
     }

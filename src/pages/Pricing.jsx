@@ -12,6 +12,7 @@ import { ENGAGEMENT_PLANS, ENGAGEMENT_FAQ, PRICING_CURRENCY_NOTE, PAGE_META } fr
 import { usePageMeta } from "../hooks/usePageMeta";
 
 export default function Pricing() {
+    usePageMeta(PAGE_META.pricing);
     usePageEffects(".pricing-bg-text");
     const [activeFaq, setActiveFaq] = useState(null);
 
@@ -22,7 +23,7 @@ export default function Pricing() {
     return (
         <div className="pricing-page-wrapper">
             <div className="ambient-glow pricing-ambient-main"></div>
-            <h1 className="bg-large-text pricing-bg-text">PLANS</h1>
+            <div className="bg-large-text pricing-bg-text" aria-hidden="true">PLANS</div>
             <div className="tech-line left-line"></div>
             <div className="tech-line right-line"></div>
 

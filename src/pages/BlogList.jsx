@@ -62,7 +62,7 @@ export default function BlogList() {
       <div className="ambient-glow"></div>
       <div className="ambient-glow-2"></div>
       <div className="ambient-glow-3"></div>
-      <h1 className="bg-large-text">Blogs</h1>
+      <div className="bg-large-text" aria-hidden="true">Blogs</div>
       <div className="tech-line left-line"></div>
       <div className="tech-line right-line"></div>
 

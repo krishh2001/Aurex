@@ -23,8 +23,7 @@
 }
 
 /* Cards & panels: solid glass (no per-element blur) */
-.service-card,
-.services-offering-card,
+.svc-card,
 .about-process-card,
 .about-story-img,
 .quote-box,

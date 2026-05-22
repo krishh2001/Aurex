@@ -1,10 +1,11 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { Link, useParams, Navigate } from "react-router-dom";
 import { usePageEffects } from "../hooks/usePageEffects";
 import { usePageMeta } from "../hooks/usePageMeta";
 import { getPostById, getRelatedPosts } from "../data/blogPosts";
-import { PAGE_META } from "../data/company";
+import { PAGE_META, SITE, COMPANY } from "../data/company";
 import CTA from "../components/CTA";
+import { buildCanonicalUrl, upsertJsonLd } from "../lib/seo";
 import {
   RiCalendarLine,
   RiTimeLine,
@@ -42,9 +43,34 @@ export default function BlogPost() {
       ? {
           title: `${post.title} | AUREX Insights`,
           description: post.excerpt,
+          ogType: "article",
+          image: post.image?.startsWith("http") ? post.image : undefined,
         }
       : PAGE_META.notFound
   );
+
+  useEffect(() => {
+    if (!post) return undefined;
+    const clean = upsertJsonLd("jsonld-article", {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: post.title,
+      description: post.excerpt,
+      image: post.image,
+      datePublished: post.date,
+      author: {
+        "@type": "Organization",
+        name: COMPANY.legalName,
+      },
+      publisher: {
+        "@type": "Organization",
+        name: COMPANY.legalName,
+        logo: { "@type": "ImageObject", url: SITE.ogImage },
+      },
+      mainEntityOfPage: buildCanonicalUrl(`/blog/${post.id}`),
+    });
+    return clean;
+  }, [post?.id, post?.title, post?.excerpt, post?.image, post?.date]);
 
   if (!post) {
     return <Navigate to="/blog" replace />;
@@ -58,9 +84,9 @@ export default function BlogPost() {
       <div className="tech-line left-line"></div>
       <div className="tech-line right-line"></div>
 
-      <h1 className="bg-large-text" ref={bgTextRef}>
+      <div className="bg-large-text" ref={bgTextRef} aria-hidden="true">
         Blog
-      </h1>
+      </div>
 
       <main className="container">
         <div className="blog-details-layout">

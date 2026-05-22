@@ -27,13 +27,12 @@
     font-size: var(--text-base) !important;
 }
 
-.service-card h3,
+.svc-card__title,
 .about-process-title,
 .about-process-card h3 {
     font-size: var(--text-xl) !important;
 }
 
-.service-card p,
 .stat-number {
     font-size: clamp(2rem, 3.5vw, 2.75rem) !important;
 }
@@ -63,15 +62,7 @@
     font-size: var(--text-sm) !important;
 }
 
-.service-icon {
-    font-size: 1.5rem !important;
-}
-
-.service-card h3 {
-    font-size: var(--text-lg) !important;
-}
-
-.service-card p {
+.svc-card__desc {
     font-size: var(--text-sm) !important;
 }
 
@@ -128,17 +119,8 @@
     font-size: var(--text-section) !important;
 }
 
-.services-offering-card h3 {
-    font-size: var(--text-xl) !important;
-}
-
-.services-offering-card p,
-.services-card-features li {
+.svc-card__features li {
     font-size: var(--text-sm) !important;
-}
-
-.services-card-icon-container {
-    font-size: 1.5rem !important;
 }
 
 .services-tech-name {

@@ -2,10 +2,8 @@ import React, { useState, useRef, useCallback } from "react";
 import { usePageEffects } from "../hooks/usePageEffects";
 import { usePageMeta } from "../hooks/usePageMeta";
 import { useIntervalWhenVisible } from "../hooks/useIntervalWhenVisible";
-import { Link } from "react-router-dom";
-import { RiCheckLine, RiArrowRightLine } from "react-icons/ri";
 import CTA from "../components/CTA";
-import PremiumServiceIcon from "../components/PremiumServiceIcon";
+import ServiceOfferingCard from "../components/ServiceOfferingCard";
 import { SERVICE_OFFERINGS, PAGE_META } from "../data/company";
 
 const TECH_DATA = [
@@ -49,7 +47,7 @@ export default function Services() {
       <div className="ambient-glow-2"></div>
       <div className="ambient-glow-3"></div>
 
-      <h1 className="bg-large-text services-bg-text">SERVICES</h1>
+      <div className="bg-large-text services-bg-text" aria-hidden="true">SERVICES</div>
 
       <div className="tech-line left-line"></div>
       <div className="tech-line right-line"></div>
@@ -60,7 +58,7 @@ export default function Services() {
         <section className="services-hero-container">
           <div className="services-section-header">
             <span className="services-section-subtitle">IT Services</span>
-            <h2 className="services-section-title">Websites & Applications<br />Built for Your Clients</h2>
+            <h1 className="services-section-title">Websites & Applications<br />Built for Your Clients</h1>
             <p className="services-section-desc">
               AUREX takes your IT project requirements and delivers production-ready websites, web apps, and mobile applications—with cloud, security, and support when you need them.
             </p>
@@ -69,23 +67,14 @@ export default function Services() {
 
         {/* Services Grid */}
         <section className="sp-margin-lg">
-          <div className="services-cards-grid">
-            {SERVICE_OFFERINGS.map((service) => (
-              <div className="services-offering-card" key={service.title}>
-                <PremiumServiceIcon type={service.icon} className="services-card-icon-container" />
-                <h3>{service.title}</h3>
-                <p>{service.description}</p>
-                <ul className="services-card-features">
-                  {service.features.map((feature) => (
-                    <li key={feature}>
-                      <RiCheckLine /> {feature}
-                    </li>
-                  ))}
-                </ul>
-                <Link to="/contact" className="services-learn-more-link">
-                  Learn More <RiArrowRightLine />
-                </Link>
-              </div>
+          <div className="svc-grid">
+            {SERVICE_OFFERINGS.map((service, index) => (
+              <ServiceOfferingCard
+                key={service.title}
+                service={service}
+                index={index}
+                variant="full"
+              />
             ))}
           </div>
         </section>
