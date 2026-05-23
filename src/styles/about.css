@@ -73,12 +73,19 @@
     position: relative;
     border-radius: 20px;
     padding: 10px;
+    padding-bottom: clamp(32px, 5vw, 44px);
+    margin-bottom: clamp(12px, 2vw, 20px);
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--glass-border);
+    overflow: visible;
 }
 
 .about-story-img {
     width: 100%;
+    height: auto;
+    min-height: 180px;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
     border-radius: 16px;
     display: block;
     box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
@@ -93,18 +100,20 @@
 
 .about-exp-badge {
     position: absolute;
-    bottom: -20px;
-    left: -20px;
-    background: rgba(10, 10, 10, 0.8);
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    background: rgba(10, 10, 10, 0.92);
     backdrop-filter: blur(10px);
     border: 1px solid var(--glass-border);
-    padding: 20px 30px;
+    padding: 16px 24px;
     border-radius: 16px;
     display: flex;
-    gap: 15px;
+    gap: 12px;
     align-items: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    min-width: 200px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    min-width: 180px;
+    z-index: 2;
 }
 
 .about-exp-number {
@@ -282,6 +291,7 @@
     max-width: 980px;
     margin: 0 auto;
     padding-bottom: 24px;
+    overflow-x: clip;
 }
 
 .about-orbit-stage {
@@ -543,6 +553,23 @@
     transform: translate(-50%, -50%) scale(1);
 }
 
+/* Mobile team skills — replaces orbit chips on small screens */
+.about-team-skills-mobile {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    max-width: 360px;
+}
+
+.about-team-skills-mobile li {
+    display: flex;
+}
+
 /* --- Responsive Design --- */
 @media (max-width: 1024px) {
     .about-story-grid {
@@ -560,18 +587,37 @@
 
 @media (max-width: 768px) {
 
-    /* Story Section */
+    /* Story — text first, image at end */
+    .about-story-section {
+        padding-top: 48px;
+        margin-bottom: 72px;
+        content-visibility: visible;
+        contain-intrinsic-size: auto;
+    }
+
     .about-story-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
     }
 
     .about-story-content {
+        order: 1;
         text-align: center;
     }
 
+    .about-story-image-wrapper {
+        order: 2;
+        width: 100%;
+        max-width: 100%;
+        margin: 8px auto 0;
+        padding-bottom: clamp(36px, 6vw, 48px);
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
     .about-story-content h1 {
-        font-size: 2.5rem;
+        font-size: clamp(2rem, 7vw, 2.5rem);
     }
 
     .about-section-badge {
@@ -581,19 +627,31 @@
 
     .about-story-text {
         text-align: center;
+        font-size: clamp(0.95rem, 2.8vw, 1.05rem);
     }
 
-    .about-story-image-wrapper {
-        max-width: 500px;
-        margin: 0 auto;
+    .about-story-img {
+        min-height: 200px;
+        aspect-ratio: 16 / 10;
     }
 
     .about-exp-badge {
-        left: 50%;
-        transform: translateX(-50%);
-        bottom: -30px;
-        width: 80%;
+        width: calc(100% - 32px);
+        max-width: 260px;
+        min-width: 0;
         justify-content: center;
+        padding: 12px 16px;
+        gap: 10px;
+        bottom: 0;
+        transform: translate(-50%, 50%);
+    }
+
+    .about-exp-number {
+        font-size: 1.75rem;
+    }
+
+    .about-exp-text {
+        font-size: 0.8rem;
     }
 
     /* Process Section */
@@ -617,60 +675,150 @@
         font-size: 1.4rem;
     }
 
-    /* Orbit Section */
+    /* Team — clean mobile: avatar only + skill grid (no orbit overlap) */
+    .about-team-section {
+        margin-bottom: 120px;
+        content-visibility: visible;
+    }
+
+    .about-team-section .section-header {
+        margin-bottom: clamp(28px, 5vw, 40px);
+    }
+
+    .about-orbit-wrapper {
+        padding-bottom: 8px;
+        margin-top: 0;
+    }
+
     .about-orbit-stage {
-        max-height: min(92vw, 480px);
+        width: auto;
+        max-height: none;
+        min-height: 0;
+        aspect-ratio: auto;
+        padding: 12px 16px 8px;
+        overflow: visible;
     }
 
-    .about-skill-chip {
-        padding: 6px 12px 6px 6px;
-        gap: 8px;
+    .about-orbit-ring {
+        display: none;
     }
 
-    .about-skill-chip__icon {
-        width: 32px;
-        height: 32px;
-        font-size: 1rem;
+    .about-orbit-bubble {
+        display: none !important;
     }
 
-    .about-skill-chip__label {
-        font-size: 0.75rem;
+    .about-orbit-system {
+        width: auto;
+        height: auto;
+        max-width: none;
+        max-height: none;
+    }
+
+    .about-sun-profile {
+        width: 120px;
+        height: 120px;
+        padding: 6px;
+    }
+
+    .about-sun-glow-ring {
+        width: 136px;
+        height: 136px;
+    }
+
+    .about-sun-profile .person-avatar-initials {
+        font-size: 1.6rem;
+    }
+
+    .about-team-skills-mobile {
+        display: flex;
+        margin: 16px auto 4px;
+        padding: 0 12px;
+    }
+
+    .about-team-skills-mobile .about-skill-chip {
+        padding: 6px 10px 6px 6px;
+        gap: 6px;
+        border-radius: 10px;
+    }
+
+    .about-team-skills-mobile .about-skill-chip__icon {
+        width: 26px;
+        height: 26px;
+        font-size: 0.85rem;
+        border-radius: 8px;
+    }
+
+    .about-team-skills-mobile .about-skill-chip__label {
+        font-size: 0.68rem;
+        white-space: nowrap;
     }
 
     .about-member-info {
         margin-top: 12px;
-        padding: 0 20px;
+        padding: 0 16px;
+        opacity: 1;
     }
 
     .about-member-name {
-        font-size: 1.8rem;
+        font-size: clamp(1.45rem, 5vw, 1.75rem);
+    }
+
+    .about-member-role {
+        font-size: 0.68rem;
+        padding: 5px 14px;
+        margin-bottom: 12px;
+    }
+
+    .about-slider-dots {
+        margin-top: 20px;
     }
 }
 
 @media (max-width: 480px) {
+    .about-story-section {
+        padding-top: 36px;
+        margin-bottom: 56px;
+    }
+
+    .about-story-image-wrapper {
+        padding-bottom: clamp(32px, 7vw, 42px);
+    }
+
+    .about-story-img {
+        min-height: 180px;
+        aspect-ratio: 4 / 3;
+    }
+
     .about-exp-badge {
-        width: 90%;
-        padding: 15px 20px;
-        gap: 10px;
+        width: calc(100% - 24px);
+        max-width: 240px;
+        padding: 10px 14px;
     }
 
     .about-exp-number {
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 
-    /* Orbit Section Mobile */
-    .about-orbit-stage {
-        max-height: min(95vw, 420px);
+    .about-exp-text {
+        font-size: 0.75rem;
     }
 
     .about-sun-profile {
-        width: 160px;
-        height: 160px;
+        width: 108px;
+        height: 108px;
     }
 
     .about-sun-glow-ring {
-        width: 180px;
-        height: 180px;
+        width: 122px;
+        height: 122px;
+    }
+
+    .about-team-skills-mobile .about-skill-chip__label {
+        font-size: 0.62rem;
+    }
+
+    .about-team-section {
+        margin-bottom: 96px;
     }
 
     .about-tech-stack-section {

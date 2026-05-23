@@ -16,7 +16,7 @@ import {
 
 import CTA from "../components/CTA";
 import { PAGE_META, TEAM_MEMBERS, TEAM_SECTION } from "../data/company";
-import { TEAM_SKILL_ICONS, TEAM_SKILL_ACCENTS, TEAM_SKILL_ORBIT } from "../data/teamSkills";
+import { TEAM_SKILL_ICONS, TEAM_SKILL_ACCENTS, TEAM_SKILL_ORBIT, TEAM_SKILL_ORBIT_MOBILE, TEAM_SKILL_ORBIT_MOBILE_SM } from "../data/teamSkills";
 
 const TEAM_SOCIAL_ICONS = {
     linkedin: RiLinkedinFill,
@@ -34,6 +34,12 @@ function memberPhoto(member) {
 export default function About() {
     const [currentMember, setCurrentMember] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
+    const [viewportTier, setViewportTier] = useState(() => {
+        if (typeof window === "undefined") return "desktop";
+        if (window.matchMedia("(max-width: 480px)").matches) return "small";
+        if (window.matchMedia("(max-width: 768px)").matches) return "tablet";
+        return "desktop";
+    });
     const pageRef = useRef(null);
     const stageRef = useRef(null);
     const pathRef = useRef(null);
@@ -166,6 +172,33 @@ export default function About() {
         };
     }, [techStack.length]);
 
+    useEffect(() => {
+        const mqTablet = window.matchMedia("(max-width: 768px)");
+        const mqSmall = window.matchMedia("(max-width: 480px)");
+        const sync = () => {
+            if (mqSmall.matches) setViewportTier("small");
+            else if (mqTablet.matches) setViewportTier("tablet");
+            else setViewportTier("desktop");
+        };
+        sync();
+        mqTablet.addEventListener("change", sync);
+        mqSmall.addEventListener("change", sync);
+        return () => {
+            mqTablet.removeEventListener("change", sync);
+            mqSmall.removeEventListener("change", sync);
+        };
+    }, []);
+
+    const skillOrbit =
+        viewportTier === "small"
+            ? TEAM_SKILL_ORBIT_MOBILE_SM
+            : viewportTier === "tablet"
+              ? TEAM_SKILL_ORBIT_MOBILE
+              : TEAM_SKILL_ORBIT;
+
+    const avatarSize =
+        viewportTier === "small" ? 108 : viewportTier === "tablet" ? 120 : 184;
+
     const changeSlide = (index) => {
         if (index === currentMember) return;
         setIsAnimating(true);
@@ -222,9 +255,17 @@ export default function About() {
                             </div>
                         </div>
 
-                        <div className="about-story-image-wrapper about-reveal about-delay-200">
-                            <img src={optimizeImageUrl("https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop", 900)}
-                                alt="Office" className="about-story-img" loading="lazy" decoding="async" width={900} height={600} />
+                        <div className="about-story-image-wrapper">
+                            <img
+                                src={optimizeImageUrl("https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop", 900)}
+                                alt="AUREX office workspace"
+                                className="about-story-img"
+                                loading="eager"
+                                decoding="async"
+                                fetchPriority="high"
+                                width={900}
+                                height={600}
+                            />
                             <div className="about-exp-badge">
                                 <div className="about-exp-number">10+</div>
                                 <div className="about-exp-text">Years<br />Delivering IT</div>
@@ -311,7 +352,7 @@ export default function About() {
                                 <PersonAvatar
                                     name={member.name}
                                     image={memberPhoto(member)}
-                                    size={184}
+                                    size={avatarSize}
                                 />
                             </div>
 
@@ -319,7 +360,7 @@ export default function About() {
                                 const skill = member.skills[pos - 1];
                                 const SkillIcon = skill ? TEAM_SKILL_ICONS[skill.icon] : null;
                                 const accent = TEAM_SKILL_ACCENTS[(pos - 1) % TEAM_SKILL_ACCENTS.length];
-                                const orbit = TEAM_SKILL_ORBIT[pos - 1];
+                                const orbit = skillOrbit[pos - 1];
                                 return (
                                     <div
                                         key={pos}
@@ -346,6 +387,32 @@ export default function About() {
                             })}
                         </div>
                         </div>
+
+                        <ul
+                            className="about-team-skills-mobile"
+                            style={memberContentStyle}
+                            aria-label={`${member.name} skills`}
+                        >
+                            {member.skills.filter(Boolean).map((skill, i) => {
+                                const SkillIcon = TEAM_SKILL_ICONS[skill.icon];
+                                const accent = TEAM_SKILL_ACCENTS[i % TEAM_SKILL_ACCENTS.length];
+                                return (
+                                    <li key={skill.label}>
+                                        <div
+                                            className="about-skill-chip"
+                                            style={{ "--skill-accent": accent }}
+                                        >
+                                            {SkillIcon && (
+                                                <span className="about-skill-chip__icon" aria-hidden>
+                                                    <SkillIcon />
+                                                </span>
+                                            )}
+                                            <span className="about-skill-chip__label">{skill.label}</span>
+                                        </div>
+                                    </li>
+                                );
+                            })}
+                        </ul>
 
                         <div className="about-member-info" style={memberContentStyle}>
                             <h2 className="about-member-name">{member.name}</h2>

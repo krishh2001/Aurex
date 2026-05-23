@@ -71,3 +71,23 @@ export const TEAM_SKILL_ORBIT = [
   { ox: "-30.3%", oy: "17.5%" },
   { ox: "-30.3%", oy: "-17.5%" },
 ];
+
+/** Wider orbit on tablets / phones */
+export const TEAM_SKILL_ORBIT_MOBILE = [
+  { ox: "0%", oy: "-62%" },
+  { ox: "53.7%", oy: "-31%" },
+  { ox: "53.7%", oy: "31%" },
+  { ox: "0%", oy: "62%" },
+  { ox: "-53.7%", oy: "31%" },
+  { ox: "-53.7%", oy: "-31%" },
+];
+
+/** Extra-wide orbit for small phones */
+export const TEAM_SKILL_ORBIT_MOBILE_SM = [
+  { ox: "0%", oy: "-68%" },
+  { ox: "58.9%", oy: "-34%" },
+  { ox: "58.9%", oy: "34%" },
+  { ox: "0%", oy: "68%" },
+  { ox: "-58.9%", oy: "34%" },
+  { ox: "-58.9%", oy: "-34%" },
+];

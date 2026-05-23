@@ -62,6 +62,14 @@
     contain: layout style;
 }
 
+@media (max-width: 768px) {
+    .about-story-section,
+    .about-team-section {
+        content-visibility: visible;
+        contain-intrinsic-size: auto;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .particle,
     .hero-ticker__track {
