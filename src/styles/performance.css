@@ -28,8 +28,7 @@
 .about-story-img,
 .quote-box,
 .contact-form,
-.contact-cards-grid,
-.contact-info-card,
+.contact-quick__link,
 .blog-list-post-card,
 .related-card,
 .comment-form,
@@ -59,8 +58,7 @@
 /* Carousels / sliders */
 .slider-wrapper,
 .services-tech-carousel-wrapper,
-.about-tech-curve-stage,
-.about-orbit-wrapper {
+.about-tech-curve-stage {
     contain: layout style;
 }
 

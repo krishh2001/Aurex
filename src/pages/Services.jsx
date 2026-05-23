@@ -80,7 +80,7 @@ export default function Services() {
         </section>
 
         {/* Tech Stack Header */}
-        <div className="services-section-header" style={{ marginTop: '150px' }}>
+        <div className="services-section-header services-tech-header">
           <span className="services-section-subtitle">Our Arsenal</span>
           <h2 className="services-section-title">Tech Stack</h2>
           <p className="services-section-desc">Powered by next-generation technologies.</p>

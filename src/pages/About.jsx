@@ -16,6 +16,7 @@ import {
 
 import CTA from "../components/CTA";
 import { PAGE_META, TEAM_MEMBERS, TEAM_SECTION } from "../data/company";
+import { TEAM_SKILL_ICONS, TEAM_SKILL_ACCENTS, TEAM_SKILL_ORBIT } from "../data/teamSkills";
 
 const TEAM_SOCIAL_ICONS = {
     linkedin: RiLinkedinFill,
@@ -300,29 +301,50 @@ export default function About() {
                     </div>
 
                     <div className="about-orbit-wrapper" ref={teamRef}>
+                        <div className="about-orbit-stage">
                         <div className="about-orbit-system">
+                            <div className="about-orbit-ring about-orbit-ring--outer" aria-hidden />
+                            <div className="about-orbit-ring about-orbit-ring--inner" aria-hidden />
                             <div className="about-sun-glow-ring"></div>
 
                             <div className="about-sun-profile" style={memberImageStyle}>
                                 <PersonAvatar
                                     name={member.name}
                                     image={memberPhoto(member)}
-                                    size={200}
+                                    size={184}
                                 />
                             </div>
 
                             {[1, 2, 3, 4, 5, 6].map((pos) => {
                                 const skill = member.skills[pos - 1];
+                                const SkillIcon = skill ? TEAM_SKILL_ICONS[skill.icon] : null;
+                                const accent = TEAM_SKILL_ACCENTS[(pos - 1) % TEAM_SKILL_ACCENTS.length];
+                                const orbit = TEAM_SKILL_ORBIT[pos - 1];
                                 return (
                                     <div
                                         key={pos}
-                                        className={`about-orbit-bubble about-bubble-pos-${pos} ${!isAnimating && skill ? 'visible' : ''}`}
-                                        style={{ transitionDelay: `${pos * 0.05}s` }}
+                                        className={`about-orbit-bubble ${!isAnimating && skill ? "visible" : ""}`}
+                                        style={{
+                                            transitionDelay: `${pos * 0.05}s`,
+                                            "--skill-accent": accent,
+                                            "--ox": orbit.ox,
+                                            "--oy": orbit.oy,
+                                        }}
                                     >
-                                        {skill}
+                                        {skill && (
+                                            <div className="about-skill-chip">
+                                                {SkillIcon && (
+                                                    <span className="about-skill-chip__icon" aria-hidden>
+                                                        <SkillIcon />
+                                                    </span>
+                                                )}
+                                                <span className="about-skill-chip__label">{skill.label}</span>
+                                            </div>
+                                        )}
                                     </div>
                                 );
                             })}
+                        </div>
                         </div>
 
                         <div className="about-member-info" style={memberContentStyle}>

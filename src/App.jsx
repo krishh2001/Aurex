@@ -12,6 +12,7 @@ import BlogList from "./pages/BlogList";
 import BlogPost from "./pages/BlogPost"; // Add this import
 import Services from "./pages/Services";
 import Pricing from "./pages/Pricing";
+import Portfolio from "./pages/Portfolio";
 import Contact from "./pages/Contact";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
@@ -39,6 +40,7 @@ export default function App() {
         <Route path="/blog" element={<BlogList />} /> 
         <Route path="/blog/:id" element={<BlogPost />} /> 
         <Route path="/services" element={<Services />} />
+        <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/privacy" element={<Privacy />} />

@@ -64,17 +64,14 @@ export default function Navbar() {
             <Link to="/services" className={isActive("/services")}>Services</Link>
         </li>
         <li>
+            <Link to="/portfolio" className={isActive("/portfolio")}>Portfolio</Link>
+        </li>
+        <li>
             <Link to="/about" className={isActive("/about")}>About</Link>
-        </li>
-        <li>
-            <Link to="/blog" className={isActive("/blog")}>Blogs</Link>
-        </li>
-        <li>
-            <Link to="/pricing" className={isActive("/pricing")}>Plans</Link>
         </li>
         <li className="nav-links-contact">
             <Link to="/contact" className={`nav-link-contact ${isActive("/contact")}`}>
-              Get a Quote
+              Contact
             </Link>
         </li>
       </ul>
@@ -88,7 +85,7 @@ export default function Navbar() {
         <span className="bar" />
       </button>
 
-      <Link to="/contact" className="nav-btn">Get a Quote</Link>
+      <Link to="/contact" className="nav-btn">Contact</Link>
     </nav>
   );
 }

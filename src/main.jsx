@@ -12,6 +12,7 @@ import "./styles/blog-list.css";
 import "./styles/contact.css";
 import "./styles/pricing.css";
 import "./styles/services.css";
+import "./styles/portfolio.css";
 import "./styles/service-cards.css";
 import "./styles/blogpost.css";
 import "./styles/cta.css";

@@ -57,7 +57,7 @@ iframe {
 
 .section-title,
 .services-section-title {
-    font-size: clamp(1.65rem, 5vw, var(--text-section, 2.125rem));
+    font-size: clamp(1.45rem, 4.5vw, var(--text-section, 1.875rem));
     line-height: 1.2;
 }
 
@@ -313,8 +313,8 @@ iframe {
         grid-template-columns: 1fr;
     }
 
-    .contact-cards-grid {
-        grid-template-columns: 1fr;
+    .contact-channels-grid {
+        gap: 12px;
     }
 }
 

@@ -14,9 +14,24 @@ export default function ServiceOfferingCard({
   const accent = ACCENTS[index % ACCENTS.length];
   const step = String(index + 1).padStart(2, "0");
 
+  if (variant === "home") {
+    return (
+      <article className={`about-process-card ${className}`.trim()}>
+        <span className="about-step-number" aria-hidden>
+          {step}
+        </span>
+        <div className="about-process-icon">
+          <PremiumServiceIcon type={service.icon} className="about-process-premium-icon" />
+        </div>
+        <h3 className="about-process-title">{service.title}</h3>
+        <p className="about-process-desc">{service.description}</p>
+      </article>
+    );
+  }
+
   return (
     <article
-      className={`svc-card svc-card--${accent} svc-card--${variant} ${className}`.trim()}
+      className={`svc-card svc-card--${accent} svc-card--full ${className}`.trim()}
     >
       <div className="svc-card__shine" aria-hidden />
       <div className="svc-card__orb" aria-hidden />
@@ -34,7 +49,7 @@ export default function ServiceOfferingCard({
           </div>
         </div>
 
-        {variant === "full" && service.features?.length > 0 && (
+        {service.features?.length > 0 && (
           <ul className="svc-card__features">
             {service.features.map((feature) => (
               <li key={feature}>
@@ -47,11 +62,9 @@ export default function ServiceOfferingCard({
       </div>
 
       <div className="svc-card__footer">
-        <span className="svc-card__hint">
-          {variant === "full" ? "Scoped delivery" : "Learn more"}
-        </span>
+        <span className="svc-card__hint">Scoped delivery</span>
         <Link to="/contact" className="svc-card__cta">
-          {variant === "full" ? "Get a quote" : "Explore"}
+          Get a quote
           <RiArrowRightLine aria-hidden />
         </Link>
       </div>

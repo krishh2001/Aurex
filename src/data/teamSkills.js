@@ -1,0 +1,73 @@
+import {
+  RiTeamLine,
+  RiLightbulbFlashLine,
+  RiRocketLine,
+  RiSettings3Line,
+  RiUserStarLine,
+  RiLineChartLine,
+  RiTaskLine,
+  RiLoopLeftLine,
+  RiChat3Line,
+  RiCalendarCheckLine,
+  RiBugLine,
+  RiFileChartLine,
+  RiReactjsLine,
+  RiPlugLine,
+  RiCloudLine,
+  RiGitPullRequestLine,
+  RiLayoutGridLine,
+  RiShieldCheckLine,
+  RiPantoneLine,
+  RiLayoutMasonryLine,
+  RiPenNibLine,
+  RiMagicLine,
+  RiSearchEyeLine,
+  RiShareForwardLine,
+} from "react-icons/ri";
+
+/** Icon lookup for team orbit skill chips */
+export const TEAM_SKILL_ICONS = {
+  leadership: RiTeamLine,
+  strategy: RiLightbulbFlashLine,
+  delivery: RiRocketLine,
+  operations: RiSettings3Line,
+  "team-mgmt": RiUserStarLine,
+  growth: RiLineChartLine,
+  "project-mgmt": RiTaskLine,
+  agile: RiLoopLeftLine,
+  communication: RiChat3Line,
+  scope: RiCalendarCheckLine,
+  qa: RiBugLine,
+  reporting: RiFileChartLine,
+  react: RiReactjsLine,
+  api: RiPlugLine,
+  cloud: RiCloudLine,
+  "code-review": RiGitPullRequestLine,
+  architecture: RiLayoutGridLine,
+  security: RiShieldCheckLine,
+  uiux: RiPantoneLine,
+  "design-systems": RiLayoutMasonryLine,
+  figma: RiPenNibLine,
+  prototyping: RiMagicLine,
+  research: RiSearchEyeLine,
+  handoff: RiShareForwardLine,
+};
+
+export const TEAM_SKILL_ACCENTS = [
+  "#4ade80",
+  "#60a5fa",
+  "#f472b6",
+  "#fb923c",
+  "#c4b5fd",
+  "#22d3ee",
+];
+
+/** Even orbit placement around center (clockwise from top), % of orbit container */
+export const TEAM_SKILL_ORBIT = [
+  { ox: "0%", oy: "-35%" },
+  { ox: "30.3%", oy: "-17.5%" },
+  { ox: "30.3%", oy: "17.5%" },
+  { ox: "0%", oy: "35%" },
+  { ox: "-30.3%", oy: "17.5%" },
+  { ox: "-30.3%", oy: "-17.5%" },
+];

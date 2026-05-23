@@ -33,21 +33,10 @@
     transition-delay: 0.3s;
 }
 
-/* --- Section Badge --- */
-.about-section-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 12px;
-    border-radius: 30px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--glass-border);
-    color: var(--accent-primary);
-    font-size: 0.85rem;
-    font-weight: 500;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+/* --- Section Badge (extends layout.css unified badge) --- */
+.about-story-content .about-section-badge,
+.home-about__copy .about-section-badge {
+    margin-bottom: clamp(20px, 3vw, 28px);
 }
 
 /* --- Story Section --- */
@@ -215,7 +204,7 @@
     display: flex;
     justify-content: center;
     overflow: hidden;
-    margin-top: 40px;
+    margin-top: 0;
 }
 
 .about-tech-curve-svg {
@@ -286,18 +275,30 @@
 
 .about-orbit-wrapper {
     position: relative;
-    height: 700px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    transition: height 0.3s ease;
+    width: 100%;
+    max-width: 980px;
+    margin: 0 auto;
+    padding-bottom: 24px;
+}
+
+.about-orbit-stage {
+    position: relative;
+    width: min(100%, 880px);
+    aspect-ratio: 1;
+    max-height: min(86vw, 680px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+    padding: 20px 16px;
 }
 
 .about-slider-dots {
-    margin-bottom: -130px;
-    position: absolute;
-    bottom: 0;
+    position: relative;
+    margin-top: 28px;
     display: flex;
     gap: 12px;
     z-index: 100;
@@ -323,10 +324,10 @@
 }
 
 .about-member-info {
-    position: absolute;
-    bottom: 0px;
-    margin-bottom: -30px;
+    position: relative;
+    margin-top: 28px;
     width: 100%;
+    max-width: 520px;
     text-align: center;
     z-index: 20;
     opacity: 0;
@@ -350,14 +351,15 @@
 
 .about-member-role {
     color: var(--accent-primary);
-    font-size: 1rem;
-    letter-spacing: 2px;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     margin-bottom: 15px;
-    background: rgba(0, 0, 0, 0.4);
-    padding: 4px 12px;
-    border-radius: 20px;
-    border: 1px solid var(--glass-border);
+    background: linear-gradient(145deg, rgba(16, 185, 129, 0.12), rgba(8, 8, 8, 0.6));
+    padding: 5px 14px;
+    border-radius: 100px;
+    border: 1px solid rgba(16, 185, 129, 0.35);
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.12);
 }
 
 .about-team-social-links {
@@ -381,25 +383,50 @@
 
 .about-orbit-system {
     position: relative;
-    width: 800px;
-    height: 800px;
+    width: 100%;
+    height: 100%;
+    max-width: 800px;
+    max-height: 800px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: -50px;
+    margin: 0;
+}
+
+.about-orbit-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 1px dashed rgba(255, 255, 255, 0.07);
+    pointer-events: none;
+}
+
+.about-orbit-ring--outer {
+    width: 70%;
+    height: 70%;
+}
+
+.about-orbit-ring--inner {
+    width: 32%;
+    height: 32%;
+    border-color: rgba(16, 185, 129, 0.12);
 }
 
 .about-sun-profile {
-    width: 220px;
-    height: 220px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     z-index: 10;
     position: relative;
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.05);
-    box-shadow: 0 0 60px rgba(16, 185, 129, 0.1);
-    backdrop-filter: blur(5px);
-    border: 1px solid var(--glass-border);
+    padding: 8px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+    box-shadow:
+        0 0 60px rgba(16, 185, 129, 0.15),
+        0 0 100px rgba(59, 130, 246, 0.08);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .about-sun-profile img {
@@ -415,81 +442,105 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 230px;
-    height: 230px;
+    width: 218px;
+    height: 218px;
     border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    box-shadow:
+        0 0 40px rgba(16, 185, 129, 0.12),
+        inset 0 0 30px rgba(16, 185, 129, 0.05);
+    pointer-events: none;
+}
+
+.about-sun-glow-ring::before {
+    content: "";
+    position: absolute;
+    inset: -18px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.06);
     pointer-events: none;
 }
 
 .about-orbit-bubble {
     position: absolute;
-    padding: 10px 24px;
-    background: var(--about-bubble-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: 100px;
-    color: #ccc;
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    top: calc(50% + var(--oy, 0%));
+    left: calc(50% + var(--ox, 0%));
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
     white-space: nowrap;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition:
+        opacity 0.55s cubic-bezier(0.34, 1.56, 0.64, 1),
+        transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
     opacity: 0;
-    transform: scale(0);
+    transform: translate(-50%, -50%) scale(0.6);
+    z-index: 5;
+}
+
+.about-skill-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px 8px 8px;
+    background: linear-gradient(
+        145deg,
+        rgba(22, 24, 23, 0.96) 0%,
+        rgba(8, 8, 8, 0.98) 100%
+    );
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    box-shadow:
+        0 10px 28px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
+    transition:
+        border-color 0.35s ease,
+        box-shadow 0.35s ease,
+        transform 0.35s ease;
+}
+
+.about-skill-chip__icon {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 1.15rem;
+    color: var(--skill-accent, var(--accent-primary));
+    background: color-mix(in srgb, var(--skill-accent, #4ade80) 14%, transparent);
+    border: 1px solid color-mix(in srgb, var(--skill-accent, #4ade80) 38%, transparent);
+    box-shadow: 0 0 18px color-mix(in srgb, var(--skill-accent, #4ade80) 22%, transparent);
+}
+
+.about-skill-chip__label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    color: rgba(255, 255, 255, 0.92);
+    line-height: 1.2;
+    padding-right: 2px;
+}
+
+.about-orbit-bubble:hover .about-skill-chip {
+    border-color: color-mix(in srgb, var(--skill-accent, #4ade80) 45%, transparent);
+    box-shadow:
+        0 14px 32px rgba(0, 0, 0, 0.5),
+        0 0 20px color-mix(in srgb, var(--skill-accent, #4ade80) 18%, transparent);
+    transform: translateY(-2px);
 }
 
 .about-orbit-bubble:hover {
-    border-color: var(--accent-primary);
-    color: #fff;
     z-index: 100;
     cursor: default;
-    box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
-}
-
-/* Bubble Position Classes */
-.about-bubble-pos-1 {
-    top: 30%;
-    left: 10%;
-}
-
-.about-bubble-pos-2 {
-    top: 20%;
-    right: 20%;
-}
-
-.about-bubble-pos-3 {
-    top: 50%;
-    left: -2%;
-    transform: translate(-50%, -50%);
-}
-
-.about-bubble-pos-4 {
-    top: 45%;
-    right: 0%;
-}
-
-.about-bubble-pos-5 {
-    bottom: 22%;
-    left: 25%;
-}
-
-.about-bubble-pos-6 {
-    bottom: 25%;
-    right: 20%;
-}
-
-.about-bubble-pos-7 {
-    top: 12%;
-    left: 20%;
 }
 
 .about-orbit-bubble.visible {
     opacity: 1;
-    transform: scale(1);
+    transform: translate(-50%, -50%) scale(1);
 }
 
 /* --- Responsive Design --- */
@@ -498,12 +549,12 @@
         gap: 50px;
     }
 
-    .about-orbit-system {
-        transform: scale(0.8);
+    .about-orbit-stage {
+        max-height: min(88vw, 560px);
     }
 
-    .about-orbit-wrapper {
-        height: 600px;
+    .about-member-info {
+        margin-top: 16px;
     }
 }
 
@@ -567,25 +618,28 @@
     }
 
     /* Orbit Section */
-    .about-orbit-wrapper {
-        height: 550px;
+    .about-orbit-stage {
+        max-height: min(92vw, 480px);
     }
 
-    .about-orbit-system {
-        transform: scale(0.6);
-        margin-top: -80px;
+    .about-skill-chip {
+        padding: 6px 12px 6px 6px;
+        gap: 8px;
+    }
+
+    .about-skill-chip__icon {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+    }
+
+    .about-skill-chip__label {
+        font-size: 0.75rem;
     }
 
     .about-member-info {
-        bottom: 50px;
-        margin-bottom: 0;
-        width: 100%;
+        margin-top: 12px;
         padding: 0 20px;
-    }
-
-    .about-slider-dots {
-        bottom: 10px;
-        margin-bottom: 0;
     }
 
     .about-member-name {
@@ -605,17 +659,18 @@
     }
 
     /* Orbit Section Mobile */
-    .about-orbit-wrapper {
-        height: 550px;
+    .about-orbit-stage {
+        max-height: min(95vw, 420px);
     }
 
-    .about-orbit-system {
-        transform: scale(0.45);
-        margin-top: -250px;
+    .about-sun-profile {
+        width: 160px;
+        height: 160px;
     }
 
-    .about-member-info {
-        bottom: 30px;
+    .about-sun-glow-ring {
+        width: 180px;
+        height: 180px;
     }
 
     .about-tech-stack-section {

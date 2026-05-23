@@ -13,18 +13,26 @@
 
 .hero-badge,
 .section-subtitle,
-.services-section-subtitle {
+.services-section-subtitle,
+.about-section-badge {
     font-size: var(--text-xs) !important;
 }
 
 .section-title,
+.services-section-title,
 .learning-section .section-title {
     font-size: var(--text-section) !important;
+    font-weight: 700 !important;
+    color: #fff !important;
+    line-height: 1.15 !important;
+    letter-spacing: -0.02em !important;
 }
 
 .section-desc,
 .services-section-desc {
     font-size: var(--text-base) !important;
+    line-height: 1.6 !important;
+    color: var(--text-muted) !important;
 }
 
 .svc-card__title,
@@ -106,7 +114,7 @@
 }
 
 .about-member-role {
-    font-size: var(--text-base) !important;
+    font-size: 0.72rem !important;
 }
 
 .about-section-badge,
@@ -158,47 +166,53 @@
 
 /* --- Contact --- */
 .contact-content h1 {
-    font-size: var(--text-page-title) !important;
+    font-size: clamp(1.35rem, 1.65vw + 0.55rem, 1.75rem) !important;
+    line-height: 1.15 !important;
 }
 
-.contact-lead,
-.map-hero-desc {
+.contact-lead {
     font-size: var(--text-base) !important;
 }
 
 .contact-eyebrow,
-.contact-pill,
-.map-kicker,
-.map-hero-badge-label,
-.map-info-tile-label,
-.map-cta-tile-label,
-.contact-info-label {
+.contact-channel-card__label {
     font-size: var(--text-xs) !important;
 }
 
 .contact-highlights li,
-.contact-info-value,
-.contact-hours,
+.contact-steps__body p,
+.contact-aside-stat__label,
 .contact-form-head p,
 .input-group label,
 .input-group input,
 .input-group textarea,
 .contact-select,
-.map-info-tile-value,
-.map-hero-badge strong,
-.map-cta-tile-text strong,
+.map-info-address {
+    font-size: var(--text-base) !important;
+}
+
+.contact-channel-card__value {
+    font-size: var(--text-sm) !important;
+}
+
+.map-info-desc {
+    font-size: var(--text-sm) !important;
+}
+
 .success-modal-desc,
 .success-modal-btn {
     font-size: var(--text-sm) !important;
 }
 
+.contact-aside-stat__value {
+    font-size: var(--text-lg) !important;
+}
+
+.contact-aside__title,
+.contact-channels-head h2,
 .contact-form-head h2,
 .success-modal-title {
     font-size: var(--text-xl) !important;
-}
-
-.map-hero-title {
-    font-size: var(--text-section) !important;
 }
 
 .submit-btn {
@@ -256,7 +270,8 @@
 
 /* --- CTA --- */
 .cta-card__title {
-    font-size: var(--text-2xl) !important;
+    font-size: clamp(1.625rem, 3.2vw, 2.125rem) !important;
+    line-height: 1.2 !important;
 }
 
 .cta-card__desc {

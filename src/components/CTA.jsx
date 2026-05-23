@@ -45,7 +45,13 @@ export default function CTA({ copy, pageKey, className = "" }) {
       <div className="cta-card">
         <div className="cta-card__glow" aria-hidden />
         <div className="cta-card__content">
-          <Icon className="cta-card__icon" aria-hidden />
+          <div className="cta-card__icon-wrap" aria-hidden>
+            <span className="cta-card__icon-glow" />
+            <span className="cta-card__icon-ring" />
+            <span className="cta-card__icon-inner">
+              <Icon />
+            </span>
+          </div>
           <h2 className="cta-card__title">{title}</h2>
           <p className="cta-card__desc">{description}</p>
           {isExternal ? (

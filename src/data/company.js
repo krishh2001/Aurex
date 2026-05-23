@@ -76,6 +76,11 @@ export const PAGE_META = {
     title: "Insights | AUREX IT Solutions",
     description: "Articles on web development, cloud, security, and delivery practices from the AUREX team.",
   },
+  portfolio: {
+    title: "Portfolio | Websites & Apps We've Built — AUREX",
+    description:
+      "Explore AUREX client projects—websites, web applications, mobile apps, and cloud delivery across industries.",
+  },
   pricing: {
     title: "Service Plans & Pricing (INR) | AUREX",
     description:
@@ -103,16 +108,40 @@ export const PAGE_META = {
 
 export const CONTACT_PAGE = {
   badge: "Contact",
-  title: "Start your IT project",
-  lead: "Tell us about the website or application you need—scope, timeline, and goals. We read every inquiry and reply within one business day.",
+  title: "Let's talk about your project",
+  lead: "Fill the form or reach us directly—we reply within one business day.",
   highlights: [
-    "Websites, web apps & mobile applications",
-    "Fixed-scope projects or dedicated teams",
-    "NDA available before technical deep-dives",
+    "Reply in 24 hours",
+    "Free consultation",
   ],
-  formTitle: "Project inquiry",
-  formHint: "Required fields are marked with *",
+  formTitle: "Send a message",
+  formHint: "Only name, email & message are required",
+  contactTitle: "Other ways to reach us",
+  mapLocationDesc: "Sector 62 studio — in-person visits by appointment during business hours.",
+  nextStepsTitle: "What happens next",
+  nextSteps: [
+    {
+      title: "We read your brief",
+      desc: "A project lead reviews your message within one business day.",
+    },
+    {
+      title: "Quick discovery call",
+      desc: "A short call to clarify scope, timeline, and budget—no hard sell.",
+    },
+    {
+      title: "Proposal & kickoff",
+      desc: "You receive a clear plan and timeline. Start only when you're ready.",
+    },
+  ],
+  asideStats: [
+    { value: "24h", label: "Typical first reply" },
+    { value: "180+", label: "Projects delivered" },
+    { value: "96%", label: "Client retention" },
+    { value: "10+", label: "Years in operation" },
+  ],
 };
+
+export const CONTACT_CHANNEL_ACCENTS = ["#4ade80", "#60a5fa", "#22d3ee", "#fb923c"];
 
 export const CONTACT_CHANNELS = [
   {
@@ -121,6 +150,7 @@ export const CONTACT_CHANNELS = [
     label: "General inquiries",
     value: COMPANY.email,
     href: `mailto:${COMPANY.email}`,
+    accent: CONTACT_CHANNEL_ACCENTS[0],
   },
   {
     id: "sales",
@@ -128,6 +158,7 @@ export const CONTACT_CHANNELS = [
     label: "New projects",
     value: COMPANY.salesEmail,
     href: `mailto:${COMPANY.salesEmail}`,
+    accent: CONTACT_CHANNEL_ACCENTS[1],
   },
   {
     id: "phone",
@@ -135,13 +166,14 @@ export const CONTACT_CHANNELS = [
     label: "Phone",
     value: COMPANY.phone,
     href: `tel:${COMPANY.phone.replace(/\s/g, "")}`,
+    accent: CONTACT_CHANNEL_ACCENTS[2],
   },
   {
-    id: "office",
-    icon: "map",
-    label: "Office",
-    value: "Sector 62, Noida, UP, India",
-    static: true,
+    id: "hours",
+    icon: "time",
+    label: "Business hours",
+    value: COMPANY.hours,
+    accent: CONTACT_CHANNEL_ACCENTS[3],
   },
 ];
 
@@ -270,12 +302,12 @@ export const TEAM_MEMBERS = [
     role: "Founder & CEO",
     image: "https://softwarehousetechnology.com/assets/images/team/vishnu.png",
     skills: [
-      "Leadership",
-      "Business Strategy",
-      "Client Delivery",
-      "Operations",
-      "Team Management",
-      "Growth",
+      { icon: "leadership", label: "Leadership" },
+      { icon: "strategy", label: "Business Strategy" },
+      { icon: "delivery", label: "Client Delivery" },
+      { icon: "operations", label: "Operations" },
+      { icon: "team-mgmt", label: "Team Management" },
+      { icon: "growth", label: "Growth" },
     ],
     socials: [
       { type: "linkedin", url: "" },
@@ -283,46 +315,32 @@ export const TEAM_MEMBERS = [
     ],
   },
   {
-    name: "Priya Sharma",
+    name: "Sohit Tiwari",
     role: "Head of Delivery",
     image: "",
     skills: [
-      "Project Management",
-      "Agile Delivery",
-      "Client Communication",
-      "Scope & Timeline",
-      "QA Planning",
-      "Reporting",
+      { icon: "project-mgmt", label: "Project Management" },
+      { icon: "agile", label: "Agile Delivery" },
+      { icon: "communication", label: "Client Communication" },
+      { icon: "scope", label: "Scope & Timeline" },
+      { icon: "qa", label: "QA Planning" },
+      { icon: "reporting", label: "Reporting" },
     ],
     socials: [{ type: "linkedin", url: "" }],
   },
   {
-    name: "Arjun Kapoor",
-    role: "Lead Developer",
+    name: "Vikas Mishra",
+    role: "Team Lead",
     image: "",
     skills: [
-      "React & Node.js",
-      "API Design",
-      "Cloud Deployment",
-      "Code Review",
-      "Architecture",
-      "Security",
+      { icon: "react", label: "React & Node.js" },
+      { icon: "api", label: "API Design" },
+      { icon: "cloud", label: "Cloud Deployment" },
+      { icon: "code-review", label: "Code Review" },
+      { icon: "architecture", label: "Architecture" },
+      { icon: "security", label: "Security" },
     ],
     socials: [{ type: "github", url: "" }, { type: "linkedin", url: "" }],
-  },
-  {
-    name: "Neha Verma",
-    role: "UI/UX Lead",
-    image: "",
-    skills: [
-      "UI/UX Design",
-      "Design Systems",
-      "Figma",
-      "Prototyping",
-      "User Research",
-      "Handoff",
-    ],
-    socials: [{ type: "linkedin", url: "" }],
   },
 ];
 
@@ -384,9 +402,14 @@ export const HOME_STATS = [
   { value: "10+", label: "Years in Operation" },
 ];
 
+export const HOME_CAPABILITIES_SECTION = {
+  subtitle: "Capabilities",
+  title: "Technology We Deploy Daily",
+  description:
+    "Modern stacks and delivery practices we use every day—from front-end frameworks to cloud pipelines and application security.",
+};
+
 export const HOME_CAPABILITIES = {
-  title: "Technology We",
-  highlight: "Deploy Daily",
   center: ["Web Apps", "Cloud", "Security"],
   items: [
     { num: "01", text: "Websites &\nWeb Apps" },
@@ -395,6 +418,62 @@ export const HOME_CAPABILITIES = {
     { num: "04", text: "Cloud &\nDevOps" },
     { num: "05", text: "Support &\nMaintenance" },
   ],
+};
+
+export const HOME_SERVICES_SECTION = {
+  subtitle: "IT Services",
+  title: "Websites, Apps & IT Delivery",
+  description:
+    "One partner for your client project—from corporate sites to full-stack applications and ongoing support.",
+  cta: { label: "Explore all services", to: "/services" },
+};
+
+export const HOME_PORTFOLIO_SECTION = {
+  subtitle: "Portfolio",
+  title: "Work that speaks for itself",
+  description:
+    "A snapshot of websites and applications we've delivered—filter by type on the full portfolio page.",
+  cta: { label: "View full portfolio", to: "/portfolio" },
+  featuredIds: ["finledger", "novamart", "healthpulse"],
+};
+
+/** Home — company overview (below hero); mirrors About page story tone */
+export const HOME_ABOUT_SECTION = {
+  subtitle: "About Us",
+  title: "Engineers & designers who ship",
+  description:
+    "Your IT project delivery partner in Noida—websites, web apps, and mobile products built for real users.",
+  badge: "Who We Are",
+  paragraphs: [
+    "Founded in 2015, AUREX takes client requirements and delivers production-ready websites, web applications, and mobile apps—with cloud, security, and support when you need them.",
+    "You bring goals and scope; we run discovery, design, development, testing, and launch with clear milestones and one accountable team.",
+  ],
+  quote:
+    "Every delivery is documented, tested, and handed over ready for real users—not demo-only builds.",
+  pillars: [
+    {
+      icon: "launch",
+      title: "End-to-end delivery",
+      description: "Strategy, UI/UX, engineering, QA, and go-live under one roof.",
+    },
+    {
+      icon: "discovery",
+      title: "Transparent process",
+      description: "Weekly demos, written scope, and milestones you can track.",
+    },
+    {
+      icon: "security",
+      title: "Long-term support",
+      description: "Monitoring, updates, and dedicated squads when you need scale.",
+    },
+  ],
+  stats: [
+    { value: "180+", label: "Projects delivered" },
+    { value: "96%", label: "Client retention" },
+    { value: "45+", label: "Engineers & consultants" },
+    { value: "10+", label: "Years in operation" },
+  ],
+  cta: { label: "Meet the team", to: "/about" },
 };
 
 export const PRICING_CURRENCY_NOTE =
@@ -486,16 +565,21 @@ export const FOOTER_COLUMNS = [
       { label: "All Services", to: "/services" },
       { label: "Custom Websites", to: "/services" },
       { label: "Web Applications", to: "/services" },
+      { label: "Mobile Applications", to: "/services" },
       { label: "Cloud & DevOps", to: "/services" },
     ],
   },
   {
     title: "Company",
     links: [
-      { label: "About Us", to: "/about" },
       { label: "Home", to: "/" },
-      { label: "Careers", href: "mailto:careers@aurex.com" },
+      { label: "About Us", to: "/about" },
+      { label: "Portfolio", to: "/portfolio" },
       { label: "Contact", to: "/contact" },
+      {
+        label: "Careers",
+        href: `mailto:${COMPANY.email}?subject=Careers%20at%20${encodeURIComponent(COMPANY.name)}`,
+      },
     ],
   },
   {
@@ -570,6 +654,13 @@ export const CTA_BY_PAGE = {
     description:
       "Need a website or application built? Tell us about your IT project—we reply within one business day.",
     button: "Start a Project",
+  },
+  portfolio: {
+    icon: "rocket",
+    title: "Want results like these?",
+    description:
+      "Share your goals and timeline—we'll scope a delivery plan for your website, app, or cloud initiative.",
+    button: "Start Your Project",
   },
 };
 

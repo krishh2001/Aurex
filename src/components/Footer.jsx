@@ -33,22 +33,23 @@ export default function Footer() {
             <div className="footer-col" key={col.title}>
               <h3 className="footer-col-title">{col.title}</h3>
               {col.links.map((link) => {
+                const linkKey = `${col.title}-${link.label}`;
                 if (link.static) {
                   return (
-                    <span key={link.label} className="footer-link footer-link--static">
+                    <span key={linkKey} className="footer-link footer-link--static">
                       {link.label}
                     </span>
                   );
                 }
                 if (link.to) {
                   return (
-                    <Link key={link.label} to={link.to} className="footer-link">
+                    <Link key={linkKey} to={link.to} className="footer-link">
                       {link.label}
                     </Link>
                   );
                 }
                 return (
-                  <a key={link.label} href={link.href} className="footer-link">
+                  <a key={linkKey} href={link.href} className="footer-link">
                     {link.label}
                   </a>
                 );
