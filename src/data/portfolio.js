@@ -46,7 +46,7 @@ export const PORTFOLIO_PROJECTS = [
     category: "Web Apps",
     year: "2025",
     image:
-      "https://images.unsplash.com/photo-1472851293608-48e1a7bf66a3?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1200&q=80",
     imageAlt: "NovaMart e-commerce storefront",
     liveUrl: "https://demo.vercel.store/",
     excerpt:
@@ -88,7 +88,7 @@ export const PORTFOLIO_PROJECTS = [
     category: "Web Apps",
     year: "2024",
     image:
-      "https://images.unsplash.com/photo-1501504905252-467c7a8d4f90?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80",
     imageAlt: "EduSpark learning management platform",
     liveUrl: "https://demos.creative-tim.com/notus-react/",
     excerpt:
