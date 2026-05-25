@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>New project inquiry</title>
+</head>
+<body>
+  <div class="wrap">
+    <div class="header">
+      <p class="brand">AUREX</p>
+      <p class="brand-sub">Aurex IT Solutions</p>
+    </div>
+
+    <div class="card">
+      <h1 class="title">New project inquiry</h1>
+      <p class="meta">
+        {{ _time }} · via {{ _host }}
+      </p>
+
+      <table class="fields" cellpadding="0" cellspacing="0">
+        <tr>
+          <td class="label">Name</td>
+          <td class="value">{{ name }}</td>
+        </tr>
+        <tr>
+          <td class="label">Email</td>
+          <td class="value"><a href="mailto:{{ email }}">{{ email }}</a></td>
+        </tr>
+        {{# company }}
+        <tr>
+          <td class="label">Company</td>
+          <td class="value">{{ company }}</td>
+        </tr>
+        {{/ company }}
+        {{# phone }}
+        <tr>
+          <td class="label">Phone</td>
+          <td class="value">{{ phone }}</td>
+        </tr>
+        {{/ phone }}
+        {{# service }}
+        <tr>
+          <td class="label">Service</td>
+          <td class="value">{{ service }}</td>
+        </tr>
+        {{/ service }}
+      </table>
+
+      <div class="message-block">
+        <p class="label">Message</p>
+        <p class="message">{{ message }}</p>
+      </div>
+
+      <p class="cta-hint">Reply directly to this email — replies go to the sender when Reply-To is set.</p>
+    </div>
+
+    <p class="footer">
+      <a href="mailto:aurexitsolutions@gmail.com">aurexitsolutions@gmail.com</a>
+      · Aurex IT Solutions
+    </p>
+    <p class="unsub">{{ _unsubscribe }}</p>
+  </div>
+</body>
+</html>

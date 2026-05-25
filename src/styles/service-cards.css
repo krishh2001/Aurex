@@ -306,7 +306,23 @@
 }
 
 .svc-card--home {
-    min-height: 280px;
+    min-height: 0;
+    height: auto;
+}
+
+.svc-card--home .svc-card__body {
+    flex: 1;
+}
+
+.svc-card--home .svc-card__desc {
+    display: block;
+    overflow: visible;
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+}
+
+.svc-card--home .svc-card__features {
+    margin-top: 16px;
 }
 
 .svc-card--full {

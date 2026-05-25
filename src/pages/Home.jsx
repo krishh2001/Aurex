@@ -75,8 +75,8 @@ export default function Home() {
                         <p className="section-desc">{HOME_SERVICES_SECTION.description}</p>
                     </div>
 
-                    <div className="about-process-grid home-services-grid">
-                        {SERVICE_OFFERINGS.map((service, index) => (
+                    <div className="svc-grid home-services-grid">
+                        {SERVICE_OFFERINGS.slice(0, 4).map((service, index) => (
                             <ServiceOfferingCard
                                 key={service.title}
                                 service={service}

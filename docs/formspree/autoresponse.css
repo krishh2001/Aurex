@@ -1,0 +1,86 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0a0a0a;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #e5e7eb;
+}
+
+.wrap {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 32px 20px 40px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.brand {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: #10b981;
+}
+
+.brand-sub {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+.card {
+  background: linear-gradient(155deg, #161817 0%, #0c0c0c 100%);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 16px;
+  padding: 28px 24px;
+}
+
+.title {
+  margin: 0 0 12px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.lead {
+  margin: 0 0 16px;
+  font-size: 16px;
+  line-height: 1.55;
+  color: #d1d5db;
+}
+
+.body {
+  margin: 0 0 20px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #9ca3af;
+}
+
+.contact {
+  margin: 0;
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+.contact a {
+  color: #6ee7b7;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.footer {
+  margin: 24px 0 0;
+  text-align: center;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.unsub {
+  margin: 16px 0 0;
+  text-align: center;
+  font-size: 11px;
+  color: #4b5563;
+}

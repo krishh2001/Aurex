@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { usePageEffects } from "../hooks/usePageEffects";
 import { usePageMeta } from "../hooks/usePageMeta";
 import {
@@ -11,6 +11,8 @@ import {
   RiArrowRightLine,
   RiCloseLine,
   RiSendPlaneFill,
+  RiMailCheckLine,
+  RiSparkling2Line,
 } from "react-icons/ri";
 
 import {
@@ -20,6 +22,7 @@ import {
   CONTACT_SERVICE_OPTIONS,
   PAGE_META,
 } from "../data/company";
+import { submitContactForm } from "../lib/contactSubmit";
 
 const CHANNEL_ICONS = {
   general: RiMailLine,
@@ -69,6 +72,8 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSent, setIsSent] = useState(false);
   const [sentTo, setSentTo] = useState({ name: "", email: "" });
+  const [submitError, setSubmitError] = useState("");
+  const [submitInfo, setSubmitInfo] = useState("");
 
   usePageMeta(PAGE_META.contact);
   usePageEffects(".contact-bg-text");
@@ -78,19 +83,46 @@ export default function Contact() {
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitError("");
+    setSubmitInfo("");
     setIsSubmitting(true);
 
-    setTimeout(() => {
+    try {
+      const result = await submitContactForm(formData);
       setSentTo({ name: formData.name, email: formData.email });
-      setIsSubmitting(false);
-      setIsSent(true);
       setFormData(INITIAL_FORM);
-    }, 1200);
+      setIsSent(true);
+      if (result.fallback && import.meta.env.DEV) {
+        setSubmitInfo(
+          "Backup delivery used (plain email). Add RESEND_API_KEY to .env.local and restart the dev server for Aurex-branded mail."
+        );
+      }
+    } catch (err) {
+      setSubmitError(
+        err instanceof Error ? err.message : "Something went wrong. Please email or call us directly."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const closeSuccess = () => setIsSent(false);
+
+  useEffect(() => {
+    if (!isSent) return undefined;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e) => {
+      if (e.key === "Escape") closeSuccess();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prev;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [isSent]);
 
   return (
     <div className="contact-page-wrapper">
@@ -236,6 +268,16 @@ export default function Contact() {
                   </div>
                 </div>
 
+                {submitError ? (
+                  <p className="contact-form-error" role="alert">
+                    {submitError}
+                  </p>
+                ) : null}
+                {submitInfo ? (
+                  <p className="contact-form-info" role="status">
+                    {submitInfo}
+                  </p>
+                ) : null}
                 <button
                   type="submit"
                   className={`submit-btn${isSent ? " submit-btn--success" : ""}`}
@@ -318,30 +360,62 @@ export default function Contact() {
             aria-labelledby="success-modal-title"
             onClick={(e) => e.stopPropagation()}
           >
+            <div className="success-modal__shine" aria-hidden />
+            <div className="success-modal__aurora" aria-hidden />
+            <div className="success-modal__noise" aria-hidden />
+            <span className="success-confetti success-confetti--1" aria-hidden />
+            <span className="success-confetti success-confetti--2" aria-hidden />
+            <span className="success-confetti success-confetti--3" aria-hidden />
+            <span className="success-confetti success-confetti--4" aria-hidden />
+            <span className="success-confetti success-confetti--5" aria-hidden />
+
             <button type="button" className="success-close" onClick={closeSuccess} aria-label="Close">
               <RiCloseLine />
             </button>
-            <div className="success-modal-icon">
-              <RiCheckLine aria-hidden />
+
+            <div className="success-modal__hero">
+              <span className="success-ring success-ring--1" aria-hidden />
+              <span className="success-ring success-ring--2" aria-hidden />
+              <span className="success-ring success-ring--3" aria-hidden />
+              <div className="success-modal-icon">
+                <RiCheckLine aria-hidden />
+              </div>
             </div>
-            <h3 id="success-modal-title" className="success-modal-title">
-              Thank you{sentTo.name ? `, ${sentTo.name}` : ""}!
-            </h3>
-            <p className="success-modal-desc">
-              We received your message and will reply within one business day
-              {sentTo.email ? (
-                <>
-                  {" "}
-                  at <strong>{sentTo.email}</strong>
-                </>
-              ) : (
-                ""
-              )}
-              .
+
+            <p className="success-modal-badge">
+              <RiSparkling2Line aria-hidden />
+              Message delivered
             </p>
-            <button type="button" className="success-modal-btn" onClick={closeSuccess}>
-              Done
-            </button>
+
+            <h3 id="success-modal-title" className="success-modal-title">
+              <span className="success-modal-title__lead">You&apos;re all set</span>
+              {sentTo.name ? (
+                <span className="success-modal-title__name">{sentTo.name}</span>
+              ) : (
+                <span className="success-modal-title__name">Thank you!</span>
+              )}
+            </h3>
+
+            <p className="success-modal-desc">
+              Our team has your inquiry. Expect a thoughtful reply within one business day
+              {sentTo.email ? " at the address below." : "."}
+            </p>
+
+            {sentTo.email ? (
+              <div className="success-email-pill">
+                <span className="success-email-pill__icon" aria-hidden>
+                  <RiMailCheckLine />
+                </span>
+                <span className="success-email-pill__text">{sentTo.email}</span>
+              </div>
+            ) : null}
+
+            <div className="success-modal-actions">
+              <button type="button" className="success-modal-btn" onClick={closeSuccess}>
+                <RiCheckLine aria-hidden />
+                Got it
+              </button>
+            </div>
           </div>
         </div>
       )}

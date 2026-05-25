@@ -5,12 +5,12 @@ export const POSITIONING =
 
 export const COMPANY = {
   name: "AUREX",
-  legalName: "Aurex IT Solutions Pvt. Ltd.",
+  legalName: "Aurex IT Solutions",
   tagline: "We build websites and applications your business can run on.",
   description:
     "AUREX is an IT services company in Noida. Clients bring project requirements—we design, develop, test, and deliver websites, web apps, and mobile applications ready for real users.",
-  email: "hello@aurex.com",
-  salesEmail: "projects@aurex.com",
+  email: "aurexitsolutions@gmail.com",
+  salesEmail: "aurexitsolutions@gmail.com",
   phone: "+91 120 456 7890",
   location: "Noida, Uttar Pradesh, India",
   address: "Sector 62, Noida, Uttar Pradesh 201309, India",
@@ -147,18 +147,10 @@ export const CONTACT_CHANNELS = [
   {
     id: "general",
     icon: "mail",
-    label: "General inquiries",
+    label: "Aurex IT Solutions",
     value: COMPANY.email,
     href: `mailto:${COMPANY.email}`,
     accent: CONTACT_CHANNEL_ACCENTS[0],
-  },
-  {
-    id: "sales",
-    icon: "mail",
-    label: "New projects",
-    value: COMPANY.salesEmail,
-    href: `mailto:${COMPANY.salesEmail}`,
-    accent: CONTACT_CHANNEL_ACCENTS[1],
   },
   {
     id: "phone",
@@ -300,7 +292,7 @@ export const TEAM_MEMBERS = [
   {
     name: "Vishnu Rajput",
     role: "Founder & CEO",
-    image: "https://softwarehousetechnology.com/assets/images/team/vishnu.png",
+    image: "/team/vishnuu.png",
     skills: [
       { icon: "leadership", label: "Leadership" },
       { icon: "strategy", label: "Business Strategy" },
@@ -317,7 +309,7 @@ export const TEAM_MEMBERS = [
   {
     name: "Sohit Tiwari",
     role: "Head of Delivery",
-    image: "",
+    image: "/team/sohit.jpeg",
     skills: [
       { icon: "project-mgmt", label: "Project Management" },
       { icon: "agile", label: "Agile Delivery" },
@@ -331,7 +323,7 @@ export const TEAM_MEMBERS = [
   {
     name: "Vikas Mishra",
     role: "Team Lead",
-    image: "",
+    image: "/team/vikki.png",
     skills: [
       { icon: "react", label: "React & Node.js" },
       { icon: "api", label: "API Design" },
@@ -392,7 +384,13 @@ export const HOME_TESTIMONIALS_SECTION = {
   title: "What Our Clients Say",
   description:
     "Feedback from teams who hired AUREX to build their websites and applications.",
+  disclaimer:
+    "Quotes reflect client experiences on delivered projects. Names and roles used with client context; update or remove any entry that is not approved for public use.",
 };
+
+/** Shown under aggregate stats on marketing pages */
+export const STATS_DISCLAIMER =
+  "Figures are indicative of our delivery track record—confirm current numbers with our team during discovery.";
 
 export const TEAM_SECTION = {
   subtitle: "The Team",

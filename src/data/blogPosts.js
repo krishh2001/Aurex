@@ -1,4 +1,4 @@
-import { buildArticleBody } from "../utils/blogBody";
+import { getArticleBody } from "./blogBodies";
 
 /** Smaller Unsplash widths for card thumbnails — faster load & scroll */
 const img = (url, width = 640) =>
@@ -87,7 +87,7 @@ const rawPosts = [
     category: "UI/UX Design",
     date: "November 8, 2024",
     readTime: "7 min read",
-    image: img("https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2064&q=80"),
+    image: img("https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=2064&q=80"),
     tags: ["Design Systems", "UI", "Consistency"],
   },
   {
@@ -97,7 +97,7 @@ const rawPosts = [
     category: "Cloud Solutions",
     date: "October 28, 2024",
     readTime: "9 min read",
-    image: img("https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2072&q=80"),
+    image: img("https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=2072&q=80"),
     tags: ["Serverless", "Architecture", "Cloud"],
   },
   {
@@ -107,7 +107,7 @@ const rawPosts = [
     category: "Web Development",
     date: "October 15, 2024",
     readTime: "8 min read",
-    image: img("https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80"),
+    image: img("https://images.unsplash.com/photo-1516116216624-53e697fedbea?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80"),
     tags: ["JavaScript", "Best Practices", "ES6+"],
   },
   {
@@ -117,7 +117,7 @@ const rawPosts = [
     category: "UI/UX Design",
     date: "October 2, 2024",
     readTime: "6 min read",
-    image: img("https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1974&q=80"),
+    image: img("https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1974&q=80"),
     tags: ["Responsive", "Design", "Mobile"],
   },
   {
@@ -127,7 +127,7 @@ const rawPosts = [
     category: "Backend Development",
     date: "September 20, 2024",
     readTime: "10 min read",
-    image: img("https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"),
+    image: img("https://images.unsplash.com/photo-1544383835-bda2bc66a55d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"),
     tags: ["Database", "Optimization", "Performance"],
   },
 ];
@@ -135,7 +135,7 @@ const rawPosts = [
 export const allBlogPosts = rawPosts.map((post) => ({
   ...post,
   author: BLOG_AUTHOR,
-  body: buildArticleBody(post),
+  body: getArticleBody(post),
 }));
 
 export const blogCategories = ["All", ...new Set(allBlogPosts.map((post) => post.category))];

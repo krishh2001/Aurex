@@ -6,7 +6,7 @@ import {
 } from "react-icons/ri";
 import PremiumServiceIcon from "./PremiumServiceIcon";
 import HomeAboutScene3D from "./HomeAboutScene3D";
-import { HOME_ABOUT_SECTION } from "../data/company";
+import { HOME_ABOUT_SECTION, STATS_DISCLAIMER } from "../data/company";
 
 export default function HomeAboutSection() {
 
@@ -68,6 +68,7 @@ export default function HomeAboutSection() {
           </li>
         ))}
       </ul>
+      <p className="stats-disclaimer reveal">{STATS_DISCLAIMER}</p>
 
       <div className="home-section-cta-row reveal">
         <Link to={HOME_ABOUT_SECTION.cta.to} className="home-section-cta">

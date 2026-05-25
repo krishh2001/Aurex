@@ -16,15 +16,32 @@ export default function ServiceOfferingCard({
 
   if (variant === "home") {
     return (
-      <article className={`about-process-card ${className}`.trim()}>
-        <span className="about-step-number" aria-hidden>
+      <article className={`svc-card svc-card--${accent} svc-card--home ${className}`.trim()}>
+        <div className="svc-card__shine" aria-hidden />
+        <div className="svc-card__orb" aria-hidden />
+        <span className="svc-card__index" aria-hidden>
           {step}
         </span>
-        <div className="about-process-icon">
-          <PremiumServiceIcon type={service.icon} className="about-process-premium-icon" />
+        <div className="svc-card__body">
+          <div className="svc-card__top">
+            <PremiumServiceIcon type={service.icon} className="svc-card__icon" />
+            <div className="svc-card__copy">
+              {service.tag ? <span className="svc-card__tag">{service.tag}</span> : null}
+              <h3 className="svc-card__title">{service.title}</h3>
+              <p className="svc-card__desc">{service.description}</p>
+            </div>
+          </div>
+          {service.features?.length > 0 && (
+            <ul className="svc-card__features">
+              {service.features.map((feature) => (
+                <li key={feature}>
+                  <RiCheckLine aria-hidden />
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
-        <h3 className="about-process-title">{service.title}</h3>
-        <p className="about-process-desc">{service.description}</p>
       </article>
     );
   }

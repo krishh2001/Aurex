@@ -1,16 +1,45 @@
-# React + Vite
+# AUREX — Marketing site
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + Vite SPA for **AUREX IT Solutions** (websites, web apps, mobile, cloud).
 
-Currently, two official plugins are available:
+## Quick start
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+npm install
+npm run dev
+```
 
-## React Compiler
+Open [http://localhost:5173](http://localhost:5173) (or the port Vite prints).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Environment
 
-## Expanding the ESLint configuration
+Copy `.env.example` to `.env` and set:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+| Variable | Purpose |
+|----------|---------|
+| `VITE_SITE_URL` | Canonical URL for SEO, OG, sitemap |
+| `VITE_CONTACT_FORM_ENDPOINT` | Optional POST URL (e.g. [Formspree](https://formspree.io)) for contact form |
+
+**Branded emails (recommended):** deploy on Vercel with `RESEND_API_KEY` — see [`docs/formspree/README.md`](docs/formspree/README.md).
+
+**Fallback:** Formspree `https://formspree.io/f/xeedlbzp` when Resend is not configured (plain notification).
+
+## Scripts
+
+- `npm run dev` — development server
+- `npm run build` — production build to `dist/`
+- `npm run preview` — preview production build
+- `npm run lint` — ESLint
+
+## Content
+
+Edit copy and data in:
+
+- `src/data/company.js` — services, pricing, team, testimonials, meta
+- `src/data/portfolio.js` — projects and images
+- `src/data/blogPosts.js` — blog list metadata
+- `src/data/blogBodies.js` — full article bodies per post id
+
+## Deploy
+
+Build output is static. Deploy `dist/` to Vercel, Netlify, or any static host. Set `VITE_SITE_URL` to your production domain before building.

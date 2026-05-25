@@ -9,6 +9,7 @@ import {
   PORTFOLIO_PROJECTS,
   PORTFOLIO_STATS,
 } from "../data/portfolio";
+import { STATS_DISCLAIMER } from "../data/company";
 import { RiBriefcaseLine, RiEyeLine, RiFilterLine } from "react-icons/ri";
 import PortfolioProjectCard from "../components/PortfolioProjectCard";
 import TestimonialsSection from "../components/TestimonialsSection";
@@ -74,6 +75,7 @@ export default function Portfolio() {
               </li>
             ))}
           </ul>
+          <p className="stats-disclaimer">{STATS_DISCLAIMER}</p>
         </section>
 
         <section className="portfolio-grid-section">

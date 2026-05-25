@@ -36,6 +36,9 @@ export default function TestimonialsSection({ className = "", headerClassName = 
         <span className="section-subtitle">{HOME_TESTIMONIALS_SECTION.subtitle}</span>
         <h2 className="section-title">{HOME_TESTIMONIALS_SECTION.title}</h2>
         <p className="section-desc">{HOME_TESTIMONIALS_SECTION.description}</p>
+        {HOME_TESTIMONIALS_SECTION.disclaimer ? (
+          <p className="testimonials-disclaimer">{HOME_TESTIMONIALS_SECTION.disclaimer}</p>
+        ) : null}
       </div>
       <div className="slider-wrapper" id="slider-container">
         {HOME_TESTIMONIALS.map((item, index) => (
