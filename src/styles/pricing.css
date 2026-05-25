@@ -252,16 +252,22 @@
 @media (min-width: 1024px) {
     .pricing-grid {
         align-items: center;
+        /* Room for “Most Popular” badge above featured card */
+        padding-top: 28px;
     }
 
-    /* Side cards shorter; featured taller — grid centers them so extra height splits top & bottom */
+    /* Side cards shorter; featured taller — equal overhang top & bottom vs standard */
     .pricing-card.standard {
-        min-height: 640px;
+        min-height: 580px;
+        align-self: center;
     }
 
     .pricing-card.featured {
-        min-height: 720px;
-        padding-top: 36px;
+        min-height: 670px;
+        padding-top: 28px;
+        align-self: center;
+        /* Badge sits 18px above card — nudge down so extra height splits evenly vs side cards */
+        margin-top: 9px;
         z-index: 2;
         box-shadow: 0 0 48px rgba(16, 185, 129, 0.12);
     }

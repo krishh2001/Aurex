@@ -55,7 +55,7 @@ export default function TestimonialsSection({ className = "", headerClassName = 
             </div>
             <div className="user-info">
               <div className="connection-dot" />
-              <PersonAvatar name={item.name} image={item.image} className="avatar" size={64} />
+              <PersonAvatar name={item.name} image={item.image} className="avatar" size={56} />
               <h4 className="user-name">{item.name}</h4>
               <span className="user-role">{item.role}</span>
             </div>

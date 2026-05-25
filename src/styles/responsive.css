@@ -173,7 +173,7 @@ iframe {
 
 @media (max-width: 768px) {
     .slider-wrapper {
-        min-height: min(480px, 85vh);
+        min-height: min(420px, 80vh);
         padding-inline: 8px;
     }
 
@@ -188,14 +188,14 @@ iframe {
 
 @media (max-width: 480px) {
     .slider-wrapper {
-        min-height: 440px;
+        min-height: 400px;
     }
 
     .testimonial-section .avatar,
     .testimonial-section .avatar.person-avatar-initials {
-        width: 56px;
-        height: 56px;
-        font-size: 1rem;
+        width: 48px;
+        height: 48px;
+        font-size: 0.95rem;
     }
 }
 

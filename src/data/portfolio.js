@@ -1,16 +1,20 @@
 /** Portfolio page — project showcase (edit copy, images & live URLs here) */
 
+/** HD Unsplash banners — w=1600 & q=85 for sharp cards */
+const IMG = (id) =>
+  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=1600&h=900&q=85`;
+
 export const PORTFOLIO_CATEGORIES = ["All", "Websites", "Web Apps", "Mobile", "Cloud"];
 
 export const PORTFOLIO_PAGE = {
   badge: "Portfolio",
   title: "Projects we've delivered",
   lead:
-    "A selection of websites, applications, and cloud work shipped for startups and enterprises across India and abroad.",
+    "Enterprise websites and a fintech mobile app we've shipped—for pharma, FMCG, fitness, recruitment, and career brands.",
   filterLabel: "Filter by type",
   emptyTitle: "No projects in this category",
   emptyText: "Try another filter to see more of our work.",
-  liveCta: "View live site",
+  liveCta: "Live site",
   quoteCta: "Get a quote",
   viewMoreCta: "View more",
   initialVisible: 6,
@@ -26,129 +30,81 @@ export const PORTFOLIO_STATS = [
 
 export const PORTFOLIO_PROJECTS = [
   {
-    id: "finledger",
-    title: "FinLedger Console",
-    client: "FinTech · B2B SaaS",
-    category: "Web Apps",
-    year: "2025",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
-    imageAlt: "FinLedger analytics dashboard interface",
-    liveUrl: "https://mui.com/store/previews/minimal-dashboard/",
-    excerpt:
-      "Multi-tenant finance dashboard with role-based access, real-time reporting, and audit-ready exports for operations teams.",
-    tech: ["React", "Node.js", "PostgreSQL", "AWS"],
-  },
-  {
-    id: "novamart",
-    title: "NovaMart Commerce",
-    client: "Retail · E-commerce",
-    category: "Web Apps",
-    year: "2025",
-    image:
-      "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1200&q=80",
-    imageAlt: "NovaMart e-commerce storefront",
-    liveUrl: "https://demo.vercel.store/",
-    excerpt:
-      "Headless storefront with inventory sync, payment gateways, and a merchant dashboard for catalog and order management.",
-    tech: ["Next.js", "Stripe", "Redis", "Vercel"],
-  },
-  {
-    id: "healthpulse",
-    title: "HealthPulse Portal",
-    client: "Healthcare · Clinics",
-    category: "Web Apps",
-    year: "2024",
-    image:
-      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1200&q=80",
-    imageAlt: "HealthPulse patient portal screens",
-    liveUrl: "https://demos.creative-tim.com/soft-ui-dashboard-pro-react/",
-    excerpt:
-      "Patient booking, EMR-friendly workflows, and staff scheduling with HIPAA-minded security practices and uptime monitoring.",
-    tech: ["React", "TypeScript", "Azure", "Docker"],
-  },
-  {
-    id: "techflow",
-    title: "TechFlow Corporate Site",
-    client: "IT Services · Enterprise",
+    id: "symbiotec",
+    title: "Symbiotec",
+    client: "Pharma · Enterprise",
     category: "Websites",
-    year: "2024",
-    image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
-    imageAlt: "TechFlow corporate marketing website",
-    liveUrl: "https://nextjs.org/",
+    year: "2025",
+    image: IMG("photo-1512069772995-ec65ed45afd6"),
+    imageAlt: "Assorted pharmaceutical capsules and tablets for Symbiotec enterprise API manufacturer site",
+    liveUrl: "https://symbiotec.com/",
     excerpt:
-      "High-performance marketing site with CMS-driven pages, lead capture, and localized content for multiple regions.",
-    tech: ["React", "Vite", "Headless CMS", "CDN"],
+      "Enterprise pharmaceutical website for a global API manufacturer—showcasing infrastructure, research capabilities, and regulatory presence across multiple markets.",
+    tech: ["React", "Node.js", "MongoDB", "Express"],
   },
   {
-    id: "eduspark",
-    title: "EduSpark LMS",
-    client: "Education · EdTech",
-    category: "Web Apps",
-    year: "2024",
-    image:
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80",
-    imageAlt: "EduSpark learning management platform",
-    liveUrl: "https://demos.creative-tim.com/notus-react/",
+    id: "livinda",
+    title: "Livinda",
+    client: "Confectionery · FMCG",
+    category: "Websites",
+    year: "2025",
+    image: IMG("photo-1578985545062-69928b1d9587"),
+    imageAlt: "Rich chocolate cake and premium confectionery styling for Livinda Kingdom of Sweetness website",
+    liveUrl: "https://livinda.in/",
     excerpt:
-      "Learning platform with course modules, assessments, progress tracking, and instructor analytics for cohort-based programs.",
-    tech: ["React", "Node.js", "MongoDB", "S3"],
+      "Premium confectionery brand website—the Kingdom of Sweetness—with product lines, Rochello luxury storytelling, global presence, and rich media across candies, chocolates, and surprise eggs.",
+    tech: ["React", "Vite", "Video", "CMS"],
   },
   {
-    id: "logitrack",
-    title: "LogiTrack Fleet",
-    client: "Logistics · Operations",
+    id: "fitness-temple",
+    title: "Fitness Temple",
+    client: "Fitness · Premium Gym",
+    category: "Websites",
+    year: "2025",
+    image: IMG("photo-1549060279-7e168fcee0c2"),
+    imageAlt: "Modern gym interior with equipment for Fitness Temple website",
+    liveUrl: "https://fitness-temple-gamma.vercel.app/",
+    excerpt:
+      "Premium fitness website for a Manhattan gym—classes, membership tiers, trainer profiles, member stories, and 24/7 facility positioning with a polished join flow.",
+    tech: ["React", "Vite", "Vercel", "Responsive UI"],
+  },
+  {
+    id: "billsebachat",
+    title: "Bill se Bachat",
+    client: "FinTech · Mobile App",
     category: "Mobile",
-    year: "2024",
-    image:
-      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=80",
-    imageAlt: "LogiTrack mobile fleet tracking app",
-    liveUrl: "https://expo.dev/",
+    year: "2025",
+    image: IMG("photo-1512941937669-90a1b58e7e9c"),
+    imageAlt: "Smartphone app interface for Bill se Bachat bill verification and rewards",
+    liveUrl: "https://billsebachat.com/",
     excerpt:
-      "Driver and dispatcher apps with live trip status, proof-of-delivery capture, and integration with existing ERP web services.",
-    tech: ["React Native", "Maps API", "Node.js", "PostgreSQL"],
+      "Fintech mobile app with Laravel backend APIs—users verify bills and earn subscription-based rewards through secure, structured payment flows.",
+    tech: ["Laravel", "MySQL", "REST APIs", "Mobile"],
   },
   {
-    id: "cloudscale",
-    title: "CloudScale Migration",
-    client: "SaaS · Infrastructure",
-    category: "Cloud",
-    year: "2023",
-    image:
-      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80",
-    imageAlt: "CloudScale cloud infrastructure architecture",
-    liveUrl: "https://aws.amazon.com/solutions/",
-    excerpt:
-      "Lift-and-optimize migration from on-prem VMs to AWS with CI/CD pipelines, cost dashboards, and disaster-recovery runbooks.",
-    tech: ["AWS", "Terraform", "GitHub Actions", "CloudWatch"],
-  },
-  {
-    id: "securegate",
-    title: "SecureGate IAM",
-    client: "Cybersecurity · Enterprise",
-    category: "Web Apps",
-    year: "2023",
-    image:
-      "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80",
-    imageAlt: "SecureGate identity management dashboard",
-    liveUrl: "https://demos.creative-tim.com/argon-dashboard-react/",
-    excerpt:
-      "Identity and access management UI with SSO integrations, policy editor, and security event timelines for IT administrators.",
-    tech: ["React", "OAuth 2.0", "Python", "Kubernetes"],
-  },
-  {
-    id: "propview",
-    title: "PropView Realty",
-    client: "Real Estate · Marketing",
+    id: "myjobaccess",
+    title: "MyJobAccess",
+    client: "Recruitment · Job Portal",
     category: "Websites",
-    year: "2023",
-    image:
-      "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1200&q=80",
-    imageAlt: "PropView real estate listings website",
-    liveUrl: "https://tailwindui.com/templates",
+    year: "2025",
+    image: IMG("photo-1553877522-43269d4ea984"),
+    imageAlt: "Modern hiring workspace and recruitment flow for MyJobAccess job portal",
+    liveUrl: "https://myjobaccess.com/",
     excerpt:
-      "Property listing site with map search, enquiry funnels, and CRM handoff for sales teams managing high-value inventory.",
-    tech: ["React", "Maps", "Node.js", "MySQL"],
+      "Recruitment website where employers post roles and manage applicants, and candidates search opportunities and apply—with performance and SEO in mind.",
+    tech: ["React", "Node.js", "PostgreSQL", "SEO"],
+  },
+  {
+    id: "skillzy",
+    title: "SkillZY",
+    client: "EdTech · Career Tech",
+    category: "Websites",
+    year: "2025",
+    image: IMG("photo-1522202176988-66273c2fd55f"),
+    imageAlt: "Students collaborating on laptops for SkillZY career platform",
+    liveUrl: "https://skillzy-five.vercel.app/",
+    excerpt:
+      "Career assessment website with a custom quiz engine—personality-driven insights, step-by-step roadmaps, and salary context for students and professionals.",
+    tech: ["React", "Node.js", "MongoDB", "Express"],
   },
 ];

@@ -29,7 +29,7 @@ export default function HomePortfolioPreview() {
           >
             <div className="home-portfolio-card__visual">
               <img
-                src={optimizeImageUrl(project.image, 640)}
+                src={optimizeImageUrl(project.image, 1200)}
                 alt={project.imageAlt || project.title}
                 loading="lazy"
                 decoding="async"

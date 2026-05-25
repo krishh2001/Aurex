@@ -350,33 +350,39 @@ export const TEAM_MEMBERS = [
  */
 export const HOME_TESTIMONIALS = [
   {
-    name: "Rahul Mehta",
-    role: "CTO, FinEdge Payments",
-    text: "AUREX delivered our web application on scope and on time. Releases are stable and their communication through each sprint was clear.",
+    name: "Dr. Anil Sharma",
+    role: "Head of Digital, Symbiotec",
+    text: "Our site had to speak to regulators and buyers across regions. AUREX delivered clear architecture pages, fast loads, and a CMS-friendly structure our marketing team still updates without developer tickets.",
     image: "",
   },
   {
-    name: "Priya Nair",
-    role: "Operations Director, HealthSync",
-    text: "From requirements to launch, the team owned the build end-to-end. Security and performance were handled properly—not left for later.",
+    name: "Meera Nambiar",
+    role: "Brand Manager, Livinda",
+    text: "The Livinda site finally matches the quality of our products—product films, Rochello storytelling, and export markets are easy to find. Launches feel premium, not like a generic catalog.",
     image: "",
   },
   {
-    name: "Arjun Kapoor",
-    role: "Director IT, RetailNova",
-    text: "We needed a reliable portal integrated with our existing systems. AUREX shipped clean APIs and documentation our internal team still uses.",
+    name: "Jason Cole",
+    role: "Owner, Fitness Temple NYC",
+    text: "Membership tiers, class schedules, and trainer bios were exactly what we needed. Members book tours from mobile, and the design feels as high-end as our Midtown facility.",
     image: "",
   },
   {
-    name: "Neha Verma",
-    role: "Founder, LogiTrack",
-    text: "Our MVP website and admin panel went live in ten weeks. Clear milestones, demos every week, and a sensible support plan after launch.",
+    name: "Kavita Desai",
+    role: "Product Lead, Bill se Bachat",
+    text: "Bill verification and reward payouts needed reliable APIs under load. AUREX shipped documented Laravel endpoints our app team integrated in weeks—not months.",
     image: "",
   },
   {
-    name: "David Chen",
-    role: "Head of Product, CloudServe",
-    text: "Transparent estimates, sensible timelines, and engineers who understand business constraints—not just closing tickets.",
+    name: "Rohit Malhotra",
+    role: "Founder, MyJobAccess",
+    text: "Employers manage listings and applicants in one place; candidates get a smooth apply flow. Search and dashboards stayed fast after we crossed our first ten thousand sign-ups.",
+    image: "",
+  },
+  {
+    name: "Sneha Iyer",
+    role: "Product Manager, SkillZY",
+    text: "The career quiz and roadmap experience had to feel credible to students. AUREX built the MERN flow so results, skills, and next steps load instantly—even on slower networks.",
     image: "",
   },
 ];
@@ -434,7 +440,7 @@ export const HOME_PORTFOLIO_SECTION = {
   description:
     "A snapshot of websites and applications we've delivered—filter by type on the full portfolio page.",
   cta: { label: "View full portfolio", to: "/portfolio" },
-  featuredIds: ["finledger", "novamart", "healthpulse"],
+  featuredIds: ["symbiotec", "livinda", "fitness-temple"],
 };
 
 /** Home — company overview (below hero); mirrors About page story tone */

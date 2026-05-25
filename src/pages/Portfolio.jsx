@@ -15,7 +15,7 @@ import TestimonialsSection from "../components/TestimonialsSection";
 
 export default function Portfolio() {
   usePageMeta(PAGE_META.portfolio);
-  usePageEffects(".portfolio-bg-text");
+  usePageEffects(".bg-large-text");
 
   const [category, setCategory] = useState("All");
   const [visibleCount, setVisibleCount] = useState(PORTFOLIO_PAGE.initialVisible);
@@ -50,19 +50,21 @@ export default function Portfolio() {
       <div className="ambient-glow" aria-hidden />
       <div className="ambient-glow-2" aria-hidden />
       <div className="ambient-glow-3" aria-hidden />
-      <div className="bg-large-text portfolio-bg-text" aria-hidden="true">
+      <div className="bg-large-text" aria-hidden="true">
         Portfolio
       </div>
       <div className="tech-line left-line" aria-hidden />
       <div className="tech-line right-line" aria-hidden />
 
       <main className="container">
-        <section className="portfolio-hero">
-          <span className="portfolio-eyebrow">
-            <RiBriefcaseLine aria-hidden /> {PORTFOLIO_PAGE.badge}
-          </span>
-          <h1>{PORTFOLIO_PAGE.title}</h1>
-          <p className="portfolio-lead">{PORTFOLIO_PAGE.lead}</p>
+        <section className="services-hero-container portfolio-hero">
+          <div className="services-section-header">
+            <span className="about-section-badge">
+              <RiBriefcaseLine aria-hidden /> {PORTFOLIO_PAGE.badge}
+            </span>
+            <h1 className="services-section-title">{PORTFOLIO_PAGE.title}</h1>
+            <p className="services-section-desc">{PORTFOLIO_PAGE.lead}</p>
+          </div>
 
           <ul className="portfolio-stats" role="list">
             {PORTFOLIO_STATS.map((stat) => (

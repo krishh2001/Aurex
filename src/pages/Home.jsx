@@ -126,9 +126,9 @@ export default function Home() {
                                                 {i < arr.length - 1 && <br />}
                                             </React.Fragment>
                                         ))}
-                                    </div>
-                                </div>
-                            ))}
+                        </div>
+                            </div>
+                        ))}
                         </div>
                     </div>
                 </section>

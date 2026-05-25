@@ -37,8 +37,8 @@ export default function BlogList() {
       const matchesCategory =
         selectedCategory === "All" || post.category === selectedCategory;
 
-      return matchesSearch && matchesCategory;
-    });
+    return matchesSearch && matchesCategory;
+  });
   }, [deferredSearch, selectedCategory]);
 
   const displayPosts = useMemo(
@@ -149,27 +149,27 @@ export default function BlogList() {
         <div
           className={`blog-list-posts-container ${isSearchPending ? "blog-list-posts-container--pending" : ""}`}
         >
-          <div className="blog-list-posts-grid">
-            {displayPosts.length > 0 ? (
-              displayPosts.map((post) => (
+              <div className="blog-list-posts-grid">
+                {displayPosts.length > 0 ? (
+                  displayPosts.map((post) => (
                 <BlogPostCard key={post.id} post={post} />
-              ))
-            ) : (
-              <div className="blog-list-no-results">
-                <p>No articles found. Try a different search or category.</p>
+                  ))
+                ) : (
+                  <div className="blog-list-no-results">
+                    <p>No articles found. Try a different search or category.</p>
                 <button type="button" onClick={clearFilters} className="blog-list-clear-filters-btn">
-                  Clear Filters
-                </button>
+                      Clear Filters
+                    </button>
+                  </div>
+                )}
               </div>
-            )}
-          </div>
 
-          {displayPosts.length > 0 && visiblePosts < filteredPosts.length && (
-            <div className="blog-list-load-more">
+              {displayPosts.length > 0 && visiblePosts < filteredPosts.length && (
+                <div className="blog-list-load-more">
               <button type="button" className="blog-list-load-btn" onClick={handleLoadMore}>
-                <RiEyeLine /> View More Articles
-              </button>
-            </div>
+                    <RiEyeLine /> View More Articles
+                  </button>
+                </div>
           )}
         </div>
 

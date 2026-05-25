@@ -8,7 +8,7 @@ import { PORTFOLIO_PAGE } from "../data/portfolio";
  * @param {{ project: import("../data/portfolio").PORTFOLIO_PROJECTS[number] }} props
  */
 export default function PortfolioProjectCard({ project }) {
-  const imageSrc = optimizeImageUrl(project.image, 900);
+  const imageSrc = optimizeImageUrl(project.image, 1200);
 
   return (
     <article className="pf-card">
