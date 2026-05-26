@@ -16,7 +16,7 @@ export default function PortfolioProjectCard({ project }) {
     <article className="pf-card">
       <div className={visualClass}>
         <img
-          className="pf-card__image"
+          className={`pf-card__image${project.bannerFull ? " pf-card__image--full" : ""}`}
           src={imageSrc}
           alt={project.imageAlt || project.title}
           loading="lazy"
