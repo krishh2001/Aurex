@@ -1,24 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { usePageEffects } from "../hooks/usePageEffects";
 import {
     RiCheckboxCircleFill,
     RiCloseCircleFill,
-    RiAddLine,
 } from "react-icons/ri";
 
-import CTA from "../components/CTA";
+import FaqSection from "../components/FaqSection";
 import { ENGAGEMENT_PLANS, ENGAGEMENT_FAQ, PRICING_CURRENCY_NOTE, PAGE_META } from "../data/company";
 import { usePageMeta } from "../hooks/usePageMeta";
 
 export default function Pricing() {
     usePageMeta(PAGE_META.pricing);
     usePageEffects(".pricing-bg-text");
-    const [activeFaq, setActiveFaq] = useState(null);
-
-    const toggleFaq = (index) => {
-        setActiveFaq(activeFaq === index ? null : index);
-    };
 
     return (
         <div className="pricing-page-wrapper">
@@ -90,31 +84,12 @@ export default function Pricing() {
                     ))}
                 </div>
 
-                <div className="faq-section">
-                    <div className="faq-header">
-                        <h2>Plan FAQs</h2>
-                        <p>Answers to common questions about how our plans work.</p>
-                    </div>
-
-                    <div className="faq-container">
-                        {ENGAGEMENT_FAQ.map((item, index) => (
-                            <div
-                                key={index}
-                                className={`faq-item ${activeFaq === index ? "active" : ""}`}
-                            >
-                                <button type="button" className="faq-question" onClick={() => toggleFaq(index)}>
-                                    {item.q}
-                                    <RiAddLine className="faq-icon" />
-                                </button>
-                                <div className="faq-answer">
-                                    <p>{item.a}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-                <CTA pageKey="pricing" />
+                <FaqSection
+                    className="pricing-page-faq"
+                    title="Plan FAQs"
+                    description="Answers to common questions about how our plans work."
+                    items={ENGAGEMENT_FAQ}
+                />
             </main>
         </div>
     );

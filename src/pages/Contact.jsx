@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import FaqSection from "../components/FaqSection";
 import { usePageEffects } from "../hooks/usePageEffects";
 import { usePageMeta } from "../hooks/usePageMeta";
 import {
@@ -20,6 +21,7 @@ import {
   CONTACT_PAGE,
   CONTACT_CHANNELS,
   CONTACT_SERVICE_OPTIONS,
+  CONTACT_FAQ,
   PAGE_META,
 } from "../data/company";
 import { submitContactForm } from "../lib/contactSubmit";
@@ -47,7 +49,7 @@ function ContactChannelCard({ channel }) {
 
   return (
     <Tag
-      className={`contact-channel-card${channel.id === "hours" ? " contact-channel-card--hours" : ""}${channel.static ? " contact-channel-card--static" : ""}`}
+      className="contact-channel-card"
       href={isLink ? channel.href : undefined}
       style={{ "--channel-accent": channel.accent }}
     >
@@ -61,8 +63,15 @@ function ContactChannelCard({ channel }) {
       <div className="contact-channel-card__body">
         <span className="contact-channel-card__label">{channel.label}</span>
         <span className="contact-channel-card__value">{channel.value}</span>
+        {channel.hint ? (
+          <p className="contact-channel-card__hint">{channel.hint}</p>
+        ) : null}
       </div>
-      {isLink && <RiArrowRightLine className="contact-channel-card__arrow" aria-hidden />}
+      {isLink ? (
+        <span className="contact-channel-card__action" aria-hidden>
+          <RiArrowRightLine className="contact-channel-card__arrow" />
+        </span>
+      ) : null}
     </Tag>
   );
 }
@@ -192,7 +201,7 @@ export default function Contact() {
                       <input
                         id="name"
                         type="text"
-                        placeholder="Rahul Sharma"
+                        placeholder="Full name"
                         required
                         autoComplete="name"
                         value={formData.name}
@@ -204,7 +213,7 @@ export default function Contact() {
                       <input
                         id="email"
                         type="email"
-                        placeholder="you@company.com"
+                        placeholder="Email address"
                         required
                         autoComplete="email"
                         value={formData.email}
@@ -226,11 +235,12 @@ export default function Contact() {
                       />
                     </div>
                     <div className="input-group">
-                      <label htmlFor="phone">Phone</label>
+                      <label htmlFor="phone">Phone *</label>
                       <input
                         id="phone"
                         type="tel"
-                        placeholder="Optional"
+                        placeholder="Phone number"
+                        required
                         autoComplete="tel"
                         value={formData.phone}
                         onChange={handleChange}
@@ -349,6 +359,14 @@ export default function Contact() {
             </div>
           </div>
         </section>
+
+        <FaqSection
+          id="contact-faq"
+          className="contact-faq-section"
+          title={CONTACT_FAQ.title}
+          description={CONTACT_FAQ.description}
+          items={CONTACT_FAQ.items}
+        />
       </main>
 
       {isSent && (

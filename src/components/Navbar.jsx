@@ -67,6 +67,9 @@ export default function Navbar() {
             <Link to="/portfolio" className={isActive("/portfolio")}>Portfolio</Link>
         </li>
         <li>
+            <Link to="/pricing" className={isActive("/pricing")}>Pricing</Link>
+        </li>
+        <li>
             <Link to="/about" className={isActive("/about")}>About</Link>
         </li>
         <li className="nav-links-contact">

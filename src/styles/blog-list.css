@@ -93,6 +93,20 @@
     color: #fff;
     font-size: 1rem;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* Avoid double clear icons when type="search" is used */
+.blog-list-search-input::-webkit-search-cancel-button,
+.blog-list-search-input::-webkit-search-decoration,
+.blog-list-search-input::-webkit-search-results-button {
+    display: none;
+    -webkit-appearance: none;
+}
+
+.blog-list-search-box:has(.blog-list-clear-search) .blog-list-search-input {
+    padding-right: 48px;
 }
 
 .blog-list-search-input:focus {
@@ -135,16 +149,61 @@
     background: rgba(16, 185, 129, 0.1);
 }
 
-/* --- Category Filter --- */
+.blog-list-filter-toggle[aria-expanded="true"] {
+    border-color: rgba(16, 185, 129, 0.45);
+    background: rgba(16, 185, 129, 0.12);
+    color: var(--accent-primary);
+}
+
+/* --- Category Filter (smooth height via grid, not max-height) --- */
 .blog-list-categories-filter {
-    max-height: 0;
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    margin-bottom: 0;
     overflow: hidden;
-    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition:
+        grid-template-rows 0.45s cubic-bezier(0.33, 1, 0.68, 1),
+        opacity 0.35s ease,
+        margin-bottom 0.45s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .blog-list-categories-filter.active {
-    max-height: 300px;
+    grid-template-rows: 1fr;
+    opacity: 1;
     margin-bottom: 20px;
+}
+
+.blog-list-categories-filter__inner {
+    min-height: 0;
+    overflow: hidden;
+    transform: translateY(-6px);
+    transition: transform 0.45s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.blog-list-categories-filter.active .blog-list-categories-filter__inner {
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .blog-list-categories-filter,
+    .blog-list-categories-filter__inner {
+        transition: none;
+    }
+
+    .blog-list-categories-filter:not(.active) {
+        display: none;
+    }
+
+    .blog-list-categories-filter.active {
+        display: block;
+        opacity: 1;
+        margin-bottom: 20px;
+    }
+
+    .blog-list-categories-filter.active .blog-list-categories-filter__inner {
+        transform: none;
+    }
 }
 
 .blog-list-categories-header {

@@ -10,6 +10,7 @@ import {
   RiCodeSSlashLine,
   RiServiceLine,
   RiPriceTag3Line,
+  RiBriefcaseLine,
 } from "react-icons/ri";
 
 const ROUTES = [
@@ -17,6 +18,7 @@ const ROUTES = [
   { to: "/services", label: "Services", icon: RiServiceLine },
   { to: "/contact", label: "Contact", icon: RiMailLine },
   { to: "/pricing", label: "Plans", icon: RiPriceTag3Line },
+  { to: "/careers", label: "Careers", icon: RiBriefcaseLine },
 ];
 
 const LOG_LINES = [

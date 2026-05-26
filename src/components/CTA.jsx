@@ -32,7 +32,8 @@ function resolveCta({ copy, pageKey }) {
 export default function CTA({ copy, pageKey, className = "" }) {
   const { icon, title, description, button, to } = resolveCta({ copy, pageKey });
   const Icon = CTA_ICONS[icon] ?? RiMailSendLine;
-  const isExternal = typeof to === "string" && /^https?:\/\//i.test(to);
+  const isExternal =
+    typeof to === "string" && /^(https?:\/\/|mailto:)/i.test(to);
 
   const btnContent = (
     <>
@@ -58,8 +59,9 @@ export default function CTA({ copy, pageKey, className = "" }) {
             <a
               href={to}
               className="cta-card__btn"
-              target="_blank"
-              rel="noopener noreferrer"
+              {...(/^https?:\/\//i.test(to)
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
             >
               {btnContent}
             </a>

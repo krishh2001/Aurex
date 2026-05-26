@@ -66,7 +66,7 @@ export function buildInquiryEmail(data) {
           <tr>
             <td align="center" style="padding-top:24px;font-size:13px;color:#6b7280;">
               <a href="mailto:aurexitsolutions@gmail.com" style="color:#10b981;text-decoration:none;">aurexitsolutions@gmail.com</a>
-              · Noida, India
+              · Indore, India
             </td>
           </tr>
         </table>

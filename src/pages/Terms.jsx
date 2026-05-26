@@ -79,7 +79,7 @@ const SECTIONS = [
     icon: RiScales3Line,
     body: (
       <p>
-        These terms are governed by the laws of <strong>India</strong>. Courts in Uttar Pradesh
+        These terms are governed by the laws of <strong>India</strong>. Courts in Madhya Pradesh
         have jurisdiction, subject to mandatory consumer protections where applicable.
       </p>
     ),

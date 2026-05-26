@@ -44,7 +44,7 @@ async function submitViaFormspree(data) {
   formData.append("email", data.email);
   formData.append("message", data.message.trim());
   if (data.company?.trim()) formData.append("company", data.company.trim());
-  if (data.phone?.trim()) formData.append("phone", data.phone.trim());
+  formData.append("phone", data.phone.trim());
   if (data.service?.trim()) formData.append("service", data.service.trim());
   formData.append("_subject", `Project inquiry from ${data.name}`);
   formData.append("_replyto", data.email);
@@ -65,7 +65,7 @@ async function submitViaFormspree(data) {
   return { ok: true, method: "formspree" };
 }
 
-/** @param {{ name: string, email: string, company?: string, phone?: string, service?: string, message: string }} data */
+/** @param {{ name: string, email: string, phone: string, company?: string, service?: string, message: string }} data */
 export async function submitContactForm(data) {
   const aurex = await submitViaAurexApi(data);
   if (aurex.ok) {

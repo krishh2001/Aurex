@@ -35,10 +35,14 @@ export async function handleContactPost(body, env) {
 
   const name = body?.name?.trim();
   const email = body?.email?.trim();
+  const phone = body?.phone?.trim();
   const message = body?.message?.trim();
 
-  if (!name || !email || !message) {
-    return { status: 400, body: { error: "Name, email, and message are required" } };
+  if (!name || !email || !phone || !message) {
+    return {
+      status: 400,
+      body: { error: "Name, email, phone, and message are required" },
+    };
   }
 
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -57,7 +61,7 @@ export async function handleContactPost(body, env) {
     name,
     email,
     company: body.company?.trim() || "",
-    phone: body.phone?.trim() || "",
+    phone,
     service: body.service?.trim() || "",
     message,
     siteUrl,

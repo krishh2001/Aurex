@@ -15,7 +15,7 @@ import {
 } from "react-icons/ri";
 
 import CTA from "../components/CTA";
-import { PAGE_META, TEAM_MEMBERS, TEAM_SECTION } from "../data/company";
+import { AUREX_METHOD, PAGE_META, TEAM_MEMBERS, TEAM_SECTION } from "../data/company";
 import { TEAM_SKILL_ICONS, TEAM_SKILL_ACCENTS, TEAM_SKILL_ORBIT, TEAM_SKILL_ORBIT_MOBILE, TEAM_SKILL_ORBIT_MOBILE_SM } from "../data/teamSkills";
 
 const TEAM_SOCIAL_ICONS = {
@@ -276,30 +276,33 @@ export default function About() {
 
                 <section className="about-process-section about-reveal">
                     <div className="section-header">
-                        <div className="about-section-badge">How We Work</div>
-                        <h2 className="section-title">The AUREX Method</h2>
-                        <p className="section-desc">
-                            A focused workflow for client IT projects—from scoped websites to long-running application programs.
-                        </p>
+                        <div className="about-section-badge">{AUREX_METHOD.badge}</div>
+                        <h2 className="section-title">{AUREX_METHOD.title}</h2>
+                        <p className="section-desc">{AUREX_METHOD.description}</p>
+                    </div>
+
+                    <div className="about-process-principles" role="list">
+                        {AUREX_METHOD.principles.map((item) => (
+                            <div key={item.label} className="about-process-principle" role="listitem">
+                                <span className="about-process-principle__value">{item.value}</span>
+                                <span className="about-process-principle__label">{item.label}</span>
+                            </div>
+                        ))}
                     </div>
 
                     <div className="about-process-grid">
-                        {[
-                            { id: "01", icon: "discovery", title: "Discovery & Research", desc: "We study your goals, audience, and digital landscape to form a clear direction." },
-                            { id: "02", icon: "strategy", title: "Strategy & Structure", desc: "We design a scalable plan that aligns with performance, brand, and business needs." },
-                            { id: "03", icon: "design", title: "UI/UX Design", desc: "Interfaces crafted to be clean, modern, intuitive, and visually striking." },
-                            { id: "04", icon: "development", title: "Development", desc: "Fast, secure, and optimized engineering built with modern technologies." },
-                            { id: "05", icon: "testing", title: "Testing & Polish", desc: "We refine every detail to ensure performance, stability, and consistency." },
-                            { id: "06", icon: "launch", title: "Launch & Scale", desc: "Your product goes live-backed with ongoing support and growth optimization." },
-                        ].map((item, idx) => (
-                            <div className={`about-process-card about-reveal about-delay-${(idx + 1) * 100}`} key={idx}>
+                        {AUREX_METHOD.steps.map((item, idx) => (
+                            <article
+                                className={`about-process-card about-reveal about-delay-${(idx + 1) * 100}`}
+                                key={item.id}
+                            >
                                 <span className="about-step-number">{item.id}</span>
                                 <div className="about-process-icon">
                                     <PremiumServiceIcon type={item.icon} className="about-process-premium-icon" />
                                 </div>
                                 <h3 className="about-process-title">{item.title}</h3>
-                                <p className="about-process-desc">{item.desc}</p>
-                            </div>
+                                <p className="about-process-desc">{item.description}</p>
+                            </article>
                         ))}
                     </div>
                 </section>

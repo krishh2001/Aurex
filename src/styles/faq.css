@@ -1,0 +1,105 @@
+/* Shared FAQ accordion — used on Pricing, Contact, etc. */
+.site-faq.faq-section {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto clamp(56px, 9vw, 96px);
+    opacity: 1;
+    animation: none;
+}
+
+.site-faq .faq-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.site-faq .faq-header h2 {
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 10px;
+}
+
+.site-faq .faq-header p {
+    margin: 0;
+    color: #94a3b8;
+    line-height: 1.6;
+    font-size: 0.9375rem;
+}
+
+.site-faq .faq-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.site-faq .faq-item {
+    background: rgba(18, 18, 18, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.site-faq .faq-item:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.site-faq .faq-item.active {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 24px rgba(16, 185, 129, 0.1);
+}
+
+.site-faq .faq-question {
+    padding: 16px 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: #e5e7eb;
+    background: transparent;
+    border: none;
+    width: 100%;
+    text-align: left;
+}
+
+.site-faq .faq-item.active .faq-question {
+    color: #fff;
+}
+
+.site-faq .faq-icon {
+    font-size: 1.25rem;
+    color: #94a3b8;
+    flex-shrink: 0;
+    transition: transform 0.35s ease, color 0.25s ease;
+}
+
+.site-faq .faq-item.active .faq-icon {
+    transform: rotate(45deg);
+    color: var(--accent-primary);
+}
+
+.site-faq .faq-answer {
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    transition: grid-template-rows 0.35s ease, opacity 0.25s ease;
+    padding: 0 20px;
+    font-size: 0.875rem;
+    color: #94a3b8;
+    line-height: 1.6;
+    opacity: 0;
+}
+
+.site-faq .faq-answer > * {
+    overflow: hidden;
+    margin: 0;
+}
+
+.site-faq .faq-item.active .faq-answer {
+    grid-template-rows: 1fr;
+    padding-bottom: 18px;
+    opacity: 1;
+}

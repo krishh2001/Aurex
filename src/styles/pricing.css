@@ -36,6 +36,10 @@
     background: rgba(18, 18, 18, 0.92);
 }
 
+.pricing-page-wrapper .site-faq.faq-section {
+    margin-bottom: clamp(72px, 11vw, 120px);
+}
+
 .pricing-page-wrapper .faq-item {
     backdrop-filter: none;
     -webkit-backdrop-filter: none;

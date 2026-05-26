@@ -1021,15 +1021,6 @@
     color: var(--text-muted);
 }
 
-.page-loading {
-    min-height: 40vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-muted);
-    font-size: 0.95rem;
-}
-
 /* Portfolio preview — header gap from layout.css */
 .home-portfolio__grid {
     display: grid;

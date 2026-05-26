@@ -5,12 +5,16 @@ import App from "./App.jsx";
 
 // Import all global styles here
 import "./styles/layout.css";
+import "./styles/page-loader.css";
 import "./styles/home.css";
 import "./styles/premium-icons.css";
 import "./styles/about.css";
 import "./styles/blog-list.css";
 import "./styles/contact.css";
+import "./styles/faq.css";
 import "./styles/pricing.css";
+import "./styles/careers.css";
+import "./styles/chat-widget.css";
 import "./styles/services.css";
 import "./styles/portfolio.css";
 import "./styles/service-cards.css";

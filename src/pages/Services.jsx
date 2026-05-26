@@ -2,7 +2,6 @@ import React, { useState, useRef, useCallback } from "react";
 import { usePageEffects } from "../hooks/usePageEffects";
 import { usePageMeta } from "../hooks/usePageMeta";
 import { useIntervalWhenVisible } from "../hooks/useIntervalWhenVisible";
-import CTA from "../components/CTA";
 import ServiceOfferingCard from "../components/ServiceOfferingCard";
 import { SERVICE_OFFERINGS, PAGE_META } from "../data/company";
 
@@ -131,8 +130,6 @@ export default function Services() {
             </div>
           </div>
         </section>
-
-        <CTA pageKey="services" />
 
       </main>
     </div>

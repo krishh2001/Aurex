@@ -484,7 +484,8 @@
 /* Card color themes — brighter strokes on dark icon tile */
 .service-card:nth-child(1) .premium-service-icon,
 .services-offering-card:nth-child(1) .premium-service-icon,
-.about-process-card:nth-child(1) .premium-service-icon {
+.about-process-card:nth-child(1) .premium-service-icon,
+.careers-culture-card:nth-child(1) .premium-service-icon {
     color: #4ade80;
     border: 1px solid rgba(74, 222, 128, 0.45);
     box-shadow: 0 8px 24px rgba(16, 185, 129, 0.2);
@@ -492,7 +493,8 @@
 
 .service-card:nth-child(2) .premium-service-icon,
 .services-offering-card:nth-child(2) .premium-service-icon,
-.about-process-card:nth-child(2) .premium-service-icon {
+.about-process-card:nth-child(2) .premium-service-icon,
+.careers-culture-card:nth-child(2) .premium-service-icon {
     color: #60a5fa;
     border: 1px solid rgba(96, 165, 250, 0.45);
     box-shadow: 0 8px 24px rgba(59, 130, 246, 0.2);
@@ -500,7 +502,8 @@
 
 .service-card:nth-child(3) .premium-service-icon,
 .services-offering-card:nth-child(3) .premium-service-icon,
-.about-process-card:nth-child(3) .premium-service-icon {
+.about-process-card:nth-child(3) .premium-service-icon,
+.careers-culture-card:nth-child(3) .premium-service-icon {
     color: #f472b6;
     border: 1px solid rgba(244, 114, 182, 0.45);
     box-shadow: 0 8px 24px rgba(236, 72, 153, 0.2);
@@ -508,7 +511,8 @@
 
 .service-card:nth-child(4) .premium-service-icon,
 .services-offering-card:nth-child(4) .premium-service-icon,
-.about-process-card:nth-child(4) .premium-service-icon {
+.about-process-card:nth-child(4) .premium-service-icon,
+.careers-culture-card:nth-child(4) .premium-service-icon {
     color: #fb923c;
     border: 1px solid rgba(251, 146, 60, 0.45);
     box-shadow: 0 8px 24px rgba(249, 115, 22, 0.2);
@@ -532,7 +536,8 @@
 
 .service-card:hover .premium-service-icon,
 .services-offering-card:hover .premium-service-icon,
-.about-process-card:hover .premium-service-icon {
+.about-process-card:hover .premium-service-icon,
+.careers-culture-card:hover .premium-service-icon {
     transform: scale(1.05);
     transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     filter: brightness(1.08);
@@ -540,13 +545,15 @@
 
 .service-card:hover .premium-service-icon__glow,
 .services-offering-card:hover .premium-service-icon__glow,
-.about-process-card:hover .premium-service-icon__glow {
+.about-process-card:hover .premium-service-icon__glow,
+.careers-culture-card:hover .premium-service-icon__glow {
     opacity: 0.38;
 }
 
 .service-card:hover .premium-service-icon__svg,
 .services-offering-card:hover .premium-service-icon__svg,
-.about-process-card:hover .premium-service-icon__svg {
+.about-process-card:hover .premium-service-icon__svg,
+.careers-culture-card:hover .premium-service-icon__svg {
     filter: drop-shadow(0 4px 14px currentColor);
 }
 

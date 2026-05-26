@@ -14,8 +14,8 @@ const ORG_SCHEMA = {
   address: {
     "@type": "PostalAddress",
     streetAddress: COMPANY.address,
-    addressLocality: "Noida",
-    addressRegion: "Uttar Pradesh",
+    addressLocality: COMPANY.city,
+    addressRegion: COMPANY.state,
     addressCountry: "IN",
   },
   sameAs: [

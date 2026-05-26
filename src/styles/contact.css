@@ -515,9 +515,14 @@
 }
 
 .map-section {
-    margin-bottom: 100px;
+    margin-bottom: clamp(48px, 7vw, 72px);
     animation: contactFadeUp 0.7s ease 0.15s forwards;
     opacity: 0;
+}
+
+.contact-faq-section {
+    margin: 0 auto clamp(72px, 10vw, 120px);
+    padding: 0 clamp(8px, 2vw, 16px);
 }
 
 .map-section-inner {
@@ -547,8 +552,8 @@
 
 .contact-channels-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: clamp(14px, 2vw, 20px);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(12px, 1.6vw, 16px);
     margin-bottom: 8px;
 }
 
@@ -557,16 +562,19 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    padding: clamp(18px, 2.2vw, 22px);
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    min-height: 0;
+    padding: 20px 14px 22px;
     text-decoration: none;
     color: inherit;
-    border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.09);
-    background: linear-gradient(155deg, rgba(24, 26, 25, 0.96) 0%, rgba(10, 10, 10, 0.98) 100%);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: linear-gradient(155deg, rgba(28, 30, 29, 0.98) 0%, rgba(12, 12, 12, 0.99) 100%);
     box-shadow:
         0 16px 36px rgba(0, 0, 0, 0.35),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
     transition:
         border-color 0.3s ease,
         transform 0.3s ease,
@@ -579,9 +587,9 @@
     position: absolute;
     inset: 0;
     background: radial-gradient(
-        ellipse 80% 60% at 20% 0%,
-        color-mix(in srgb, var(--channel-accent) 12%, transparent) 0%,
-        transparent 65%
+        ellipse 70% 55% at 50% 0%,
+        color-mix(in srgb, var(--channel-accent) 14%, transparent) 0%,
+        transparent 68%
     );
     pointer-events: none;
     opacity: 0;
@@ -600,33 +608,22 @@
     opacity: 1;
 }
 
-.contact-channel-card--static {
+.contact-channel-card:not(a) {
     cursor: default;
-}
-
-.contact-channel-card--static:hover {
-    transform: none;
-    border-color: rgba(255, 255, 255, 0.09);
-    box-shadow:
-        0 16px 36px rgba(0, 0, 0, 0.35),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
-}
-
-.contact-channel-card--static:hover::before {
-    opacity: 0;
 }
 
 .contact-channel-card__icon-wrap {
     position: relative;
-    width: 52px;
-    height: 52px;
+    width: 44px;
+    height: 44px;
     flex-shrink: 0;
+    margin: 0 auto;
 }
 
 .contact-channel-card__glow {
     position: absolute;
     inset: 0;
-    border-radius: 14px;
+    border-radius: 11px;
     background: radial-gradient(circle at 50% 55%, var(--channel-accent) 0%, transparent 72%);
     opacity: 0.28;
     animation: psi-glow-pulse 3s ease-in-out infinite;
@@ -635,8 +632,8 @@
 
 .contact-channel-card__ring {
     position: absolute;
-    inset: 3px;
-    border-radius: 12px;
+    inset: 2px;
+    border-radius: 10px;
     border: 1px solid var(--channel-accent);
     opacity: 0.18;
     animation: psi-ring-spin 14s linear infinite;
@@ -651,49 +648,75 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 14px;
-    font-size: 1.35rem;
+    border-radius: 11px;
+    font-size: 1.1rem;
     color: var(--channel-accent);
     background: color-mix(in srgb, var(--channel-accent) 14%, transparent);
     border: 1px solid color-mix(in srgb, var(--channel-accent) 38%, transparent);
-    box-shadow: 0 0 22px color-mix(in srgb, var(--channel-accent) 22%, transparent);
+    box-shadow: 0 0 16px color-mix(in srgb, var(--channel-accent) 18%, transparent);
 }
 
 .contact-channel-card__body {
     display: flex;
+    flex: 1;
     flex-direction: column;
-    gap: 6px;
+    align-items: center;
+    gap: 3px;
+    width: 100%;
     min-width: 0;
 }
 
 .contact-channel-card__label {
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
     text-transform: uppercase;
-    color: #94a3b8;
+    color: color-mix(in srgb, var(--channel-accent) 70%, #94a3b8);
 }
 
 .contact-channel-card__value {
-    font-size: 0.9375rem;
+    font-size: 0.875rem;
     font-weight: 600;
     color: #f8fafc;
-    line-height: 1.5;
+    line-height: 1.35;
     word-break: break-word;
 }
 
-.contact-channel-card--hours .contact-channel-card__value {
-    white-space: nowrap;
-    word-break: normal;
+.contact-channel-card__hint {
+    margin: 2px 0 0;
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1.4;
+    color: #64748b;
+}
+
+.contact-channel-card__action {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
 }
 
 .contact-channel-card__arrow {
-    position: absolute;
-    top: 18px;
-    right: 16px;
-    font-size: 1.1rem;
-    color: #64748b;
+    font-size: 0.95rem;
+    color: #94a3b8;
     transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.contact-channel-card:hover .contact-channel-card__action {
+    background: color-mix(in srgb, var(--channel-accent) 16%, transparent);
+    border-color: color-mix(in srgb, var(--channel-accent) 35%, transparent);
 }
 
 .contact-channel-card:hover .contact-channel-card__arrow {
@@ -1350,9 +1373,13 @@
 }
 
 /* --- Responsive --- */
-@media (max-width: 1100px) {
+@media (max-width: 900px) {
     .contact-channels-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: 1fr;
+    }
+
+    .contact-channel-card {
+        min-height: 0;
     }
 }
 
@@ -1397,10 +1424,6 @@
 @media (max-width: 600px) {
     .contact-section {
         padding-top: 36px;
-    }
-
-    .contact-channels-grid {
-        grid-template-columns: 1fr;
     }
 
     .contact-form-row {

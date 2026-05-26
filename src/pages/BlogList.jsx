@@ -104,12 +104,14 @@ export default function BlogList() {
               type="button"
               className="blog-list-filter-toggle"
               onClick={() => setShowFilter((prev) => !prev)}
+              aria-expanded={showFilter}
             >
               <RiFilterLine /> Filter
             </button>
           </div>
 
           <div className={`blog-list-categories-filter ${showFilter ? "active" : ""}`}>
+            <div className="blog-list-categories-filter__inner">
             <div className="blog-list-categories-header">
               <span className="blog-list-categories-title">Filter by Category</span>
               <button type="button" className="blog-list-clear-filters" onClick={clearFilters}>
@@ -130,6 +132,7 @@ export default function BlogList() {
                   </span>
                 </button>
               ))}
+            </div>
             </div>
           </div>
 

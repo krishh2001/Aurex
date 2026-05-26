@@ -135,20 +135,55 @@
     margin-bottom: 150px;
 }
 
+.about-process-principles {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    max-width: 920px;
+    margin: 0 auto clamp(36px, 5vw, 48px);
+}
+
+.about-process-principle {
+    padding: 16px 18px;
+    text-align: center;
+    border-radius: 14px;
+    border: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.about-process-principle__value {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+}
+
+.about-process-principle__label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
 .about-process-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(20px, 2.5vw, 30px);
 }
 
 .about-process-card {
     background: var(--card-bg);
     border: 1px solid var(--glass-border);
-    padding: 40px 30px;
+    padding: clamp(28px, 3vw, 40px) clamp(22px, 2.5vw, 30px);
     border-radius: 20px;
     position: relative;
     overflow: hidden;
     transition: 0.3s;
+    display: flex;
+    flex-direction: column;
 }
 
 .about-process-card:hover {
@@ -195,9 +230,39 @@
 }
 
 .about-process-desc {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 4px;
+}
+
+.about-process-highlights {
+    list-style: none;
+    margin: 14px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.about-process-highlights li {
+    position: relative;
+    padding-left: 14px;
+    font-size: 0.8125rem;
     line-height: 1.5;
+    color: #cbd5e1;
+}
+
+.about-process-highlights li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent-primary);
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
 }
 
 /* --- Tech Stack Section --- */
@@ -661,6 +726,11 @@
     }
 
     /* Process Section */
+    .about-process-principles {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        max-width: 520px;
+    }
+
     .about-process-grid {
         grid-template-columns: 1fr;
         max-width: 500px;
@@ -835,5 +905,14 @@
 
     .about-process-section {
         margin-bottom: 80px;
+    }
+
+    .about-process-principles {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .about-process-principle {
+        padding: 12px 14px;
     }
 }

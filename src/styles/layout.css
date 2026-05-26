@@ -682,6 +682,10 @@ body {
         transition-delay: 0.5s;
     }
 
+    .nav-links.active li:nth-child(6) {
+        transition-delay: 0.55s;
+    }
+
     .mobile-menu-btn {
         display: flex;
     }

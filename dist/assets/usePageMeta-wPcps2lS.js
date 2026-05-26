@@ -1,1 +1,0 @@
-import{aQ as e,r,aU as n,aV as t}from"./index-C8rIWLzn.js";function i(o={}){const{pathname:a}=e();r.useEffect(()=>{const s={...t,...o,pathname:a};return n(s)},[a,o.title,o.description,o.canonical,o.robots,o.image,o.ogType])}export{i as u};
