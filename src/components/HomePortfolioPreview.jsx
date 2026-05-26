@@ -27,7 +27,9 @@ export default function HomePortfolioPreview() {
             to="/portfolio"
             className="home-portfolio-card reveal"
           >
-            <div className="home-portfolio-card__visual">
+            <div
+              className={`home-portfolio-card__visual${project.lightBanner ? " home-portfolio-card__visual--light" : ""}`}
+            >
               <img
                 src={optimizeImageUrl(project.image, 1200)}
                 alt={project.imageAlt || project.title}

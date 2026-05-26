@@ -10,9 +10,11 @@ import { PORTFOLIO_PAGE } from "../data/portfolio";
 export default function PortfolioProjectCard({ project }) {
   const imageSrc = optimizeImageUrl(project.image, 1200);
 
+  const visualClass = `pf-card__visual${project.lightBanner ? " pf-card__visual--light" : ""}`;
+
   return (
     <article className="pf-card">
-      <div className="pf-card__visual">
+      <div className={visualClass}>
         <img
           className="pf-card__image"
           src={imageSrc}

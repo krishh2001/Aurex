@@ -628,7 +628,7 @@ export const HOME_PORTFOLIO_SECTION = {
   description:
     "A snapshot of websites and applications we've delivered—filter by type on the full portfolio page.",
   cta: { label: "View full portfolio", to: "/portfolio" },
-  featuredIds: ["symbiotec", "livinda", "fitness-temple"],
+  featuredIds: ["livinda", "symbiotec", "myjobaccess"],
 };
 
 /** Home — company overview (below hero); mirrors About page story tone */
