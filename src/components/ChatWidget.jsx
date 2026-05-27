@@ -21,55 +21,86 @@ const QUICK_REPLIES = [
   { id: "contact", label: "Contact us" },
 ];
 
-function getBotReply(input) {
-  const q = input.toLowerCase().trim();
+const normalize = (text) =>
+  text
+    .toLowerCase()
+    .replace(/[’'`"]/g, "")
+    .replace(/[^a-z0-9\s/₹@.+-]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 
-  if (/service|website|app|develop|build/.test(q)) {
+const hasAny = (haystack, needles) => needles.some((n) => haystack.includes(n));
+
+function getBotReply(input) {
+  const q = normalize(input);
+
+  // Direct navigation style questions (more "real" sounding)
+  if (
+    hasAny(q, [
+      "how do i connect",
+      "how to connect",
+      "connect you",
+      "connect with you",
+      "talk to you",
+      "get in touch",
+      "contact page",
+      "reach you",
+      "reach out",
+    ])
+  ) {
     return {
-      text: "We deliver custom websites, web applications, mobile apps, cloud/DevOps, and security. Explore details on our Services page.",
+      text: `You can reach ${COMPANY.name} from the Contact page. Share your requirements and we’ll reply within one business day.`,
+      link: { label: "Go to Contact", to: "/contact" },
+    };
+  }
+
+  if (hasAny(q, ["service", "services", "website", "websites", "web app", "app", "application", "develop", "development", "build"])) {
+    return {
+      text: "We deliver websites, web applications, mobile apps, cloud/DevOps, and security—end to end. Want a quick overview or should I send you the Services page?",
       link: { label: "View services", to: "/services" },
     };
   }
-  if (/price|cost|budget|plan|₹|rupee/.test(q)) {
+  if (hasAny(q, ["price", "pricing", "cost", "budget", "plan", "plans", "₹", "rupee", "inr"])) {
     return {
-      text: "Plans start from project-based and dedicated-team engagements in INR. See indicative pricing and FAQs on our Plans page.",
+      text: "Sure—our starting prices and plan comparison are on the Pricing page (Project-Based, Dedicated Team, Enterprise).",
       link: { label: "See pricing", to: "/pricing" },
     };
   }
-  if (/portfolio|work|project|client/.test(q)) {
+  if (hasAny(q, ["portfolio", "work", "projects", "project", "case study", "clients", "client"])) {
     return {
-      text: "We've shipped work across pharma, FMCG, fintech, fitness, and more—with live links on our portfolio.",
+      text: "Here’s our portfolio with recent projects and categories. Tell me your industry and I’ll point you to the closest examples.",
       link: { label: "View portfolio", to: "/portfolio" },
     };
   }
-  if (/career|job|hiring|join|vacancy/.test(q)) {
+  if (hasAny(q, ["career", "careers", "job", "jobs", "hiring", "join", "vacancy", "openings", "open roles"])) {
     return {
-      text: "We're hiring in Indore for React, full-stack, mobile, and delivery roles. Open positions are listed on Careers.",
+      text: "We’re hiring in Indore. You can see current openings and apply from the Careers page.",
       link: { label: "Open roles", to: "/careers" },
     };
   }
-  if (/contact|email|phone|call|reach/.test(q)) {
+  if (hasAny(q, ["contact", "email", "mail", "phone", "call", "reach", "number", "connect"])) {
     return {
       text: `Reach us at ${COMPANY.email} or ${COMPANY.phone}. Or send a brief via the contact form—we reply within one business day.`,
       link: { label: "Contact form", to: "/contact" },
     };
   }
-  if (/hour|time|ist|open/.test(q)) {
+  if (hasAny(q, ["hour", "hours", "time", "ist", "open", "office hours", "timing", "timings"])) {
     return {
       text: `Business hours: ${COMPANY.hours}. We're based in ${COMPANY.location}.`,
       link: { label: "Get directions", href: COMPANY.mapDirectionsUrl },
     };
   }
-  if (/hello|hi|hey|namaste/.test(q)) {
+  if (hasAny(q, ["hello", "hi", "hey", "namaste", "hii", "hlo"])) {
     return {
-      text: "Hello! How can we help with your website or application project today?",
+      text: "Hi! What are you looking to build—website, web app, or mobile app?",
       link: null,
     };
   }
 
   return {
-    text: "Thanks for your message. For a tailored answer, use the contact form or email us—our team replies within one business day.",
-    link: { label: "Start a project", to: "/contact" },
+    text:
+      "I can help with services, pricing, portfolio, and careers. If you want to start a project, the fastest path is the Contact page.",
+    link: { label: "Open Contact", to: "/contact" },
   };
 }
 

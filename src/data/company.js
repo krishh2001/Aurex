@@ -11,7 +11,7 @@ export const COMPANY = {
     "AUREX is an IT services company in Indore. Clients bring project requirements—we design, develop, test, and deliver websites, web apps, and mobile applications ready for real users.",
   email: "aurexitsolutions@gmail.com",
   salesEmail: "aurexitsolutions@gmail.com",
-  phone: "+91 731 456 7890",
+  phone: "+91 7354473505",
   city: "Indore",
   state: "Madhya Pradesh",
   location: "Indore, Madhya Pradesh, India",
@@ -780,14 +780,6 @@ export const FOOTER_COLUMNS = [
       { label: "Insights", to: "/blog" },
       { label: "Privacy Policy", to: "/privacy" },
       { label: "Terms of Use", to: "/terms" },
-    ],
-  },
-  {
-    title: "Connect",
-    links: [
-      { label: COMPANY.email, href: `mailto:${COMPANY.email}` },
-      { label: COMPANY.phone, href: `tel:${COMPANY.phone.replace(/\s/g, "")}` },
-      { label: COMPANY.location, static: true },
     ],
   },
 ];
