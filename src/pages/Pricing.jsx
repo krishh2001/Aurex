@@ -39,9 +39,12 @@ export default function Pricing() {
                         >
                             {plan.featured && <span className="most-popular">Most Popular</span>}
                             <div className="plan-header">
-                                <span className={`plan-name text-${plan.id === "project" ? "starter" : plan.id === "retainer" ? "pro" : "growth"}`}>
-                                    {plan.name}
-                                </span>
+                                <div className="plan-title-block">
+                                    <span className={`plan-name text-${plan.id === "project" ? "starter" : plan.id === "retainer" ? "pro" : "growth"}`}>
+                                        {plan.name}
+                                    </span>
+                                    <p className="plan-tagline">{plan.note}</p>
+                                </div>
                                 <div className="price-block">
                                     {plan.priceLabel ? (
                                         <span className="price-from">{plan.priceLabel}</span>
@@ -78,7 +81,6 @@ export default function Pricing() {
                                 >
                                     {plan.cta}
                                 </Link>
-                                <span className="savings-text">{plan.note}</span>
                             </div>
                         </div>
                     ))}

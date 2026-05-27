@@ -679,7 +679,7 @@ export const ENGAGEMENT_PLANS = [
     name: "Project-Based",
     priceLabel: "From",
     currency: "₹",
-    price: "6,50,000",
+    price: "30,000",
     period: "per project",
     featured: false,
     features: [
@@ -698,7 +698,7 @@ export const ENGAGEMENT_PLANS = [
     name: "Dedicated Team",
     priceLabel: "From",
     currency: "₹",
-    price: "9,50,000",
+    price: "45,000",
     period: "/month",
     featured: true,
     features: [

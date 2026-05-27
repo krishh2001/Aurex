@@ -277,7 +277,7 @@
     }
 
     .plan-header {
-        min-height: 132px;
+        min-height: 168px;
     }
 }
 
@@ -317,19 +317,36 @@
     padding-bottom: 22px;
     margin-bottom: 22px;
     flex-shrink: 0;
-    min-height: 128px;
+    min-height: 148px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 }
 
+.plan-title-block {
+    margin-bottom: 4px;
+}
+
 .plan-name {
-    font-size: 0.9375rem;
-    font-weight: 600;
-    margin: 0 0 16px;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    margin: 0 0 8px;
     display: block;
-    letter-spacing: 0.02em;
-    line-height: 1.2;
+    letter-spacing: 0.01em;
+    line-height: 1.25;
+}
+
+.plan-tagline {
+    margin: 0 0 16px;
+    font-size: clamp(0.7rem, 1.5vw, 0.8rem);
+    font-weight: 500;
+    line-height: 1.35;
+    color: #94a3b8;
+    white-space: nowrap;
+}
+
+.pricing-card.featured .plan-tagline {
+    color: #a7f3d0;
 }
 
 .price-block {
@@ -523,17 +540,6 @@
     box-shadow: 0 0 32px rgba(16, 185, 129, 0.45);
 }
 
-.savings-text {
-    display: block;
-    text-align: center;
-    font-size: 0.75rem;
-    line-height: 1.45;
-    color: var(--text-muted);
-    margin: 0;
-    min-height: 2.6em;
-    padding: 0 2px;
-}
-
 /* --- FAQ --- */
 .faq-section {
     width: 100%;
@@ -666,7 +672,7 @@
     }
 
     .plan-header {
-        min-height: 108px;
+        min-height: 152px;
     }
 
     .price {
@@ -675,9 +681,5 @@
 
     .price--custom {
         font-size: 1.95rem;
-    }
-
-    .savings-text {
-        min-height: auto;
     }
 }

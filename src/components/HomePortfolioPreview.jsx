@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { RiArrowRightLine } from "react-icons/ri";
 import { HOME_PORTFOLIO_SECTION } from "../data/company";
 import { PORTFOLIO_PROJECTS } from "../data/portfolio";
-import { optimizeImageUrl } from "../utils/imageUrl";
+import PortfolioProjectCard from "./PortfolioProjectCard";
 
 export default function HomePortfolioPreview() {
   const projects = HOME_PORTFOLIO_SECTION.featuredIds
@@ -11,7 +11,7 @@ export default function HomePortfolioPreview() {
     .filter(Boolean);
 
   return (
-    <section className="section-margin" id="portfolio" aria-labelledby="home-portfolio-title">
+    <section className="section-margin home-portfolio-preview" id="portfolio" aria-labelledby="home-portfolio-title">
       <div className="section-header reveal">
         <span className="section-subtitle">{HOME_PORTFOLIO_SECTION.subtitle}</span>
         <h2 id="home-portfolio-title" className="section-title">
@@ -20,31 +20,11 @@ export default function HomePortfolioPreview() {
         <p className="section-desc">{HOME_PORTFOLIO_SECTION.description}</p>
       </div>
 
-      <div className="home-portfolio__grid">
+      <div className="portfolio-grid home-portfolio__grid reveal">
         {projects.map((project) => (
-          <Link
-            key={project.id}
-            to="/portfolio"
-            className="home-portfolio-card reveal"
-          >
-            <div
-              className={`home-portfolio-card__visual${project.lightBanner ? " home-portfolio-card__visual--light" : ""}`}
-            >
-              <img
-                src={optimizeImageUrl(project.image, 1200)}
-                alt={project.imageAlt || project.title}
-                loading="lazy"
-                decoding="async"
-              />
-              <span className="home-portfolio-card__overlay" aria-hidden />
-              <span className="home-portfolio-card__pill">{project.category}</span>
-            </div>
-            <div className="home-portfolio-card__body">
-              <p className="home-portfolio-card__client">{project.client}</p>
-              <h3 className="home-portfolio-card__title">{project.title}</h3>
-              <p className="home-portfolio-card__excerpt">{project.excerpt}</p>
-            </div>
-          </Link>
+          <div key={project.id} className="portfolio-grid__item">
+            <PortfolioProjectCard project={project} />
+          </div>
         ))}
       </div>
 

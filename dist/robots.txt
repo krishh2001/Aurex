@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://aurex-phi.vercel.app/sitemap.xml
